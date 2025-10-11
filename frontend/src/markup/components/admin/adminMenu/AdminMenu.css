@@ -1,0 +1,15 @@
+.admin-menu {
+    background-color: #243053;
+    color: white;
+    height: 100%;
+}
+.admin-menu-header{
+    padding: 15px 20px;
+    font-weight: 200;
+    font-size: 20px;
+    background-color: #272727;
+}
+.admin-menu-list li {
+    padding: 8px 10px;
+    border-bottom: 1px solid gray;
+}

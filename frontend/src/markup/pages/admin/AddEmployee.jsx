@@ -6,13 +6,13 @@ import AddEmployeeForm from '../../components/admin/addEmployeeForm/AddEmployeeF
 
 function addEmployee() {
   return (
-    <div className='container'>
+    <div className=''>
       <div className='row'>
-        <div className='col-md-3'>
+        <div className='col-md-4'>
           {/* Admin Menu */}
           <AdminMenu />
         </div>
-        <div className='col-md-9'>
+        <div className='col-md-8'>
           {/* Add Employee Form */}
           <AddEmployeeForm />
         </div>
