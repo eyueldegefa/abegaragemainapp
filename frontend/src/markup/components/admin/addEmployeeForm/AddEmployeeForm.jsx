@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
+// import useNavigate to redirect after successful form submission
+import { useNavigate } from 'react-router';
 import './AddEmployeeForm.css';
+import employeeService from '../../../../services/employee.service';
 
 function AddEmployeeForm() {
+  // useNavigate hook
+  const navigate = useNavigate();
+
+  // Form state variables
   const [employee_email, setEmployeeEmail] = useState('');
   const [employee_first_name, setEmployeeFirstName] = useState('');
   const [employee_last_name, setEmployeeLastName] = useState('');
@@ -16,7 +23,7 @@ function AddEmployeeForm() {
   const [lastNameError, setLastNameError] = useState('');
   const [phoneError, setPhoneError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [serverError] = useState('');
+  const [serverError, setServerError] = useState('');
   const [success, setSuccess] = useState(false);
 
   // handleSubmit function
@@ -89,8 +96,24 @@ function AddEmployeeForm() {
       employee_password,
     };
 
-    console.log('Form Data Submitted:', formData);
-    setSuccess(true);
+    const newEmployee = employeeService.createEmployee(formData);
+    newEmployee.then((response) => response.json())
+      .then((data) => {
+        if (data.error)  {
+          setServerError(data.error);
+          setSuccess(false);
+        } else {
+          setServerError('');
+          setSuccess(true);
+          // redirect to admin dashboard after 2 seconds
+          setTimeout(() => {
+            navigate('/');
+          }, 2000);
+        }
+      }).catch(() => {
+        setServerError('An error occurred. Please try again later.');
+        setSuccess(false);
+      });
   }
 
   return (
@@ -162,6 +185,7 @@ function AddEmployeeForm() {
                           name="role"
                           value={company_role_id}
                           onChange={(e) => setCompanyRoleId(e.target.value)}
+                          required
                         >
                           <option value="1">Employee</option>
                           <option value="2">Admin</option>

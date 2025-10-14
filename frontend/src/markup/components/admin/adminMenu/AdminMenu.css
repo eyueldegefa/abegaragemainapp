@@ -12,4 +12,5 @@
 .admin-menu-list li {
     padding: 8px 10px;
     border-bottom: 1px solid gray;
+    cursor: pointer;
 }
