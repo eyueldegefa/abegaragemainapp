@@ -1,8 +1,8 @@
-const employeeAuthHeader = async () => {
+const getAuth = async () => {
   // console.log("Inside employeeAuthHeader");
   const employee = await JSON.parse(localStorage.getItem('employee'));
   if (employee && employee.employee_token) {
-    console.log("Inside employeeAuthHeader if statement");
+    console.log("Inside getAuth if statement");
     const decodedToken = await decodeTokenPayload(employee.employee_token);
     console.log(decodedToken);
     employee.employee_role = decodedToken.employee_role;
@@ -28,4 +28,4 @@ const decodeTokenPayload = (token) => {
   return JSON.parse(jsonPayload);
 };
 
-export default employeeAuthHeader;
+export default getAuth;

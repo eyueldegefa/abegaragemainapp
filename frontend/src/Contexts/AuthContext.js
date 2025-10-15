@@ -1,6 +1,7 @@
+// import hooks and react
 import React, { useState, useEffect, useContext } from "react";
-// import auth header 
-import employeeAuthHeader from "../util/auth.header";
+// import getAuth
+import getAuth from "../util/auth";
 
 // Create the AuthContext 
 const AuthContext = React.createContext();
@@ -20,7 +21,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     // Retrieve the logged in user from local storage
-    const loggedInEmployee = employeeAuthHeader();
+    const loggedInEmployee = getAuth();
     // console.log(loggedInEmployee);
     loggedInEmployee.then((response) => {
       // console.log(response);
@@ -40,4 +41,4 @@ export const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
-}
+};

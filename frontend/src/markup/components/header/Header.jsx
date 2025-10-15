@@ -1,8 +1,12 @@
 import React from 'react'
 // import logo
 import Logo from '../../../assets/images/logo.png'
+// import useAuth
+import { useAuth } from '../../../Contexts/AuthContext'
 
 function Header() {
+    console.log(useAuth);
+    
   return (
     <>
         {/* // <!-- Main Header --> */}
