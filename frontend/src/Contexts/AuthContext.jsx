@@ -1,10 +1,10 @@
 // import hooks and react
-import React, { useState, useEffect, useContext, createContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 // import getAuth
 import getAuth from "../util/auth";
 
 // Create the AuthContext 
-const AuthContext = createContext();
+const AuthContext = React.createContext();
 
 // Export the AuthContext
 export const useAuth = () => {

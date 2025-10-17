@@ -1,52 +1,61 @@
-import React from 'react'
+import React, { use } from 'react'
 // import logo
 import Logo from '../../../assets/images/logo.png'
+// import loginservice
+import loginService from '../../../services/login.service';
 // import useAuth
-// import { useAuth } from '../../../Contexts/AuthContext'
+import { useAuth } from '../../../Contexts/AuthContext'
+// import Link from react-router
+import { Link } from 'react-router';
 
 function Header() {
+    
+    const {isLogged, setIsLogged, employee} = useAuth();
+
+    const logOut = () => {
+        loginService.logOut();
+        setIsLogged(false);
+    }
+
 
   return (
     <>
         {/* // <!-- Main Header --> */}
-    <header class="main-header header-style-one">
+    <header className="main-header header-style-one">
 
         {/* <!-- Header Top --> */}
-        <div class="header-top">
-            <div class="auto-container">
-                <div class="inner-container">
-                    <div class="left-column">
-                        <div class="text">Enjoy with beso while we fix your car</div>
-                        <div class="office-hour">Monday - Saturday 2:00AM - 12:00PM</div>
+        <div className="header-top">
+            <div className="auto-container">
+                <div className="inner-container">
+                    <div className="left-column">
+                        <div className="text">Enjoy with beso while we fix your car</div>
+                        <div className="office-hour">Monday - Saturday 2:00AM - 12:00PM</div>
                     </div>
-                    <div class="right-column">
-                        <div class="phone-number">Schedule Your Appontment Today : <strong>1800 456 7890</strong></div>
-                        <div class="language-switcher">
-                            <div id="polyglotLanguageSwitcher" class=""></div>
-                        </div>
+                    <div className="right-column">
+                        {isLogged ? (<div className="phone-number"><strong>Welcome : {employee?.employee_first_name}</strong>  </div>) : (<div className="phone-number">Schedule Your Appontment Today : <strong>1800 456 7890</strong>  </div>)}
                     </div>
                 </div>
             </div>
         </div>
 
         {/* <!-- Header Upper --> */}
-        <div class="header-upper">
-            <div class="auto-container">
-                <div class="inner-container">
+        <div className="header-upper">
+            <div className="auto-container">
+                <div className="inner-container">
                     {/* <!--Logo--> */}
-                    <div class="logo-box">
-                        <div class="logo"><a href="index.html"><img src={Logo}/></a></div>
+                    <div className="logo-box">
+                        <div className="logo"><a href="index.html"><img src={Logo}/></a></div>
                     </div>
-                    <div class="right-column">
+                    <div className="right-column">
                         {/* <!--Nav Box--> */}
-                        <div class="nav-outer">
+                        <div className="nav-outer">
                             {/* <!--Mobile Navigation Toggler--> */}
-                            <div class="mobile-nav-toggler"><img src="assets/images/icons/icon-bar.png" alt=""/></div>
+                            <div className="mobile-nav-toggler"><img src="assets/images/icons/icon-bar.png" alt=""/></div>
 
                             {/* <!-- Main Menu --> */}
-                            <nav class="main-menu navbar-expand-md navbar-light">
-                                <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
-                                    <ul class="navigation">
+                            <nav className="main-menu navbar-expand-md navbar-light">
+                                <div className="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                                    <ul className="navigation">
                                         <li><a href="/">Home</a>
                                         </li>
                                         <li><a href="/about">About Us</a>
@@ -58,8 +67,8 @@ function Header() {
                                 </div>
                             </nav>
                         </div>
-                        <div class="search-btn"></div>
-                        <div class="link-btn"><a href="/login" class="theme-btn btn-style-one">Sign in </a></div>
+                        <div className="search-btn"></div>
+                        {isLogged ? (<div className="link-btn"><Link href="/" className="theme-btn btn-style-one" onClick={logOut}>Log out </Link></div>) : (<div className="link-btn"><Link href="/login" className="theme-btn btn-style-one">Sign in </Link></div>)}
                     </div>                        
                 </div>
             </div>
@@ -67,27 +76,27 @@ function Header() {
         {/* <!--End Header Upper--> */}
 
         {/* <!-- Sticky Header  --> */}
-        <div class="sticky-header">
+        <div className="sticky-header">
             {/* <!-- Header Upper --> */}
-            <div class="header-upper">
-                <div class="auto-container">
-                    <div class="inner-container">
+            <div className="header-upper">
+                <div className="auto-container">
+                    <div className="inner-container">
                         {/* <!--Logo--> */}
-                        <div class="logo-box">
-                            <div class="logo"><a href="index.html"><img src="assets/images/logo.png" alt=""/></a></div>
+                        <div className="logo-box">
+                            <div className="logo"><a href="index.html"><img src="assets/images/logo.png" alt=""/></a></div>
                         </div>
-                        <div class="right-column">
+                        <div className="right-column">
                             {/* <!--Nav Box--> */}
-                            <div class="nav-outer">
+                            <div className="nav-outer">
                                 {/* <!--Mobile Navigation Toggler--> */}
-                                <div class="mobile-nav-toggler"><img src="assets/images/icons/icon-bar.png" alt=""/></div>
+                                <div className="mobile-nav-toggler"><img src="assets/images/icons/icon-bar.png" alt=""/></div>
 
                                 {/* <!-- Main Menu --> */}
-                                <nav class="main-menu navbar-expand-md navbar-light">
+                                <nav className="main-menu navbar-expand-md navbar-light">
                                 </nav>
                             </div>
-                            <div class="search-btn"></div>
-                            <div class="link-btn"><a href="login.html" class="theme-btn btn-style-one">Sign in </a></div>
+                            <div className="search-btn"></div>
+                            <div className="link-btn"><a href="login.html" className="theme-btn btn-style-one">Sign in </a></div>
                         </div>                        
                     </div>
                 </div>
@@ -97,31 +106,31 @@ function Header() {
         {/* <!-- End Sticky Menu --> */}
 
         {/* <!-- Mobile Menu  --> */}
-        <div class="mobile-menu">
-            <div class="menu-backdrop"></div>
-            <div class="close-btn"><span class="icon flaticon-remove"></span></div>
+        <div className="mobile-menu">
+            <div className="menu-backdrop"></div>
+            <div className="close-btn"><span className="icon flaticon-remove"></span></div>
             
-            <nav class="menu-box">
-                <div class="nav-logo"><a href="index.html"><img src="assets/images/logo3.png" alt="" title=""/></a></div>
-                <div class="menu-outer"></div>
+            <nav className="menu-box">
+                <div className="nav-logo"><a href="index.html"><img src="assets/images/logo3.png" alt="" title=""/></a></div>
+                <div className="menu-outer"></div>
             {/* <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--> */}
 				{/* <!--Social Links--> */}
-				<div class="social-links">
-					<ul class="clearfix">
-						<li><a href="#"><span class="fab fa-twitter"></span></a></li>
-						<li><a href="#"><span class="fab fa-facebook-square"></span></a></li>
-						<li><a href="#"><span class="fab fa-pinterest-p"></span></a></li>
-						<li><a href="#"><span class="fab fa-instagram"></span></a></li>
-						<li><a href="#"><span class="fab fa-youtube"></span></a></li>
+				<div className="social-links">
+					<ul className="clearfix">
+						<li><a href="#"><span className="fab fa-twitter"></span></a></li>
+						<li><a href="#"><span className="fab fa-facebook-square"></span></a></li>
+						<li><a href="#"><span className="fab fa-pinterest-p"></span></a></li>
+						<li><a href="#"><span className="fab fa-instagram"></span></a></li>
+						<li><a href="#"><span className="fab fa-youtube"></span></a></li>
 					</ul>
                 </div>
             </nav>
         </div>
 {/* <!-- End Mobile Menu --> */}
 
-        <div class="nav-overlay">
-            <div class="cursor"></div>
-            <div class="cursor-follower"></div>
+        <div className="nav-overlay">
+            <div className="cursor"></div>
+            <div className="cursor-follower"></div>
         </div>
     </header>
     {/* <!-- End Main Header --> */}

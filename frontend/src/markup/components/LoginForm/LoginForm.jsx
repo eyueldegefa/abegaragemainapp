@@ -9,6 +9,7 @@ function LoginForm() {
   const location = useLocation();
   const [employee_email, setEmail] = useState('');
   const [employee_password, setPassword] = useState('');
+  // Errors
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [serverError, setServerError] = useState('');
@@ -50,19 +51,19 @@ function LoginForm() {
     console.log(formData);
     // Call the service
     const loginEmployee = loginService.logIn(formData);
-    console.log(loginEmployee);
+    // console.log(loginEmployee);
     loginEmployee.then((response) => response.json())
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (response.status === 'success') {
           // Save the user in the local storage
           if (response.data.employee_token) {
-            console.log(response.data);
+            // console.log(response.data);
             localStorage.setItem("employee", JSON.stringify(response.data));
           }
           // Redirect the user to the dashboard
           // navigate('/admin');
-          console.log(location);
+          // console.log(location);
           if (location.pathname === '/login') {
             // navigate('/admin');
             // window.location.replace('/admin');
