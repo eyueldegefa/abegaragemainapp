@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
 import loginService from '../../../services/login.service';
+// import css
+import './LoginForm.css'
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -65,7 +67,7 @@ function LoginForm() {
             // navigate('/admin');
             // window.location.replace('/admin');
             // To home for now 
-            window.location.replace('/');
+            navigate('/')
           } else {
             window.location.reload();
           }
@@ -82,31 +84,31 @@ function LoginForm() {
   };
 
   return (
-    <section className="contact-section">
-      <div className="auto-container">
+    <section className="contact-section row">
+      <div className="auto-container col-6">
         <div className="contact-title">
           <h2>Login to your account</h2>
         </div>
         <div className="row clearfix">
-          <div className="form-column col-lg-7">
+          <div className="form-column col-lg-10">
             <div className="inner-column">
               <div className="contact-form">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className='login-form'>
                   <div className="row clearfix">
 
                     <div className="form-group col-md-12">
-                      {serverError && <div className="validation-error" role="alert">{serverError}</div>}
+                      {serverError && <div className="error" role="alert">{serverError}</div>}
                       <input type="email" name="employee_email" value={employee_email} onChange={(event) => setEmail(event.target.value)} placeholder="Email" />
-                      {emailError && <div className="validation-error" role="alert">{emailError}</div>}
+                      {emailError && <div className="error" role="alert">{emailError}</div>}
                     </div>
 
                     <div className="form-group col-md-12">
                       <input type="password" name="employee_password" value={employee_password} onChange={(event) => setPassword(event.target.value)} placeholder="Password" />
-                      {passwordError && <div className="validation-error" role="alert">{passwordError}</div>}
+                      {passwordError && <div className="error" role="alert">{passwordError}</div>}
                     </div>
 
                     <div className="form-group col-md-12">
-                      <button className="theme-btn btn-style-one" type="submit" data-loading-text="Please wait..."><span>Login</span></button>
+                      <button className="theme-btn btn-style-one" type="submit" data-loading-text="Please wait..."><span>Log in</span></button>
                     </div>
                   </div>
                 </form>
