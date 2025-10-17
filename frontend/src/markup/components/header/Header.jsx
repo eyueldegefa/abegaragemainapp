@@ -1,8 +1,12 @@
 import React from 'react'
 // import logo
 import Logo from '../../../assets/images/logo.png'
+// import useAuth
+// import { useAuth } from '../../../Contexts/AuthContext'
 
 function Header() {
+    // console.log(useAuth());
+    
   return (
     <>
         {/* // <!-- Main Header --> */}
@@ -44,19 +48,19 @@ function Header() {
                             <nav class="main-menu navbar-expand-md navbar-light">
                                 <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                                     <ul class="navigation">
-                                        <li><a href="index.html">Home</a>
+                                        <li><a href="/">Home</a>
                                         </li>
-                                        <li><a href="about.html">About Us</a>
+                                        <li><a href="/about">About Us</a>
                                         </li>
-                                        <li><a href="service.html">Services</a>
+                                        <li><a href="/service">Services</a>
                                         </li>
-                                        <li><a href="contact.html">Contact Us</a></li>
+                                        <li><a href="/contact">Contact Us</a></li>
                                     </ul>
                                 </div>
                             </nav>
                         </div>
                         <div class="search-btn"></div>
-                        <div class="link-btn"><a href="login.html" class="theme-btn btn-style-one">Sign in </a></div>
+                        <div class="link-btn"><a href="/login" class="theme-btn btn-style-one">Sign in </a></div>
                     </div>                        
                 </div>
             </div>

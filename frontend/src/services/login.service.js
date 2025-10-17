@@ -1,4 +1,4 @@
-const api_url = process.env.REACT_APP_API_URL;
+const api_url = "http://localhost:8000";
 
 // A function to send the login request to the server 
 const logIn = async (formData) => {
@@ -13,7 +13,14 @@ const logIn = async (formData) => {
   return response;
 }
 
+// A function to log out the user
+const logOut = () => {
+  localStorage.removeItem("employee");
+};
+
+
 // Export the functions 
 module.exports = {
-  logIn
+  logIn,
+  logOut
 }
