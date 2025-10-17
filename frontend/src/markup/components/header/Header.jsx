@@ -5,8 +5,7 @@ import Logo from '../../../assets/images/logo.png'
 // import { useAuth } from '../../../Contexts/AuthContext'
 
 function Header() {
-    // console.log(useAuth());
-    
+
   return (
     <>
         {/* // <!-- Main Header --> */}

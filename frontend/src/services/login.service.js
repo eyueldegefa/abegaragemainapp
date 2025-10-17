@@ -20,7 +20,11 @@ const logOut = () => {
 
 
 // Export the functions 
+<<<<<<< HEAD
 module.exports = {
   logIn,
   logOut
 }
+=======
+export { logIn };
+>>>>>>> e6d329bf46faeb77bd0a3b1ba5baf5807a213454
