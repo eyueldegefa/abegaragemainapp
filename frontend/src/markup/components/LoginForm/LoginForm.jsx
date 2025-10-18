@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import loginService from '../../../services/login.service';
 // import css
 import './LoginForm.css'
 
 function LoginForm() {
-  const navigate = useNavigate();
   const location = useLocation();
   const [employee_email, setEmail] = useState('');
   const [employee_password, setPassword] = useState('');
@@ -68,7 +67,7 @@ function LoginForm() {
             // navigate('/admin');
             // window.location.replace('/admin');
             // To home for now 
-            navigate('/')
+            window.location = '/'
           } else {
             window.location.reload();
           }

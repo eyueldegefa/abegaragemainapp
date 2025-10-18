@@ -1,7 +1,7 @@
-import React, { use } from 'react'
+import React from 'react'
 // import logo
 import Logo from '../../../assets/images/logo.png'
-// import loginservice
+// import loginService
 import loginService from '../../../services/login.service';
 // import useAuth
 import { useAuth } from '../../../Contexts/AuthContext'
@@ -32,7 +32,7 @@ function Header() {
                         <div className="office-hour">Monday - Saturday 2:00AM - 12:00PM</div>
                     </div>
                     <div className="right-column">
-                        {isLogged ? (<div className="phone-number"><strong>Welcome : {employee?.employee_first_name}</strong>  </div>) : (<div className="phone-number">Schedule Your Appontment Today : <strong>1800 456 7890</strong>  </div>)}
+                        {isLogged ? (<div className="phone-number"><strong>Welcome : {employee?.employee_first_name}</strong>  </div>) : (<div className="phone-number">Schedule Your Appointment Today : <strong>1800 456 7890</strong>  </div>)}
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@ function Header() {
                             </nav>
                         </div>
                         <div className="search-btn"></div>
-                        {isLogged ? (<div className="link-btn"><Link href="/" className="theme-btn btn-style-one" onClick={logOut}>Log out </Link></div>) : (<div className="link-btn"><Link href="/login" className="theme-btn btn-style-one">Sign in </Link></div>)}
+                        {isLogged ? (<div className="link-btn"><Link to="/" className="theme-btn btn-style-one" onClick={logOut}>Log out </Link></div>) : (<div className="link-btn"><Link to="/login" className="theme-btn btn-style-one">Sign in </Link></div>)}
                     </div>                        
                 </div>
             </div>
@@ -96,7 +96,7 @@ function Header() {
                                 </nav>
                             </div>
                             <div className="search-btn"></div>
-                            <div className="link-btn"><a href="login.html" className="theme-btn btn-style-one">Sign in </a></div>
+                               {isLogged ? (<div className="link-btn"><Link to="/" className="theme-btn btn-style-one" onClick={logOut}>Log out </Link></div>) : (<div className="link-btn"><Link to="/login" className="theme-btn btn-style-one">Sign in </Link></div>)}
                         </div>                        
                     </div>
                 </div>
