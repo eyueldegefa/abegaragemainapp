@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import './AddEmployeeForm.css';
 import employeeService from '../../../../services/employee.service';
+// import useAuth to get logged in employee token
+import { useAuth } from '../../../../Contexts/AuthContext';
 
 function AddEmployeeForm() {
   // useNavigate hook
@@ -25,6 +27,14 @@ function AddEmployeeForm() {
   const [passwordError, setPasswordError] = useState('');
   const [serverError, setServerError] = useState('');
   const [success, setSuccess] = useState(false);
+
+  // create a variable to hold logged in employee token
+  let loggedInEmployeeToken = '';
+  // get logged in employee token using useAuth
+  const { employee } = useAuth();
+  if (employee && employee.employee_token) {
+    loggedInEmployeeToken = employee.employee_token;
+  }
 
   // handleSubmit function
   function handleSubmit(e) {
@@ -96,7 +106,7 @@ function AddEmployeeForm() {
       employee_password,
     };
 
-    const newEmployee = employeeService.createEmployee(formData);
+    const newEmployee = employeeService.createEmployee(formData, loggedInEmployeeToken);
     newEmployee.then((response) => response.json())
       .then((data) => {
         if (data.error)  {

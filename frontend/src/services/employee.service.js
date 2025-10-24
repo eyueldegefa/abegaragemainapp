@@ -2,10 +2,13 @@
 const api_url = "http://localhost:8000"
 
 // A function to send post request to create a new employee 
-const createEmployee = async (formData) => {
+const createEmployee = async (formData, loggedInEmployeeToken) => {
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 
+      'Content-Type': 'application/json',
+      'x-access-token': loggedInEmployeeToken
+     },
     body: JSON.stringify(formData)
   };
   const response = await fetch(`${api_url}/api/employee`, requestOptions);

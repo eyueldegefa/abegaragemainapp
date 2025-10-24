@@ -5,6 +5,7 @@ import AdminMenu from '../../components/admin/adminMenu/AdminMenu'
 import AddEmployeeForm from '../../components/admin/addEmployeeForm/AddEmployeeForm'
 
 function addEmployee() {
+  
   return (
     <div className=''>
       <div className='row'>
