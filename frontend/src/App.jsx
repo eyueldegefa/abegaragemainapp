@@ -10,6 +10,7 @@ import Unauthorized from './markup/pages/unauthorized'
 import Orders from './markup/pages/Orders'
 import PrivateAuthRoute from './markup/components/auth/PrivateAuthRoute'
 import Customers from './markup/pages/admin/Customers'
+import Employee from './markup/pages/admin/Employee'
 // import css from template_assets
 import './assets/template_assets/css/bootstrap.css'
 import './assets/template_assets/css/style.css'
@@ -29,6 +30,10 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/unauthorized' element={<Unauthorized />} />
+          <Route path='/admin/employees' element=
+                  // {<PrivateAuthRoute roles={[3]} >
+                    {<Employee />}/>
+                  {/* </PrivateAuthRoute>} /> */}
            
            <Route path='/admin/orders' element=
                   {<PrivateAuthRoute roles={[1,2,3]} >

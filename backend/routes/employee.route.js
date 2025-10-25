@@ -8,5 +8,7 @@ const authMiddleware = require('../middlewares/auth.middleware');
 const employeeController = require('../controllers/employee.controller');
 // Create a route to handle the add employee request on post
 router.post("/api/employee",[authMiddleware.verifyToken, authMiddleware.isAdmin] , employeeController.createEmployee);
+// create a route to get all employees
+router.get("/api/employees",[authMiddleware.verifyToken, authMiddleware.isAdmin] , employeeController.getAllEmployees);
 // Export the router
 module.exports = router;
