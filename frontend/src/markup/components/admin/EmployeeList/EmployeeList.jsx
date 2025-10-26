@@ -5,6 +5,8 @@ import { Table, Button } from 'react-bootstrap';
 import { useAuth } from "../../../../Contexts/AuthContext";
 // Import the date-fns library 
 import { format } from 'date-fns'; // To properly format the date on the table 
+// import css file
+import './EmployeeList.css';
 // Import the getAllEmployees function  
 import employeeService from "../../../../services/employee.service";
 

@@ -62,10 +62,11 @@ async function getAllEmployees() {
   return rows;
 }
 
+
 // Export the functions for use in the controller
 module.exports = {
   checkIfEmployeeExists,
   createEmployee,
   getEmployeeByEmail,
-  getAllEmployees
+  getAllEmployees,
 };

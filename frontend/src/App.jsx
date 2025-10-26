@@ -19,6 +19,7 @@ import './assets/template_assets/css/color.css'
 // import header and footer
 import Header from './markup/components/header/Header'
 import Footer from './markup/components/footer/Footer'
+import AddCustomer from './markup/pages/admin/AddCustomer'
 
 
 function App() {
@@ -31,9 +32,9 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/unauthorized' element={<Unauthorized />} />
           <Route path='/admin/employees' element=
-                  // {<PrivateAuthRoute roles={[3]} >
-                    {<Employee />}/>
-                  {/* </PrivateAuthRoute>} /> */}
+                  {<PrivateAuthRoute roles={[3]} >
+                    <Employee />
+                  </PrivateAuthRoute>} />
            
            <Route path='/admin/orders' element=
                   {<PrivateAuthRoute roles={[1,2,3]} >
@@ -43,6 +44,11 @@ function App() {
            <Route path='/admin/add-employee' element=
                     {<PrivateAuthRoute roles={[3]}>
                       <AddEmployee/>
+                    </PrivateAuthRoute>} />
+
+            <Route path='/admin/add-customer' element=
+                    {<PrivateAuthRoute roles={[3]}>
+                      <AddCustomer/>
                     </PrivateAuthRoute>} />
 
            <Route path='/admin/customers' element=

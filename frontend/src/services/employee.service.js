@@ -28,9 +28,10 @@ const getAllEmployees = async (token) => {
   return response;
 }
 
+
 // Export all the functions 
 const employeeService = {
   createEmployee,
-  getAllEmployees
+  getAllEmployees,
 }
 export default employeeService; 
