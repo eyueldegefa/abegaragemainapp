@@ -55,18 +55,9 @@ async function getEmployeeByEmail(employee_email) {
   return rows;
 }
 
-// a function to get all employees
-async function getAllEmployees() {
-  const query = "SELECT * FROM employee INNER JOIN employee_info ON employee.employee_id = employee_info.employee_id INNER JOIN employee_role ON employee.employee_id = employee_role.employee_id";
-  const rows = await conn.query(query);
-  return rows;
-}
-
-
 // Export the functions for use in the controller
 module.exports = {
   checkIfEmployeeExists,
   createEmployee,
-  getEmployeeByEmail,
-  getAllEmployees,
+  getEmployeeByEmail
 };
