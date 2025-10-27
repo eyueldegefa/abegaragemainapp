@@ -1,0 +1,15 @@
+.add-employee-form input, .add-employee-form select {
+    color: gray !important;
+    font-size: 12px !important;
+    border-radius: 5px;
+}
+.error{
+    color: red;
+    font-size: 12px;
+    text-align: right;
+}
+.success{
+    color: rgb(1, 197, 1);
+    font-size: 12px;
+    text-align: right;
+}

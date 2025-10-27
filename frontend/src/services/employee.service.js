@@ -14,24 +14,8 @@ const createEmployee = async (formData, loggedInEmployeeToken) => {
   const response = await fetch(`${api_url}/api/employee`, requestOptions);
   return response;
 }
-
-// Function to get all employees
-const getAllEmployees = async (token) => {
-  const requestOptions = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-access-token': token
-    }
-  };
-  const response = await fetch(`${api_url}/api/employees`, requestOptions);
-  return response;
-}
-
-
 // Export all the functions 
 const employeeService = {
-  createEmployee,
-  getAllEmployees,
+  createEmployee
 }
 export default employeeService; 
