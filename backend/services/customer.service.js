@@ -22,14 +22,14 @@ async function createCustomer(customer) {
         // Hash the password 
     const customer_hash = await bcrypt.hash(customer.customer_email, salt);
     // Insert the email in to the employee table  
-    const query1 = "INSERT INTO customer_identifier (customer_id, customer_email, customer_phone_number, customer_hash) VALUES (?, ?, ?, ?)";
-    const rows1 = await conn.query(query, [customer_id, customer.customer_email, customer.customer_phone_number, customer_hash]);
-    console.log(rows1);
+    const query = "INSERT INTO customer_identifier (customer_id, customer_email, customer_phone_number, customer_hash) VALUES (?, ?, ?, ?)";
+    const rows = await conn.query(query, [customer_id, customer.customer_email, customer.customer_phone_number, customer_hash]);
+    console.log(rows);
     if (rows.affectedRows !== 1) {
       return false;
     }
     // Get the employee id from the insert 
-    const customer_id = rows1.insertId;
+    const customer_id = rows.insertId;
     // Insert the remaining data in to the employee_info, employee_pass, and employee_role tables  
     const query2 = "INSERT INTO customer_info (customer_id, customer_first_name, customer_last_name, active_customer_status) VALUES (?, ?, ?, ?)";
     const rows2 = await conn.query(query2, [customer_id, customer.customer_first_name, customer.customer_last_name, customer.active_customer_status]);

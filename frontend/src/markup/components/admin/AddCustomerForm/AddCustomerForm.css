@@ -1,0 +1,5 @@
+.add-customer-form input, .add-customer-form select {
+    color: gray !important;
+    font-size: 12px !important;
+    border-radius: 5px;
+}
