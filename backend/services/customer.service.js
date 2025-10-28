@@ -22,8 +22,8 @@ async function createCustomer(customer) {
         // Hash the password 
     const customer_hash = await bcrypt.hash(customer.customer_email, salt);
     // Insert the email in to the employee table  
-    const query = "INSERT INTO customer_identifier (customer_id, customer_email, customer_phone_number, customer_hash) VALUES (?, ?, ?, ?)";
-    const rows = await conn.query(query, [customer_id, customer.customer_email, customer.customer_phone_number, customer_hash]);
+    const query = "INSERT INTO customer_identifier (customer_email, customer_phone_number, customer_hash) VALUES (?, ?, ?)";
+    const rows = await conn.query(query, [customer.customer_email, customer.customer_phone_number, customer_hash]);
     console.log(rows);
     if (rows.affectedRows !== 1) {
       return false;
@@ -48,4 +48,3 @@ module.exports = {
   checkIfCustomerExists,
   createCustomer
 };
-
