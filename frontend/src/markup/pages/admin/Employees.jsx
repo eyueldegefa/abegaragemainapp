@@ -7,6 +7,7 @@ import LoginForm from '../../components/LoginForm/LoginForm';
 import AdminMenu from "../../components/admin/adminMenu/AdminMenu";
 // Import the EmployeesList component 
 import EmployeesList from "../../components/admin/EmployeeList/EmployeeList";
+// Import the Unauthorized component
 import Unauthorized from "../unauthorized";
 function Employees() {
   // Destructure the auth hook 
