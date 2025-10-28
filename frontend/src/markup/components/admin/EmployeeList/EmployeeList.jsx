@@ -59,7 +59,7 @@ const EmployeesList = () => {
         <section className="contact-section">
           <div className="auto-container">
             <div className="contact-title">
-              <h2>{apiErrorMessage}</h2>
+              <h2 className="error">{apiErrorMessage}</h2>
             </div >
           </div>
         </section>
