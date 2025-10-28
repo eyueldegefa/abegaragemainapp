@@ -6,9 +6,9 @@ import LoginForm from '../../components/LoginForm/LoginForm';
 // Import the admin menu component
 import AdminMenu from "../../components/admin/adminMenu/AdminMenu";
 // Import the EmployeesList component 
-import EmployeesList from "../../components/Admin/EmployeesList/EmployeesList";
+import EmployeesList from "../../components/admin/EmployeeList/EmployeeList";
 import Unauthorized from "../unauthorized";
-function Employee() {
+function Employees() {
   // Destructure the auth hook 
   const { isLogged, isAdmin } = useAuth();
 
@@ -45,4 +45,4 @@ function Employee() {
 
 }
 
-export default Employee; 
+export default Employees; 

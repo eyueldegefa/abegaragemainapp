@@ -10,6 +10,7 @@ import Unauthorized from './markup/pages/unauthorized'
 import Orders from './markup/pages/Orders'
 import PrivateAuthRoute from './markup/components/auth/PrivateAuthRoute'
 import Customers from './markup/pages/admin/Customers'
+import Employees from './markup/pages/admin/Employees'
 import AddCustomer from './markup/pages/admin/AddCustomer'
 // import css from template_assets
 import './assets/template_assets/css/bootstrap.css'
@@ -50,6 +51,11 @@ function App() {
            <Route path='/admin/customers' element=
                   {<PrivateAuthRoute roles={[2,3]}>
                       <Customers/>
+                    </PrivateAuthRoute>}/>
+                    {/* To Show Employees */}
+            <Route path='/admin/employees' element=
+                  {<PrivateAuthRoute roles={[3]}>
+                      <Employees/>
                     </PrivateAuthRoute>}/>
         </Routes>
       <Footer />

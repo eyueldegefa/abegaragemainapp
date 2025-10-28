@@ -32,85 +32,7 @@ function AddCustomerForm() {
   if (employee && employee.employee_token) {
     loggedInEmployeeToken = employee.employee_token;
   }
-
-  // // handleSubmit function
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   let valid = true;
-
-  //   // validate email
-  //   if (!customer_email) {
-  //     setEmailError('Email is required');
-  //     valid = false;
-  //   } else {
-  //     const regex = /^\S+@\S+\.\S+$/;
-  //     if (!regex.test(customer_email)) {
-  //       setEmailError('Email address is invalid');
-  //       valid = false;
-  //     } else {
-  //       setEmailError('');
-  //     }
-  //   }
-
-  //   // validate first name
-  //   if (!customer_first_name) {
-  //     setFirstNameError('First name is required');
-  //     valid = false;
-  //   } else {
-  //     setFirstNameError('');
-  //   }
-
-  //   // validate last name
-  //   if (!customer_last_name) {
-  //     setLastNameError('Last name is required');
-  //     valid = false;
-  //   } else {
-  //     setLastNameError('');
-  //   }
-
-  //   // validate phone
-  //   if (!customer_phone_number) {
-  //     setPhoneError('Phone number is required');
-  //     valid = false;
-  //   } else {
-  //     const regexP = /^\+\d{1,3}\d{4,14}(?:x.+)?$/;
-  //     if (!regexP.test(customer_phone_number)) {
-  //       setPhoneError('Phone number is invalid. Include country code e.g +251900123456');
-  //       valid = false;
-  //     } else {
-  //       setPhoneError('');
-  //     }
-  //   }
-
-  //   if (!valid) return;
-
-  //   // if all validations pass, prepare data
-  //   const formData = {
-  //     customer_email,
-  //     customer_first_name,
-  //     customer_last_name,
-  //     customer_phone_number,
-  //     active_customer_status,
-  //   };
-
-  //   const newCustomer = customerService.createCustomer(formData, loggedInEmployeeToken);
-  //   newCustomer.then((response) => response.json())
-  //     .then((data) => {
-  //       if (data.error)  {
-  //         setServerError(data.error);
-  //         setSuccess(false);
-  //       } else {
-  //         setServerError('');
-  //         setSuccess(true);
-  //         // redirect to admin dashboard after 2 seconds
-  //         setTimeout(() => {
-  //           navigate('/');
-  //         }, 2000);
-  //       }
-  //     }).catch(() => {
-  //       setServerError('An error occurred. Please try again later.');
-  //       setSuccess(false);
-  //     });
+// Handle form submission
   async function handleSubmit(e) {
     e.preventDefault();
   
@@ -119,25 +41,43 @@ function AddCustomerForm() {
     const regexEmail = /^\S+@\S+\.\S+$/;
     const regexPhone = /^\+\d{1,3}\d{4,14}(?:x.+)?$/;
   
-    if (!customer_email || !regexEmail.test(customer_email)) {
-      setEmailError('Valid email is required');
+    // validate email
+    if (!customer_email) {
+      setEmailError('Email is required');
       valid = false;
-    } else setEmailError('');
-  
+    } else {
+      if (!regexEmail.test(customer_email)) {
+        setEmailError('Email address is invalid');
+        valid = false;
+      } else {
+        setEmailError('');
+      }
+    }
+
+  // validate first name
     if (!customer_first_name) {
       setFirstNameError('First name is required');
       valid = false;
     } else setFirstNameError('');
-  
+
+  // validate last name
     if (!customer_last_name) {
       setLastNameError('Last name is required');
       valid = false;
     } else setLastNameError('');
   
-    if (!customer_phone_number || !regexPhone.test(customer_phone_number)) {
-      setPhoneError('Valid phone number required (e.g. +251900123456)');
+    // validate phone
+    if (!customer_phone_number) {
+      setPhoneError('Phone number is required');
       valid = false;
-    } else setPhoneError('');
+    } else {
+      if (!regexPhone.test(customer_phone_number)) {
+        setPhoneError('Phone number is invalid. Include country code e.g +251900123456');
+        valid = false;
+      } else {
+        setPhoneError('');
+      }
+    }
   
     if (!valid) return;
   
@@ -149,24 +89,44 @@ function AddCustomerForm() {
       active_customer_status,
     };
   
-    try {
-      const data = await customerService.createCustomer(formData, loggedInEmployeeToken);
-  
-      if (data.error) {
-        setServerError(data.error);
-        setSuccess(false);
-      } else {
-        setServerError('');
-        setSuccess(true);
-        setTimeout(() => navigate('/'), 2000);
-      }
-    } catch (err) {
-      console.error(err);
-      setServerError('An error occurred. Please try again later.');
+const newCustomer = customerService.createCustomer(formData, loggedInEmployeeToken);
+newCustomer.then((response) => {
+return response.json()
+.then((data) => ({ status: response.status, ok: response.ok, data }));
+  })
+  .then(({ ok, data }) => {
+    if (!ok) {
+      // Handle errors (like 400 or 500)
+      setServerError(data.message || "An error occurred");
       setSuccess(false);
+    } else {
+      // Success
+      setServerError('');
+      setSuccess(true);
+      setTimeout(() => navigate('/'), 2000);
     }
-  
+  })
+  .catch(() => {
+    setServerError('An error occurred. Please try again later.');
+    setSuccess(false);
+  });
   }
+  //   const newCustomer = await customerService.createCustomer(formData, loggedInEmployeeToken);
+  //   newCustomer.then((response) => response.json())
+  //   .then((data) => {
+  //     if (data.error) {
+  //       setServerError(data.error);
+  //       setSuccess(false);
+  //     } else {
+  //       setServerError('');
+  //       setSuccess(true);
+  //       setTimeout(() => navigate('/'), 2000);
+  //     }
+  //   }).catch(() => {
+  //       setServerError('An error occurred. Please try again later.');
+  //       setSuccess(false);
+  //     });
+  // }
 
   return (
     <section className="contact-section">
