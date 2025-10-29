@@ -16,21 +16,50 @@ async function createCustomer(req, res) {
     const customer = await customerService.createCustomer(req.body);
 
     if (!customer) {
-      return res.status(500).json({ status: "failure", message: "Customer could not be added" });
+      return res.status(500).json({ 
+        status: "failure", 
+        message: "Customer could not be added" 
+      });
+    } else {
+        return res.status(201).json({
+          status: "success",
+          message: "Customer added successfully",
+          data: customer
+        });
     }
-
-    return res.status(201).json({
-      status: "success",
-      message: "Customer added successfully",
-      data: customer
-    });
   } catch (error) {
     console.error("Error creating customer:", error);
-    return res.status(500).json({ message: "Internal server error" });
+    return res.status(500).json({ 
+      message: "Internal server error" 
+    });
+  }
+}
+
+// A function to get all customers
+async function getAllCustomers(req, res) {
+  try {
+    const customers = await customerService.getAllCustomers();
+    if (!customers) {
+      return res.status(500).json({ 
+        status: "failure", 
+        message: "Could not retrieve customers" 
+      });
+    } else {
+        return res.status(200).json({
+          status: "success",
+          data: customers
+        });
+    }
+  } catch (error) {
+    console.error("Error fetching customers:", error);
+    return res.status(500).json({
+      message: "Internal server error"
+    });
   }
 }
 
 // export the controller functions
 module.exports = {
-  createCustomer
+  createCustomer,
+  getAllCustomers
 };

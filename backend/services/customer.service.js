@@ -43,8 +43,16 @@ async function createCustomer(customer) {
   // Return the employee object 
   return createdCustomer;
 }
+
+// A function to get all customers
+async function getAllCustomers() {
+  const query = "SELECT * FROM customer_identifier INNER JOIN customer_info ON customer_identifier.customer_id = customer_info.customer_id";
+  const rows = await conn.query(query);
+  return rows;
+}
 // export the functions for use in the controller
 module.exports = {
   checkIfCustomerExists,
-  createCustomer
+  createCustomer,
+  getAllCustomers
 };

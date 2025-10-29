@@ -111,22 +111,6 @@ return response.json()
     setSuccess(false);
   });
   }
-  //   const newCustomer = await customerService.createCustomer(formData, loggedInEmployeeToken);
-  //   newCustomer.then((response) => response.json())
-  //   .then((data) => {
-  //     if (data.error) {
-  //       setServerError(data.error);
-  //       setSuccess(false);
-  //     } else {
-  //       setServerError('');
-  //       setSuccess(true);
-  //       setTimeout(() => navigate('/'), 2000);
-  //     }
-  //   }).catch(() => {
-  //       setServerError('An error occurred. Please try again later.');
-  //       setSuccess(false);
-  //     });
-  // }
 
   return (
     <section className="contact-section">
