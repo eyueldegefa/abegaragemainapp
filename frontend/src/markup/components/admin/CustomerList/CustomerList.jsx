@@ -66,7 +66,7 @@ function CustomerList() {
         <div className="contact-title">
           <h2>Customers List</h2>
         </div>
-        <Table striped bordered hover className="employee-table">
+        <Table striped bordered hover className="customer-table">
           <thead>
             <tr>
                 <th>Customer ID</th>
@@ -74,7 +74,9 @@ function CustomerList() {
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Phone Number</th>
+                <th>Added Date</th>
                 <th>Active Status</th>
+                <th>Edit/Delete</th>
             </tr>
             </thead>
             <tbody>
@@ -87,6 +89,11 @@ function CustomerList() {
                     <td>{customer.customer_phone_number}</td>
                     <td>{format(new Date(customer.customer_added_date), 'MM - dd - yyyy | kk:mm')}</td>
                     <td>{customer.active_customer_status ? "Yes" : "No"}</td>
+                    <td>
+                        <div className="edit-delete-icons">
+                          edit | delete
+                        </div>
+                    </td>
                 </tr>
                 ))}
             </tbody>
