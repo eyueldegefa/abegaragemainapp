@@ -1,9 +1,9 @@
 // import services.service
-const services = require('../services/service.service');
+const Services = require('../services/service.service');
 // a function to get all services
 async function getAllServices(req, res, next) {
     try {
-        const services = await services.getAllServices();
+        const services = await Services.getAllServices();
         if(!services){
             return res.status(500).json({
                 status: "Fail",

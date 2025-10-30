@@ -60,10 +60,10 @@ function ServiceList() {
         </div>
         <div>
             {services.map((service) => (
-                <div key={service.service_id}>
+                <section key={service.service_id}>
                     <h2>{service.service_name}</h2>
                     <p>{service.service_description}</p>
-                </div>
+                </section>
             ))}
         </div>
       </div>

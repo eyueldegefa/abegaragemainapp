@@ -5,6 +5,7 @@ async function getAllServices() {
     const query = "SELECT * FROM common_services";
     const rows = await conn.query(query);
     return rows;
+
 }
 // a function to add new service
 async function addNewService(service) {
