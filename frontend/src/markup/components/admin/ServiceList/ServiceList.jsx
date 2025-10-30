@@ -60,7 +60,7 @@ function ServiceList() {
         </div>
         <div>
             {services.map((service) => (
-                <section key={service.service_id}>
+                <section key={service.service_id} className='shadow'>
                     <h2>{service.service_name}</h2>
                     <p>{service.service_description}</p>
                 </section>

@@ -28,7 +28,7 @@ async function getAllServices(req, res, next) {
 async function addNewService(req, res) {
     try {
         const serviceData = req.body;
-        const service = await services.addNewService(serviceData);
+        const service = await Services.addNewService(serviceData);
         if(!service){
             return res.status(400).json({
                 status: "Fail",
