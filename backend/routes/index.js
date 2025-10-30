@@ -10,6 +10,10 @@ const employeeRouter = require('./employee.route');
 const loginRoutes = require("./login.route");
 // import the customer routes
 const customerRoutes = require("./customer.route");
+// import the service routes
+const serviceRoutes = require('./service.route');
+// add the service routes to the main router
+router.use(serviceRoutes);
 // Add the install router to the main router 
 router.use(installRouter);
 // Add the employee routes to the main router 
