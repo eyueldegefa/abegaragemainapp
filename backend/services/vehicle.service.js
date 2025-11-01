@@ -2,11 +2,22 @@
 const conn = require('../config/db.config');
 
 // create a function to add new vehicle
-async function addNewVehicle(vehicle) {
+async function addNewVehicle(data) {
+      const {
+    customer_id,
+    vehicle_year,
+    vehicle_make,
+    vehicle_model,
+    vehicle_type,
+    vehicle_mileage,
+    vehicle_tag,
+    vehicle_serial,
+    vehicle_color,
+  } = data;
     let addedVehicle = {};
     try {
-        const query = "INSERT INTO customer_vehicle_info (vehicle_year, vehicle_make, vehicle_model, vehicle_type, vehicle_mileage, vehicle_tag, vehicle_serial, vehicle_color) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
-        const rows = await conn.query(query, [vehicle.vehicle_year, vehicle.vehicle_make, vehicle.vehicle_model, vehicle.vehicle_type, vehicle.vehicle_mileage, vehicle.vehicle_tag, vehicle.vehicle_serial, vehicle.vehicle_color]);
+        const query = "INSERT INTO customer_vehicle_info (customer_id, vehicle_year, vehicle_make, vehicle_model, vehicle_type, vehicle_mileage, vehicle_tag, vehicle_serial, vehicle_color) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+        const rows = await conn.query(query, [customer_id, vehicle_year, vehicle_make, vehicle_model, vehicle_type, vehicle_mileage, vehicle_tag, vehicle_serial, vehicle_color]);
 
         if(rows.affectedRows !== 1){
             return false;
@@ -22,7 +33,19 @@ async function addNewVehicle(vehicle) {
     }
     return addedVehicle;
 }
-
+// a function to get all vehicles by customer id
+async function getVehiclesByCustomerId(customer_id) {
+    const query = "SELECT * FROM customer_vehicle_info WHERE customer_id = ?";
+    const [rows] = await conn.query(query, [customer_id]);
+    
+    if (rows.length === 0) {
+      return null; // or return []
+    }
+  
+    return rows;
+}
+// export the functions
 module.exports = {
-    addNewVehicle
+    addNewVehicle,
+    getVehiclesByCustomerId
 }

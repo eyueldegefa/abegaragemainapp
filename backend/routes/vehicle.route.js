@@ -6,5 +6,7 @@ const router = express.Router();
 const vehicleController = require('../controllers/vehicle.controller');
 // add router
 router.post('/api/vehicle', vehicleController.addNewVehicle);
+// add route to get vehicles by customer id
+router.get('/api/vehicle/:id', vehicleController.getVehiclesByCustomerId);
 // export router
 module.exports = router;

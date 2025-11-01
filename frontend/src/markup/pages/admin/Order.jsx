@@ -9,6 +9,8 @@ import AdminMenu from "../../components/admin/adminMenu/AdminMenu";
 import CustomerData from "../../components/admin/CustomerData/CustomerData";
 // Import the Unauthorized component
 import Unauthorized from "../unauthorized";
+import AddVehicleForm from "../../components/admin/AddVehicleForm/AddVehicleForm";
+import CustomerVehicle from "../../components/admin/CustomerVehicle/CustomerVehicle";
 function Order() {
   // Destructure the auth hook 
   const { isLogged, isAdmin } = useAuth();
@@ -24,6 +26,8 @@ function Order() {
               </div>
               <div className="col-md-9 admin-right-side">
                 <CustomerData />
+                <AddVehicleForm />
+                <CustomerVehicle />
               </div>
             </div>
           </div>

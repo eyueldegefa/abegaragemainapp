@@ -37,7 +37,7 @@ function CustomerData() {
         setApiErrorMessage("Failed to fetch customer. Please try again later.");
       }
     };
-
+    
     fetchCustomer();
   }, [id, token]);
 

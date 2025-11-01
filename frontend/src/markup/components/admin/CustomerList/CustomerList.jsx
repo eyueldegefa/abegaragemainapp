@@ -53,7 +53,7 @@ function CustomerList() {
   }, []);
 
   const handleClick = (id) => {
-    navigate(`/order/${id}`); // navigate to the detail page
+    navigate(`/admin/customer/${id}`); // navigate to the detail page
   }
   return (
     <>
