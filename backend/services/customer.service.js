@@ -50,9 +50,17 @@ async function getAllCustomers() {
   const rows = await conn.query(query);
   return rows;
 }
+// A function to get a single customer by ID
+async function getCustomerById(customerId) {
+  const query = "SELECT * FROM customer_identifier INNER JOIN customer_info ON customer_identifier.customer_id = customer_info.customer_id WHERE customer_identifier.customer_id = ?";
+  const rows = await conn.query(query, [customerId]);
+    if (rows.length === 0) return null;
+  return rows[0];  // ✅ only return one customer
+}
 // export the functions for use in the controller
 module.exports = {
   checkIfCustomerExists,
   createCustomer,
-  getAllCustomers
+  getAllCustomers,
+  getCustomerById
 };

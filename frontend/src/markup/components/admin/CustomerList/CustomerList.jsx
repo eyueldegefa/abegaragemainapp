@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
 // import table and button from react-bootstrap
 import { Table, Button } from 'react-bootstrap';
 // import date-fns to format date
@@ -11,6 +12,7 @@ import { useAuth } from '../../../../Contexts/AuthContext';
 import customerService from '../../../../services/customer.service';
 
 function CustomerList() {
+  const navigate = useNavigate();
     // Create all the states we need to store the data
   // Create the customers state to store the customers data  
   const [customers, setCustomers] = useState([]);
@@ -24,6 +26,7 @@ function CustomerList() {
     if (employee) {
       token = employee.employee_token;
     }
+    
     useEffect(() => {
     // Call the getAllCustomers function
     const allCustomers = customerService.getAllCustomers(token);
@@ -49,7 +52,9 @@ function CustomerList() {
     })
   }, []);
 
-
+  const handleClick = (id) => {
+    navigate(`/order/${id}`); // navigate to the detail page
+  }
   return (
     <>
     {apiError ? (
@@ -83,7 +88,10 @@ function CustomerList() {
               {customers.map((customer) => (
                 <tr key={customer.customer_id}>
                     <td>{customer.customer_id}</td>
-                    <td>{customer.customer_first_name}</td>
+                    <td 
+                      onClick={() => handleClick(customer.customer_id)} 
+                      style={{cursor: "pointer"}}
+                    >{customer.customer_first_name}</td>
                     <td>{customer.customer_last_name}</td>
                     <td>{customer.customer_email}</td>
                     <td>{customer.customer_phone_number}</td>

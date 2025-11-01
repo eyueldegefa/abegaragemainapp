@@ -8,5 +8,7 @@ const customerController = require('../controllers/customer.controller');
 router.post("/api/customer", customerController.createCustomer);
 // define route for getting all customers
 router.get("/api/customers", customerController.getAllCustomers);
+// define route to get customer by ID
+router.get("/api/customer/:id", customerController.getCustomerById);
 // export the router
 module.exports = router;

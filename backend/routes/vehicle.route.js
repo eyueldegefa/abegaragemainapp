@@ -5,6 +5,6 @@ const router = express.Router();
 // import vehicle controller
 const vehicleController = require('../controllers/vehicle.controller');
 // add router
-router.post('/api/vehicles', vehicleController.addNewVehicle);
+router.post('/api/vehicle', vehicleController.addNewVehicle);
 // export router
 module.exports = router;

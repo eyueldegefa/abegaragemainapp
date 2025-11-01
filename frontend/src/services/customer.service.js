@@ -28,9 +28,30 @@ const getAllCustomers = async (token) => {
   return response;
 }
 
+const getCustomerById = async (id, token) => {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': token
+    }
+  };
+
+  const response = await fetch(`${api_url}/api/customer/${id}`, requestOptions);
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch customer: ${response.status}`);
+  }
+
+  const data = await response.json();
+  return data;
+};
+
+
 const customerService = {
     createCustomer,
-    getAllCustomers
+    getAllCustomers,
+    getCustomerById
 }
 
 export default customerService;

@@ -8,7 +8,7 @@ async function addNewVehicle(vehicle) {
         const query = "INSERT INTO customer_vehicle_info (vehicle_year, vehicle_make, vehicle_model, vehicle_type, vehicle_mileage, vehicle_tag, vehicle_serial, vehicle_color) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
         const rows = await conn.query(query, [vehicle.vehicle_year, vehicle.vehicle_make, vehicle.vehicle_model, vehicle.vehicle_type, vehicle.vehicle_mileage, vehicle.vehicle_tag, vehicle.vehicle_serial, vehicle.vehicle_color]);
 
-        if(rows.affectedRows !==1){
+        if(rows.affectedRows !== 1){
             return false;
         }
 

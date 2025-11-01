@@ -57,9 +57,31 @@ async function getAllCustomers(req, res) {
     });
   }
 }
+// Route to get a single customer by ID
+async function getCustomerById(req, res) {
+  try {
+      // console.log("➡️ Customer ID received:", req.params.id);
+    const customer = await customerService.getCustomerById(req.params.id);
+    // console.log("✅ Customer from DB:", customer);
 
+    if (!customer) {
+      return res.status(404).json({ 
+        status: "Fail",
+        message: "Customer not found" 
+      });
+    } else {
+      return res.status(200).json({
+        status: "Success",
+        data: customer
+      })
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
 // export the controller functions
 module.exports = {
   createCustomer,
-  getAllCustomers
+  getAllCustomers,
+  getCustomerById
 };
