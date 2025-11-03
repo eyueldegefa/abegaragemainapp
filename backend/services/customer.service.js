@@ -57,10 +57,33 @@ async function getCustomerById(customerId) {
     if (rows.length === 0) return null;
   return rows[0];  // ✅ only return one customer
 }
+// 
+async function searchCustomers(queryText) {
+  const searchTerm = `%${queryText}%`;
+  const sql = `
+    SELECT * FROM customer_identifier 
+    INNER JOIN customer_info 
+    ON customer_identifier.customer_id = customer_info.customer_id
+    WHERE customer_info.customer_first_name LIKE ?
+       OR customer_info.customer_last_name LIKE ?
+       OR customer_identifier.customer_email LIKE ?
+       OR customer_identifier.customer_phone_number LIKE ?
+  `;
+
+  const [rows] = await conn.query(sql, [
+    searchTerm,
+    searchTerm,
+    searchTerm,
+    searchTerm,
+  ]);
+  return rows;
+}
+
 // export the functions for use in the controller
 module.exports = {
   checkIfCustomerExists,
   createCustomer,
   getAllCustomers,
-  getCustomerById
+  getCustomerById,
+  searchCustomers
 };

@@ -5,13 +5,13 @@ import { useAuth } from "../../../Contexts/AuthContext";
 import LoginForm from '../../components/LoginForm/LoginForm';
 // Import the admin menu component
 import AdminMenu from "../../components/admin/adminMenu/AdminMenu";
-// Import the CustomerData component
-import CustomerData from "../../components/admin/CustomerData/CustomerData";
 // Import the Unauthorized component
 import Unauthorized from "../unauthorized";
-import AddVehicleForm from "../../components/admin/AddVehicleForm/AddVehicleForm";
-import CustomerVehicle from "../../components/admin/CustomerVehicle/CustomerVehicle";
-function Order() {
+// import AddNewOrder component
+import SearchCustomers from "../../components/admin/SearchCustomers/SearchCustomers";
+
+
+function AddNewOrder() {
   // Destructure the auth hook 
   const { isLogged, isAdmin } = useAuth();
 
@@ -21,13 +21,11 @@ function Order() {
         <div>
           <div className="container-fluid admin-pages">
             <div className="row">
-              <div className="col-md-3 admin-left-side">
+              <div className="col-md-4 admin-left-side">
                 <AdminMenu />
               </div>
-              <div className="col-md-9 admin-right-side">
-                <CustomerData />
-                <CustomerVehicle />
-                <AddVehicleForm />
+              <div className="col-md-8 admin-right-side">
+                <SearchCustomers />
               </div>
             </div>
           </div>
@@ -50,4 +48,4 @@ function Order() {
 
 }
 
-export default Order; 
+export default AddNewOrder; 

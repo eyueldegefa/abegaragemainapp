@@ -47,11 +47,26 @@ const getCustomerById = async (id, token) => {
   return data;
 };
 
+async function searchCustomers(query, token) {
+  const response = await fetch(
+    `${api_url}/api/customers/search?query=${encodeURIComponent(query)}`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': token,
+      },
+    }
+  );
+  return await response.json();
+}
+
 
 const customerService = {
     createCustomer,
     getAllCustomers,
-    getCustomerById
+    getCustomerById,
+    searchCustomers
 }
 
 export default customerService;

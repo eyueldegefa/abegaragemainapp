@@ -10,5 +10,8 @@ router.post("/api/customer", customerController.createCustomer);
 router.get("/api/customers", customerController.getAllCustomers);
 // define route to get customer by ID
 router.get("/api/customer/:id", customerController.getCustomerById);
+// define route to search customers
+router.get('/api/customers/search', customerController.searchCustomers);
+
 // export the router
 module.exports = router;

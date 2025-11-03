@@ -11,7 +11,7 @@ function AddCustomer() {
           <AdminMenu />
         </div>
         <div className='col-md-8'>
-          {/* Add Employee Form */}
+          {/* Add Customer Form */}
           <AddCustomerForm />
         </div>
       </div>
