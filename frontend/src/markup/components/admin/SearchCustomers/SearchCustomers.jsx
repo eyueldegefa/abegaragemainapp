@@ -6,46 +6,42 @@ import Customer from '../../../../services/customer.service';
 import './SearchCustomers.css';
 
 function SearchCustomers() {
-  // const navigate = useNavigate();
   const [input, setInput] = useState('');
-  const [results, setResults] = useState({});
-  // const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState('');
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const { employee } = useAuth();
   const token = employee ? employee.employee_token : null;
 
 useEffect(() => {
   if (!input.trim() || input.trim().length < 2) {
-    setResults({});
-    // setError('');
+    setResults([]);
+    setError('');
     return;
   }
 
-  // setLoading(true);
+  setLoading(true);
 
   Customer.searchCustomers(input, token)
     .then((data) => {
+      console.log("Fetched Data:", data.data);
 
       if (data) {
         setResults(data.data);
-        // console.log(results);
-        
-        // setTimeout(()=> navigate('/admin/add-order-2'), 2000)
-        // setError('');
-                console.log(results);
+        setError('');
       } else {
-        // setError('No data found.');
-        setResults({});
+        setError('No data found.');
+        setResults([]);
       }
     })
     .catch((err) => {
       console.error('Error fetching customers:', err);
-      // setError('An error occurred while fetching data.');
-      setResults({});
+      setError('An error occurred while fetching data.');
+      setResults([]);
     })
     .finally(() => {
-      // setLoading(false);
+      setLoading(false);
     });
     
 }, [input, token]);
@@ -86,22 +82,24 @@ useEffect(() => {
                 </div>
 
                 <div className="search-results mt-4">
-                  {/* {loading && <p>Loading...</p>}
-                  {error ?( <p className="error">{error}</p> )  */}
-                 {results ? 
-                        (
-                            <>
-                              <p>{results.customer_first_name}</p>
-                              <p>{results.customer_last_name}</p>
-                              <p>{results.customer_email}</p>
-                              <p>{results.customer_phone_number}</p>
-                              <p>
-                                <Link to={`/admin/customers/${results.customer_id}`}>View</Link>
-                              </p>
-                            </>
-                          ) :
+                  {loading && <p>Loading...</p>}
+                  {error ?( <p className="error">{error}</p> ) :
                   (
-                    <p>No results found.</p>
+                    <div className="table-responsive">
+                      <Table striped bordered hover responsive className="customer-table">
+                        <tbody>
+                            <tr>
+                              <td>{results.customer_first_name}</td>
+                              <td>{results.customer_last_name}</td>
+                              <td>{results.customer_email}</td>
+                              <td>{results.customer_phone_number}</td>
+                              <td>
+                                <Link to={`/admin/customers/${results.customer_id}`}>View</Link>
+                              </td>
+                            </tr>
+                        </tbody>
+                      </Table>
+                    </div>
                   )}
                 </div>
               </div>
