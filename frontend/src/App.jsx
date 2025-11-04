@@ -23,6 +23,7 @@ import './assets/template_assets/css/color.css'
 // import header and footer
 import Header from './markup/components/header/Header'
 import Footer from './markup/components/footer/Footer'
+import AddNewOrder2 from './markup/components/admin/AddNewOrder2/AddNewOrder2'
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/unauthorized' element={<Unauthorized />} />
+          <Route path='/admin/add-order-2' element={<AddNewOrder2/>} />
           <Route path='/admin/customer/:id' element=
                   {<PrivateAuthRoute roles={[2,3]} >
                     <Order />
