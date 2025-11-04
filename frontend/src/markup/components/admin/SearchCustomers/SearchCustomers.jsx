@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'; 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
 import { useAuth } from '../../../../Contexts/AuthContext';
 import Customer from '../../../../services/customer.service';
 import './SearchCustomers.css';
 
 function SearchCustomers() {
+  const navigate = useNavigate();
   const [input, setInput] = useState('');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -46,7 +47,9 @@ useEffect(() => {
     
 }, [input, token]);
 
-
+const handleClick = (id) => {
+    navigate(`/admin/customer/${id}`); // navigate to the detail page
+  }
 
   return (
     <section className="contact-section row">
@@ -86,16 +89,14 @@ useEffect(() => {
                   {error ?( <p className="error">{error}</p> ) :
                   (
                     <div className="table-responsive">
-                      <Table striped bordered hover responsive className="customer-table">
+                      <Table striped bordered hover responsive className="customer-order-page">
                         <tbody>
-                            <tr>
+                            <tr onClick={() => handleClick(results.customer_id)}>
+                              <td>{results.customer_id}</td>
                               <td>{results.customer_first_name}</td>
                               <td>{results.customer_last_name}</td>
                               <td>{results.customer_email}</td>
                               <td>{results.customer_phone_number}</td>
-                              <td>
-                                <Link to={`/admin/customers/${results.customer_id}`}>View</Link>
-                              </td>
                             </tr>
                         </tbody>
                       </Table>

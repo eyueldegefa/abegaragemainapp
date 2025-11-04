@@ -3,3 +3,6 @@
     font-size: 12px !important;
     border-radius: 5px;
 }
+.customer-order-page td {
+    cursor: pointer;
+}
