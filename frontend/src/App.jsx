@@ -35,7 +35,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/unauthorized' element={<Unauthorized />} />
-          <Route path='/admin/add-order-2' element={<AddNewOrder2/>} />
+          <Route path='/admin/add-order2/:id' element={<AddNewOrder2/>} />
           <Route path='/admin/customer/:id' element=
                   {<PrivateAuthRoute roles={[2,3]} >
                     <Order />

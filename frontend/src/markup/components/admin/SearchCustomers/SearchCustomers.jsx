@@ -48,7 +48,7 @@ useEffect(() => {
 }, [input, token]);
 
 const handleClick = (id) => {
-    navigate(`/admin/customer/${id}`); // navigate to the detail page
+    navigate(`/admin/add-order2/${id}`); // navigate to the detail page
   }
 
   return (

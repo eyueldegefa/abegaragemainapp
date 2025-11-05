@@ -86,12 +86,11 @@ function CustomerList() {
             </thead>
             <tbody>
               {customers.map((customer) => (
-                <tr key={customer.customer_id}>
+                <tr key={customer.customer_id}
+                    onClick={() => handleClick(customer.customer_id)}
+                >
                     <td>{customer.customer_id}</td>
-                    <td 
-                      onClick={() => handleClick(customer.customer_id)} 
-                      style={{cursor: "pointer"}}
-                    >{customer.customer_first_name}</td>
+                    <td >{customer.customer_first_name}</td>
                     <td>{customer.customer_last_name}</td>
                     <td>{customer.customer_email}</td>
                     <td>{customer.customer_phone_number}</td>
