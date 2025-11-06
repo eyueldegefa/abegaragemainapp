@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useAuth } from '../../../../Contexts/AuthContext';
 // import services.service
 import Customer from '../../../../services/vehicle.service'
+import { Table } from 'react-bootstrap';
 
 function CustomerVehicle() {
   const { id } = useParams();
@@ -48,17 +49,32 @@ function CustomerVehicle() {
       ) : !vehicle ? (
         <p>Loading...</p>
       ) : (
-        <>
-          <p>Vehicle Year: {vehicle.vehicle_year}</p>
-          <p>Vehicle Make: {vehicle.vehicle_make}</p>
-          <p>Vehicle Model: {vehicle.vehicle_model}</p>
-          <p>Vehicle Type: {vehicle.vehicle_type}</p>
-          <p>Vehicle Mileage: {vehicle.vehicle_mileage}</p>
-          <p>Vehicle Tag: {vehicle.vehicle_tag}</p>
-          <p>Vehicle Serial: {vehicle.vehicle_serial}</p>
-          <p>Vehicle Color: {vehicle.vehicle_color}</p>
-          <div>Edit</div>
-        </>
+        <Table striped bordered hover>
+          <thead>
+            <tr>  
+              <th>Year</th>
+              <th>Make</th>
+              <th>Model</th>
+              <th>Type</th>
+              <th>Mileage</th>
+              <th>Tag</th>
+              <th>Serial</th>
+              <th>Color</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{vehicle.vehicle_year}</td>
+              <td>{vehicle.vehicle_make}</td>
+              <td>{vehicle.vehicle_model}</td>
+              <td>{vehicle.vehicle_type}</td>
+              <td>{vehicle.vehicle_mileage}</td>
+              <td>{vehicle.vehicle_tag}</td>
+              <td>{vehicle.vehicle_serial}</td>
+              <td>{vehicle.vehicle_color}</td>
+            </tr>
+          </tbody>
+          </Table>
       )}
     </div>
   );
