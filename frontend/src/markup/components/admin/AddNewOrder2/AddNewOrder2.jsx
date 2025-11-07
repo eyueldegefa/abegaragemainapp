@@ -6,10 +6,11 @@ import CustomerVehicle from "../../../components/admin/CustomerVehicle/CustomerV
 
 function AddNewOrder2() {
 
-
-
   return (
-    <>
+    <section className='container-fluid auto-container contact-section px-4'>
+      <div className="contact-title">
+        <h2>Create a new order</h2>
+      </div>
       <div>
         <CustomerData />
       </div>
@@ -17,7 +18,7 @@ function AddNewOrder2() {
       <div>
         <CustomerVehicle />
       </div>
-    </>
+    </section>
   )
 }
 

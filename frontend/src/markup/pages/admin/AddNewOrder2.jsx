@@ -7,11 +7,11 @@ import LoginForm from '../../components/LoginForm/LoginForm';
 import AdminMenu from "../../components/admin/adminMenu/AdminMenu";
 // Import the Unauthorized component
 import Unauthorized from "../unauthorized";
-// import AddNewOrder component
-import SearchCustomers from "../../components/admin/SearchCustomers/SearchCustomers";
+// import AddNewOrder2 component
+import AddNewOrderTwo from "../../components/admin/AddNewOrder2/AddNewOrder2";
 
 
-function AddNewOrder() {
+function AddNewOrder2() {
   // Destructure the auth hook 
   const { isLogged, isAdmin } = useAuth();
 
@@ -24,8 +24,8 @@ function AddNewOrder() {
               <div className="col-md-4 admin-left-side">
                 <AdminMenu />
               </div>
-              <div className="col-md-8 admin-right-side">
-                <SearchCustomers />
+              <div className="col-md-8 admin-right-side container">
+                <AddNewOrderTwo />
               </div>
             </div>
           </div>
@@ -48,4 +48,4 @@ function AddNewOrder() {
 
 }
 
-export default AddNewOrder; 
+export default AddNewOrder2; 

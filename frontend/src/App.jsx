@@ -14,7 +14,7 @@ import Employees from './markup/pages/admin/Employees'
 import AddCustomer from './markup/pages/admin/AddCustomer'
 import Services from './markup/pages/admin/Services'
 import Order from './markup/pages/admin/Order'
-import AddNewOrder from './markup/pages/admin/AddNewOrder'
+import AddNewOrder from './markup/pages/admin/AddNewOrder1'
 // import css from template_assets
 import './assets/template_assets/css/bootstrap.css'
 import './assets/template_assets/css/style.css'
@@ -23,7 +23,9 @@ import './assets/template_assets/css/color.css'
 // import header and footer
 import Header from './markup/components/header/Header'
 import Footer from './markup/components/footer/Footer'
-import AddNewOrder2 from './markup/components/admin/AddNewOrder2/AddNewOrder2'
+import AddNewOrder2 from './markup/pages/admin/AddNewOrder2'
+import AddNewOrder1 from './markup/pages/admin/AddNewOrder1'
+import AddNewOrder3 from './markup/pages/admin/AddNewOrder3'
 
 
 function App() {
@@ -35,7 +37,9 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/unauthorized' element={<Unauthorized />} />
-          <Route path='/admin/add-order2/:id' element={<AddNewOrder2/>} />
+          <Route path='/admin/add-order1/:id' element={<AddNewOrder1/>} />
+          <Route path='/admin/add-order2/:id' element={<AddNewOrder2 />} />
+          <Route path='/admin/add-order3/:id' element={<AddNewOrder3 />} />
           <Route path='/admin/customer/:id' element=
                   {<PrivateAuthRoute roles={[2,3]} >
                     <Order />

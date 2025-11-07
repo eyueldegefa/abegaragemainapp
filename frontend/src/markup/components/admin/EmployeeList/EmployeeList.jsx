@@ -43,6 +43,8 @@ const EmployeesList = () => {
       }
       return res.json()
     }).then((data) => {
+      console.log(data);
+      
       if (data.data.length !== 0) {
         setEmployees(data.data)
       }

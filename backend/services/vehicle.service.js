@@ -35,7 +35,7 @@ async function addNewVehicle(data) {
 }
 // a function to get all vehicles by customer id
 async function getVehiclesByCustomerId(customer_id) {
-    const query = "SELECT * FROM customer_vehicle_info WHERE customer_id = ?";
+    const query = "SELECT * FROM `customer_vehicle_info` WHERE `customer_id` = ?";
     const [rows] = await conn.query(query, [customer_id]);
     
     if (rows.length === 0) {

@@ -1,15 +1,17 @@
 // import react and hooks
 import React, { useState, useEffect } from 'react'
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 // import useAuth
 import { useAuth } from '../../../../Contexts/AuthContext';
 // import services.service
 import Customer from '../../../../services/vehicle.service'
 import { Table } from 'react-bootstrap';
+// import css
+import './CustomerVehicles.css'
 
 function CustomerVehicle() {
   const { id } = useParams();
-  
+  const navigate = useNavigate();
   const [vehicle, setVehicle] = useState(null);
   const [apiError, setApiError] = useState(false);
   const [apiErrorMessage, setApiErrorMessage] = useState("");
@@ -42,6 +44,12 @@ function CustomerVehicle() {
     fetchCustomerVehicle();
   }, [id, token]);
 
+  const handleClick = (vehicleId) => {
+    console.log(`Customer ID: ${vehicleId}`);
+    // You can add navigation or other logic here
+    navigate(`/admin/add-order3/${id}`, { state: { vehicleId } });
+  }
+
   return (
     <div>
       {apiError ? (
@@ -49,7 +57,7 @@ function CustomerVehicle() {
       ) : !vehicle ? (
         <p>Loading...</p>
       ) : (
-        <Table striped bordered hover>
+        <Table striped bordered hover className='customer-vehicles'>
           <thead>
             <tr>  
               <th>Year</th>
@@ -63,7 +71,7 @@ function CustomerVehicle() {
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr onClick={()=> handleClick(vehicle.vehicle_id)}>
               <td>{vehicle.vehicle_year}</td>
               <td>{vehicle.vehicle_make}</td>
               <td>{vehicle.vehicle_model}</td>

@@ -1,0 +1,3 @@
+.customer-vehicles tbody tr:hover {
+    cursor: pointer;
+}
