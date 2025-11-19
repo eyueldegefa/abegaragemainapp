@@ -89,27 +89,30 @@ function AddCustomerForm() {
       active_customer_status,
     };
   
-const newCustomer = customerService.createCustomer(formData, loggedInEmployeeToken);
-newCustomer.then((response) => {
-return response.json()
-.then((data) => ({ status: response.status, ok: response.ok, data }));
-  })
-  .then(({ ok, data }) => {
-    if (!ok) {
-      // Handle errors (like 400 or 500)
-      setServerError(data.message || "An error occurred");
-      setSuccess(false);
-    } else {
-      // Success
-      setServerError('');
-      setSuccess(true);
-      setTimeout(() => navigate('/'), 2000);
-    }
-  })
-  .catch(() => {
-    setServerError('An error occurred. Please try again later.');
-    setSuccess(false);
-  });
+    const newCustomer = customerService.createCustomer(formData, loggedInEmployeeToken);
+        newCustomer.then((response) => {
+        return response.json()
+        .then((data) => ({ 
+          status: response.status, 
+          ok: response.ok, 
+          data }));
+          })
+          .then(({ ok, data }) => {
+            if (!ok) {
+              // Handle errors (like 400 or 500)
+              setServerError(data.message || "An error occurred");
+              setSuccess(false);
+            } else {
+              // Success
+              setServerError('');
+              setSuccess(true);
+              setTimeout(() => navigate('/'), 2000);
+            }
+          })
+          .catch(() => {
+            setServerError('An error occurred. Please try again later.');
+            setSuccess(false);
+          });
   }
 
   return (
