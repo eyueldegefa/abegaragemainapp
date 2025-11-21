@@ -1,161 +1,3 @@
-// import React, { useState ,useEffect }  from 'react'
-// // import useParams
-// import { useParams } from "react-router-dom";
-// // import components
-// import CustomerData from '../CustomerData/CustomerData'
-// import CustomerVehicle from '../CustomerVehicle/CustomerVehicle'
-// // import customer service
-// import customerService from '../../../../services/customer.service'
-// // import vehicle service
-// import vehicleService from '../../../../services/vehicle.service'
-// // import useAuth
-// import { useAuth } from '../../../../Contexts/AuthContext';
-// // import css
-// import './AddNewOrder3.css'
-
-// function AddNewOrder3() {
-//   // To get the logged in employee token
-//   const { employee } = useAuth();
-//   const token = employee ? employee.employee_token : null;
-//   // get customer id from params
-//   const { id } = useParams();
-//     // state for formData
-//     const [employeeID, setEmployeeID] = useState(null);
-//     const [customerID, setCustomerID] = useState(null);
-//     const [vehicleID, setVehicleID] = useState(null);
-//     const [activeOrder, setActiveOrder] = useState(1);
-//     // state for api error
-//     const [apiError, setApiError] = useState(false);
-//     const [apiErrorMessage, setApiErrorMessage] = useState("");
-//     // state for selected services
-//     const [selectedServices, setSelectedServices] = useState([]);
-//   // A function to get employee data from token and customer data from id can be added here if needed
-//   useEffect(() => {
-//     if (!token) return; // stop if not logged in
-
-//     const fetchCustomer = async () => {
-//       try {
-//         const data = await customerService.getCustomerById(id, token);
-//         console.log(data);
-        
-//         if (!data) {
-//           setApiError(true);
-//           setApiErrorMessage("Customer not found");
-//         } else {
-//           setCustomer(data.data.customer_id);
-//         }
-//       } catch (err) {
-//         console.error(err);
-//         setApiError(true);
-//         setApiErrorMessage("Failed to fetch customer. Please try again later.");
-//       }
-//     };
-//     // fetch employee data from token function can be added here
-//     const fetchEmployeeData = async () => {
-//       // fetch employee data logic
-//       // setEmployeeData(fetchedData);
-//       try {
-//         const data = (employee);
-//         console.log(data);
-//         // A function to decode token and get employee data
-//         setEmployeeData(data.employee_id);
-//       } catch (err) {
-//         console.error(err);
-//       }
-//     }
-//     // fetch vehicle data
-//     const fetchVehicleData = async () => {
-//       try {
-//         const data = await vehicleService.getVehiclesByCustomerId(id, token);
-//         console.log(data);
-//         if (!data) {
-//           setApiError(true);
-//           setApiErrorMessage("Vehicle not found");
-//         } else {
-//           console.log(data);
-//           setVehicles(data.data.vehicle_id);
-//         }
-//       } catch (err) {
-//         console.error(err);
-//         setApiError(true);
-//         setApiErrorMessage("Failed to fetch Vehicle. Please try again later.");
-//       }
-//     };
-    
-//     fetchCustomer();
-//     fetchEmployeeData();
-//     fetchVehicleData();
-//   }, [id, token]);
-//   // A function to handle service selection can be added here
-//   const handleServiceSelection 
-
-//   // formData object to send to backend
-//   const formData = {
-//     customer_id: customer,
-//     employee_id: employeeData,
-//     vehicle_id: vehicles,
-//     // other order details can be added here
-//     selected_services: selectedServices
-//   };
-
-//   return (
-//     <section className='container-fluid auto-container contact-section px-4 add-new-order-3'>
-//       <div className="contact-title">
-//         <h2>Create a new order</h2>
-//       </div>
-//       <div>
-//         <CustomerData />
-//       </div>    
-//       <div>
-//         <CustomerVehicle />
-//       </div>
-//       {/* display api error */}
-//       {apiError && <div className='error-message'>{apiErrorMessage}</div>}
-// <form action="">
-//       <div className=' my-1 shadow p-2'>
-//         <div className='shadow-sm p-2 my-2 service-options'>
-//             <div>
-//                 <h4>Oil Change</h4>
-//                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque possimus esse adipisci. Minima, voluptates. Voluptas quia repellat, porro odio unde recusandae reprehenderit, assumenda veritatis consequatur ipsam fugit, aut soluta voluptates!</p>
-//             </div>
-//             <input type="checkbox" name="oilChange" id="" />
-//         </div>
-
-//         <div className='shadow-sm p-2 my-2 service-options'>
-//             <div>
-//                 <h4>Brake Inspection</h4>
-//                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque possimus esse adipisci. Minima, voluptates. Voluptas quia repellat, porro odio unde recusandae reprehenderit, assumenda veritatis consequatur ipsam fugit, aut soluta voluptates!</p>
-//             </div>
-//             <input type="checkbox" name="brakeInspection" id="" />
-//         </div>
-
-//         <div className='shadow-sm p-2 my-1 service-options'>
-//             <div>
-//                 <h4>Tire Rotation</h4>
-//                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque possimus esse adipisci. Minima, voluptates. Voluptas quia repellat, porro odio unde recusandae reprehenderit, assumenda veritatis consequatur ipsam fugit, aut soluta voluptates!</p>
-//             </div>
-//             <input type="checkbox" name="tireRotation" id="" />
-//         </div>
-
-//         <div className='shadow-sm p-2 my-1 service-options'>
-//             <div>
-//                 <h4>Engine Diagnostic</h4>
-//                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque possimus esse adipisci. Minima, voluptates. Voluptas quia repellat, porro odio unde recusandae reprehenderit, assumenda veritatis consequatur ipsam fugit, aut soluta voluptates!</p>
-//             </div>
-//             <input type="checkbox" name="engineDiagnostic" id="" />
-//         </div>
-//       </div>
-//       <div>
-//         <input type="text" />
-//         <button type='submit' className=''>SUBMIT ORDER</button>
-//       </div>
-//       </form>
-//     </section>
-//   )
-// }
-
-// export default AddNewOrder3
-
 import React, { useState, useEffect } from "react";
 // import useParams
 import { useParams } from "react-router-dom";
@@ -192,10 +34,16 @@ function AddNewOrder3() {
   const [apiError, setApiError] = useState(false);
   const [apiErrorMessage, setApiErrorMessage] = useState("");
   // state for success
-  const [success, setSuccess] = useState(false)
+  const [success, setSuccess] = useState(false);
 
   // state for selected services
-  const [selectedServices, setSelectedServices] = useState([]);
+  const [selected_services, setSelectedServices] = useState([]);
+  const [service_completed] = useState(0);
+  const [order_total_price, setOrderTotalPrice] = useState('');
+  const [additional_request, setAdditionalRequest] = useState('');
+  const [additional_requests_completed] = useState(0);
+  const [order_status] = useState(1);
+
 
   useEffect(() => {
     if (!token) return;
@@ -254,12 +102,20 @@ function AddNewOrder3() {
 
   // ---------------- SERVICE SELECTION ----------------
   const handleServiceSelection = (service) => {
-    setSelectedServices((prev) =>
-      prev.includes(service)
-        ? prev.filter((s) => s !== service)
-        : [...prev, service]
-    );
+let updatedServices = [];
+
+  if (selected_services.includes(service)) {
+    updatedServices = selected_services.filter(s => s !== service);
+  } else {
+    updatedServices = [...selected_services, service];
+  }
+    // Convert to text
+  const servicesText = updatedServices.join(", ");
+
+  setSelectedServices(servicesText);   
   };
+
+
 
 // Handle form submission
   async function handleSubmit(e) {
@@ -271,7 +127,12 @@ function AddNewOrder3() {
     employee_id: employeeData,
     vehicle_id: vehicles,
     active_order: active_order,
-    selected_services: selectedServices,
+    selected_services: selected_services,
+    service_completed: service_completed,
+    additional_request: additional_request,
+    order_total_price: order_total_price,
+    additional_requests_completed: additional_requests_completed,
+    order_status: order_status
   };
 
   console.log("FORM DATA:", formData);
@@ -309,16 +170,23 @@ function AddNewOrder3() {
         <h2>Create a new order</h2>
       </div>
 
-      <CustomerData />
-      <CustomerVehicle />
+      <div className="shadow p-3 service-options">
+        <CustomerData />
+        <button className="close-button">X</button>
+      </div>
 
+      <div className="shadow p-3 service-options">
+        <CustomerVehicle />
+        <button className="close-button">X</button>
+      </div>
+      
       {/* display api error */}
       {apiError && <div className="error-message">{apiErrorMessage}</div>}
 
       <form onSubmit={handleSubmit}>
         <div className="my-1 shadow p-2">
           {/* ================= SERVICES ================= */}
-          {[
+         {[
             {
               name: "Oil Change",
               description:
@@ -345,18 +213,40 @@ function AddNewOrder3() {
                 <h4>{service.name}</h4>
                 <p>{service.description}</p>
               </div>
-      
+          
               <input
                 type="checkbox"
                 onChange={() => handleServiceSelection(service.name)}
-                checked={selectedServices.includes(service.name)}
+                checked={selected_services.includes(service.name)}
               />
             </div>
           ))}
         </div>
       
-        <div>
-          <button type="submit" className="">
+        <div className="shadow p-3 mt-4">
+          <div className="contact-title">
+            <h2>Additional Request</h2>
+          </div>
+            <input 
+              type="text"
+              className="add-Service-inputs additional-service my-4"
+              placeholder="Additional Service"
+              value={additional_request} 
+              onChange={(event) => setAdditionalRequest(event.target.value)}
+            />
+            <br />
+            <input 
+              type="text" 
+              className="add-Service-inputs my-4"
+              name="" id=""
+              placeholder="Price" 
+              value={order_total_price}
+              onChange={(event) => setOrderTotalPrice(event.target.value)}
+            />
+            <br />
+          <button 
+            type="submit" 
+            className="theme-btn btn-style-one">
             SUBMIT ORDER
           </button>
         </div>

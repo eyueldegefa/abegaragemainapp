@@ -1,5 +1,7 @@
 // Import the query function from the db.config.js file 
 const conn = require("../config/db.config");
+// import service.service.js
+const services = require('../services/service.service')
 // a function to add new service
 async function addNewOrder(order) {
     let addedOrder = {}
@@ -17,7 +19,7 @@ async function addNewOrder(order) {
       order.customer_id,
       order.vehicle_id,
       order.active_order,
-      order.order_hash || "hash"
+      order.order_hash
     ];
     const rows = await conn.query(query, params);
 
@@ -25,6 +27,30 @@ async function addNewOrder(order) {
         return false;
     }
     const order_id = rows.insertId;
+    
+    const query2 = "INSERT INTO order_services(order_id, selected_services, service_completed) VALUES (?, ?, ?)";
+    const params2 = [
+        order_id,
+        order.selected_services,
+        order.service_completed
+    ];
+    const rows2 = await conn.query(query2, params2);
+    // ========Insert into Order_info============
+    const query3 = "INSERT INTO order_info (order_id, order_total_price, additional_request, additional_requests_completed) VALUES (?, ?, ?, ?)";
+    const params3 = [
+        order_id,
+        order.order_total_price,
+        order.additional_request,
+        order.additional_requests_completed
+    ];
+    const rows3 = await conn.query(query3, params3);
+    // =========Insert into order_status=========
+    const query4 = "INSERT INTO order_status (order_id, order_status) VALUES (?, ?)";
+    const params4 = [
+        order_id,
+        order.order_status
+    ]
+    const rows4 = await conn.query(query4, params4);
     addedOrder = {
         order_id : order_id
     }

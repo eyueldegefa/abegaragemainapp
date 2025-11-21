@@ -35,6 +35,7 @@ function ServiceList() {
             }).then((data) => {
                 if (data.data.length !== 0) {
                   setServices(data.data)
+                  console.log(data.data);
                 }
             }).catch((err) => {
               console.log(err);

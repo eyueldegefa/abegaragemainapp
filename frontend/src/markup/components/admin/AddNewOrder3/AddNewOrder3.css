@@ -1,5 +1,23 @@
+.close-button {
+    height: 5vh;
+    width: 5vh;
+    background-color: red;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
 .add-new-order-3 .service-options {
     font-size: 13px;
     display: flex;
     justify-content: space-between;
+}
+.additional-service{
+    height: 25vh;
+    width: 50vh;
+}
+.add-Service-inputs{
+    color: gray;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 10px;
 }
