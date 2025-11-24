@@ -46,6 +46,7 @@ function CustomerList() {
     }).then((data) => {
       if (data.data.length !== 0) {
         setCustomers(data.data)
+        console.log(data.data);
       }
     }).catch((err) => {
       console.log(err);
