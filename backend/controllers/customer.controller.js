@@ -80,9 +80,49 @@ async function getCustomerById(req, res) {
   }
 };
 // 
+// async function searchCustomers(req, res) {
+//   try {
+//     const { query } = req.query; // e.g. /api/customers/search?query=eyuel
+//     console.log("🔍 Received search query:", query);
+
+//     if (!query || query.trim().length < 2) {
+//       return res.status(400).json({
+//         status: "Fail",
+//         message: "Please enter at least 2 characters to search",
+//       });
+//     }
+
+//     const customers = await customerService.searchCustomers(query);
+//     console.log("✅ DB raw result:", customers);
+
+//     // Handle mysql2 [rows, fields] return
+//     const data = Array.isArray(customers) && Array.isArray(customers[0])
+//       ? customers[0]
+//       : customers;
+
+//     if (!data || data.length === 0) {
+//       return res.status(200).json({
+//         status: "Fail",
+//         message: "No matching customers found",
+//       });
+//     }
+
+//     return res.status(200).json({
+//       status: "Success",
+//       data,
+//     });
+//   } catch (error) {
+//     console.error("❌ ERROR in searchCustomers:", error);
+//     return res.status(500).json({
+//       status: "Fail",
+//       message: "Server error while searching customers",
+//     });
+//   }
+// }
 async function searchCustomers(req, res) {
   try {
-    const { query } = req.query; // e.g. /api/customers/search?query=eyuel
+    const { query } = req.query;
+
     console.log("🔍 Received search query:", query);
 
     if (!query || query.trim().length < 2) {
@@ -93,24 +133,14 @@ async function searchCustomers(req, res) {
     }
 
     const customers = await customerService.searchCustomers(query);
-    console.log("✅ DB raw result:", customers);
+    console.log("📦 Customers returned:", customers);
 
-    // Handle mysql2 [rows, fields] return
-    const data = Array.isArray(customers) && Array.isArray(customers[0])
-      ? customers[0]
-      : customers;
-
-    if (!data || data.length === 0) {
-      return res.status(200).json({
-        status: "Fail",
-        message: "No matching customers found",
-      });
-    }
-
+    // 🚀 customers is always an array
     return res.status(200).json({
       status: "Success",
-      data,
+      data: customers, // FULL ARRAY
     });
+
   } catch (error) {
     console.error("❌ ERROR in searchCustomers:", error);
     return res.status(500).json({
@@ -119,6 +149,7 @@ async function searchCustomers(req, res) {
     });
   }
 }
+
 
 // export the controller functions
 module.exports = {

@@ -120,6 +120,7 @@ CREATE TABLE IF NOT EXISTS `order_services` (
   `order_service_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `service_id` int(11) NOT NULL,
+  `selected_services` TEXT,
   `service_completed` int(11) NOT NULL,
   PRIMARY KEY (order_service_id),
   FOREIGN KEY (order_id) REFERENCES orders(order_id),

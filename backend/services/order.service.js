@@ -27,14 +27,27 @@ async function addNewOrder(order) {
         return false;
     }
     const order_id = rows.insertId;
-    
-    const query2 = "INSERT INTO order_services(order_id, selected_services, service_completed) VALUES (?, ?, ?)";
-    const params2 = [
-        order_id,
-        order.selected_services,
-        order.service_completed
-    ];
-    const rows2 = await conn.query(query2, params2);
+    // ===== 2. Insert each service into order_services =====
+        // ===== Convert service info into comma-separated strings =====
+        const serviceIds = Array.isArray(order.services)
+            ? order.services.map(s => s.service_id).join(",")
+            : order.service_id;
+
+        const selectedServices = Array.isArray(order.services)
+            ? order.services.map(s => s.selected_services).join(", ")
+            : order.selected_services;
+
+        const serviceCompleted = Array.isArray(order.services)
+            ? order.services.map(s => s.service_completed).join(",")
+            : order.service_completed;
+
+        // Insert into order_services as ONE ROW
+        const query2 = `
+            INSERT INTO order_services (order_id, service_id, selected_services, service_completed)
+            VALUES (?, ?, ?, ?)
+        `;
+        const params2 = [order_id, serviceIds, selectedServices, serviceCompleted];
+        await conn.query(query2, params2);
     // ========Insert into Order_info============
     const query3 = "INSERT INTO order_info (order_id, order_total_price, additional_request, additional_requests_completed) VALUES (?, ?, ?, ?)";
     const params3 = [

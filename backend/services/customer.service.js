@@ -79,6 +79,8 @@ async function searchCustomers(queryText) {
   return rows;
 }
 
+
+
 // export the functions for use in the controller
 module.exports = {
   checkIfCustomerExists,
