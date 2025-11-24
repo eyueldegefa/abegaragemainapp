@@ -74,7 +74,14 @@ async function addNewOrder(order) {
     return addedOrder;
     
 }
+// A function to get orders
+async function getAllOrders() {
+    const query = "SELECT * FROM orders INNER JOIN customer_info ON customer_info.customer_id = orders.customer_id INNER JOIN customer_identifier ON customer_identifier.customer_id = orders.customer_id INNER JOIN customer_vehicle_info ON customer_vehicle_info.customer_id = orders.customer_id";
+    const rows = await conn.query(query);
+    return rows;
+}
 
 module.exports = {
-    addNewOrder
+    addNewOrder,
+    getAllOrders
 }

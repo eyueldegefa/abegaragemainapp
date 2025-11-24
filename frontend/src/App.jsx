@@ -26,6 +26,7 @@ import Footer from './markup/components/footer/Footer'
 import AddNewOrder2 from './markup/pages/admin/AddNewOrder2'
 import AddNewOrder1 from './markup/pages/admin/AddNewOrder1'
 import AddNewOrder3 from './markup/pages/admin/AddNewOrder3'
+import OrdersList from './markup/pages/admin/Orders'
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/unauthorized' element={<Unauthorized />} />
+          <Route path='/admin/orders' element={<OrdersList />} />
           <Route path='/admin/add-order1/:id' element={<AddNewOrder1/>} />
           <Route path='/admin/add-order2/:id' element={<AddNewOrder2 />} />
           <Route path='/admin/add-order3/:id' element={<AddNewOrder3 />} />

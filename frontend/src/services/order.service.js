@@ -13,9 +13,22 @@ const createOrder = async (formData, token) => {
   const response = await fetch(`${api_url}/api/order`, requestOptions);
   return response;
 }
+// ----get all orders
+const getAllOrders = async (token) => {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': token
+    },
+  };
+  const response = await fetch(`${api_url}/api/orders`, requestOptions);
+  return response;
+}
 // export function
 const orderService = {
-    createOrder
+    createOrder,
+    getAllOrders
 }
 
 export default orderService;

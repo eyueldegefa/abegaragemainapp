@@ -103,9 +103,24 @@ async function createOrder(req, res) {
         });
     }
 }
+// a Function for get all orders
+async function getAllOrders(req, res, next) {
+  const orders = await orderService.getAllOrders();
 
+  if(!orders) {
+      res.status(400).json({
+      error: "Failed to get orders!"
+    });
+  } else {
+      res.status(200).json({
+      status: "success",
+      data: orders
+    });
+  }
+}
 // export the functions
 module.exports = {
     getCustomerBySearch,
-    createOrder
+    createOrder,
+    getAllOrders
 }
