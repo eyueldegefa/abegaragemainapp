@@ -10,5 +10,9 @@ const employeeController = require('../controllers/employee.controller');
 router.post("/api/employee",[authMiddleware.verifyToken, authMiddleware.isAdmin] , employeeController.createEmployee);
 // create a route to get all employees
 router.get("/api/employees", employeeController.getAllEmployees);
+// define route to get Employee by ID
+router.get("/api/employee/:id", employeeController.getEmployeeById);
+//  define route to update Employee
+router.put('/api/employee/edit-employee/:id', employeeController.editEmployee);
 // Export the router
 module.exports = router;

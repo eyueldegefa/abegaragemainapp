@@ -79,46 +79,7 @@ async function getCustomerById(req, res) {
     res.status(500).json({ message: err.message });
   }
 };
-// 
-// async function searchCustomers(req, res) {
-//   try {
-//     const { query } = req.query; // e.g. /api/customers/search?query=eyuel
-//     console.log("🔍 Received search query:", query);
-
-//     if (!query || query.trim().length < 2) {
-//       return res.status(400).json({
-//         status: "Fail",
-//         message: "Please enter at least 2 characters to search",
-//       });
-//     }
-
-//     const customers = await customerService.searchCustomers(query);
-//     console.log("✅ DB raw result:", customers);
-
-//     // Handle mysql2 [rows, fields] return
-//     const data = Array.isArray(customers) && Array.isArray(customers[0])
-//       ? customers[0]
-//       : customers;
-
-//     if (!data || data.length === 0) {
-//       return res.status(200).json({
-//         status: "Fail",
-//         message: "No matching customers found",
-//       });
-//     }
-
-//     return res.status(200).json({
-//       status: "Success",
-//       data,
-//     });
-//   } catch (error) {
-//     console.error("❌ ERROR in searchCustomers:", error);
-//     return res.status(500).json({
-//       status: "Fail",
-//       message: "Server error while searching customers",
-//     });
-//   }
-// }
+// a function to get customer by search
 async function searchCustomers(req, res) {
   try {
     const { query } = req.query;
@@ -149,12 +110,51 @@ async function searchCustomers(req, res) {
     });
   }
 }
+// a function to update customer
+async function editCustomer(req, res) {
 
+  const { id } = req.params;
+  const { 
+    customer_first_name, 
+    customer_last_name, 
+    customer_phone_number, 
+    active_customer_status 
+  } = req.body;
+
+  try {
+
+    const updateCustomer = await customerService.editCustomer({
+      customer_id: id,
+      customer_first_name,
+      customer_last_name,
+      customer_phone_number,
+      active_customer_status
+    });
+    
+    if (!updateCustomer) {
+      return res.status(400).json({
+        status: "failure",
+        message: "Customer not updated"
+      });
+    }
+      return res.status(200).json({
+        status: "success",
+        message: "Customer updated successfully"
+      });
+      
+  } catch (error) {
+    console.error("Error on updating customer:", error);
+    return res.status(500).json({
+      message: "Internal server error"
+    });
+  }
+}
 
 // export the controller functions
 module.exports = {
   createCustomer,
   getAllCustomers,
   getCustomerById,
-  searchCustomers
+  searchCustomers,
+  editCustomer
 };

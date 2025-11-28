@@ -12,6 +12,7 @@ router.get("/api/customers", customerController.getAllCustomers);
 router.get("/api/customer/:id", customerController.getCustomerById);
 // define route to search customers
 router.get('/api/customers/search', customerController.searchCustomers);
-
+//  define route to update customer
+router.put('/api/customer/edit-customer/:id', customerController.editCustomer);
 // export the router
 module.exports = router;

@@ -61,11 +61,57 @@ async function getAllEmployees() {
   const rows = await conn.query(query);
   return rows;
 }
+// A function to get employee by ID
+async function getEmployeeById(employee_id) {
+  const query = "SELECT * FROM employee INNER JOIN employee_info ON employee.employee_id = employee_info.employee_id INNER JOIN employee_pass ON employee.employee_id = employee_pass.employee_id INNER JOIN employee_role ON employee.employee_id = employee_role.employee_id WHERE employee.employee_id = ?";
+  const rows = await conn.query(query, [employee_id]);
+  if (rows.length === 0) return null;
+  return rows[0]; 
+}
+// A function to Edit or Update employee
+async function editEmployee({
+    employee_first_name,
+    employee_last_name,
+    employee_phone,
+    company_role_id,
+    active_employee,
+    employee_id
+}) {
+  const query = `
+    UPDATE employee
+    INNER JOIN employee_info
+      ON employee_info.employee_id = employee.employee_id
+    INNER JOIN employee_role 
+      ON employee.employee_id = employee_role.employee_id 
+    INNER JOIN company_roles 
+      ON company_roles.company_role_id = employee_role.company_role_id
+    SET 
+      employee_info.employee_first_name = ?,
+      employee_info.employee_last_name = ?,
+      employee_info.employee_phone = ?,
+      employee_role.company_role_id = ?,
+      employee.active_employee = ?
+    WHERE employee.employee_id = ?
+  `;
+
+  const rows = await conn.query(query, [
+    employee_first_name,
+    employee_last_name,
+    employee_phone,
+    company_role_id,
+    active_employee,
+    employee_id
+  ]);
+
+  return rows;
+}
 
 // Export the functions for use in the controller
 module.exports = {
   checkIfEmployeeExists,
   createEmployee,
   getEmployeeByEmail,
-  getAllEmployees
+  getAllEmployees,
+  getEmployeeById,
+  editEmployee
 };

@@ -61,12 +61,32 @@ async function searchCustomers(query, token) {
   return await response.json();
 }
 
+async function editCustomer(id, formData, token) {
+    const requestOptions = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': token
+    },
+    body: JSON.stringify(formData)
+  };
+
+  const response = await fetch(`${api_url}/api/customer/edit-customer/${id}`, requestOptions);
+
+  if (!response.ok) {
+    throw new Error(`Failed to update customer: ${response.status}`);
+  }
+
+  const data = await response.json();
+  return data;
+}
 
 const customerService = {
     createCustomer,
     getAllCustomers,
     getCustomerById,
-    searchCustomers
+    searchCustomers,
+    editCustomer
 }
 
 export default customerService;

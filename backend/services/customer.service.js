@@ -79,6 +79,36 @@ async function searchCustomers(queryText) {
   return rows;
 }
 
+// A function to Edit or Update customer
+async function editCustomer({
+  customer_id,
+  customer_phone_number,
+  customer_first_name,
+  customer_last_name,
+  active_customer_status
+}) {
+  const query = `
+    UPDATE customer_identifier
+    INNER JOIN customer_info
+      ON customer_info.customer_id = customer_identifier.customer_id
+    SET 
+      customer_identifier.customer_phone_number = ?,
+      customer_info.customer_first_name = ?,
+      customer_info.customer_last_name = ?,
+      customer_info.active_customer_status = ?
+    WHERE customer_identifier.customer_id = ?
+  `;
+
+  const rows = await conn.query(query, [
+    customer_phone_number,
+    customer_first_name,
+    customer_last_name,
+    active_customer_status,
+    customer_id
+  ]);
+
+  return rows;
+}
 
 
 // export the functions for use in the controller
@@ -87,5 +117,6 @@ module.exports = {
   createCustomer,
   getAllCustomers,
   getCustomerById,
-  searchCustomers
+  searchCustomers,
+  editCustomer
 };

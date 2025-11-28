@@ -27,6 +27,8 @@ import AddNewOrder2 from './markup/pages/admin/AddNewOrder2'
 import AddNewOrder1 from './markup/pages/admin/AddNewOrder1'
 import AddNewOrder3 from './markup/pages/admin/AddNewOrder3'
 import OrdersList from './markup/pages/admin/Orders'
+import EditCustomer from './markup/pages/admin/EditCustomer'
+import EditEmployee from './markup/pages/admin/EditEmployee'
 
 
 function App() {
@@ -42,6 +44,8 @@ function App() {
           <Route path='/admin/add-order1/:id' element={<AddNewOrder1/>} />
           <Route path='/admin/add-order2/:id' element={<AddNewOrder2 />} />
           <Route path='/admin/add-order3/:id' element={<AddNewOrder3 />} />
+          <Route path='/admin/edit-customer/:id' element={<EditCustomer />} />
+          <Route path='/admin/edit-employee/:id' element={<EditEmployee />} />
           <Route path='/admin/customer/:id' element=
                   {<PrivateAuthRoute roles={[2,3]} >
                     <Order />

@@ -26,10 +26,51 @@ const getAllEmployees = async (token) => {
   const response = await fetch(`${api_url}/api/employees`, requestOptions);
   return response;
 }
+// get employee by ID
+const getEmployeeById = async (id, token) => {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': token
+    }
+  };
+
+  const response = await fetch(`${api_url}/api/employee/${id}`, requestOptions);
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch employee: ${response.status}`);
+  }
+
+  const data = await response.json();
+  return data;
+};
+// -----
+async function editEmployee(id, formData, token) {
+    const requestOptions = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': token
+    },
+    body: JSON.stringify(formData)
+  };
+
+  const response = await fetch(`${api_url}/api/employee/edit-employee/${id}`, requestOptions);
+
+  if (!response.ok) {
+    throw new Error(`Failed to update employee: ${response.status}`);
+  }
+
+  const data = await response.json();
+  return data;
+}
 
 // Export all the functions 
 const employeeService = {
   createEmployee,
-  getAllEmployees
+  getAllEmployees,
+  getEmployeeById,
+  editEmployee
 }
 export default employeeService; 

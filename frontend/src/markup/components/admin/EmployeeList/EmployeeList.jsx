@@ -1,6 +1,7 @@
 // Import the necessary components 
 import React, { useState, useEffect } from "react";
 import { Table, Button } from 'react-bootstrap';
+import { useNavigate } from "react-router";
 // Import the auth hook  
 import { useAuth } from "../../../../Contexts/AuthContext";
 // Import the date-fns library 
@@ -12,6 +13,8 @@ import employeeService from "../../../../services/employee.service";
 
 // Create the EmployeesList component 
 const EmployeesList = () => {
+
+  const navigate = useNavigate();
   // Create all the states we need to store the data
   // Create the employees state to store the employees data  
   const [employees, setEmployees] = useState([]);
@@ -55,6 +58,10 @@ const EmployeesList = () => {
     })
   }, []);
 
+  const handleEditClick = (id) => {
+    navigate(`/admin/edit-employee/${id}`)
+  }
+
   return (
     <>
       {apiError ? (
@@ -96,7 +103,7 @@ const EmployeesList = () => {
                       <td>{format(new Date(employee.added_date), 'MM - dd - yyyy | kk:mm')}</td>
                       <td>{employee.company_role_name}</td>
                       <td>
-                        <div className="edit-delete-icons">
+                        <div className="edit-delete-icons"  onClick={()=>handleEditClick(employee.employee_id)}>
                           edit | delete
                         </div>
                       </td>

@@ -47,8 +47,74 @@ async function getAllEmployees(req, res, next) {
     });
   }
 }
+// Route to get a single customer by ID
+async function getEmployeeById(req, res) {
+  try {
+      // console.log("➡️ Customer ID received:", req.params.id);
+    const employee = await employeeService.getEmployeeById(req.params.id);
+    // console.log("✅ Customer from DB:", customer);
+
+    if (!employee) {
+      return res.status(404).json({ 
+        status: "Fail",
+        message: "Customer not found" 
+      });
+    } else {
+      return res.status(200).json({
+        status: "Success",
+        data: employee
+      })
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+// a function to update Employee
+async function editEmployee(req, res) {
+
+  const { id } = req.params;
+  const { 
+    employee_first_name,
+    employee_last_name,
+    employee_phone,
+    company_role_id,
+    active_employee,
+  } = req.body;
+
+  try {
+
+    const updateEmployee = await employeeService.editEmployee({
+    employee_id: id,
+    employee_first_name,
+    employee_last_name,
+    employee_phone,
+    company_role_id,
+    active_employee,
+    });
+    
+    if (!updateEmployee) {
+      return res.status(400).json({
+        status: "failure",
+        message: "Employee not updated"
+      });
+    }
+      return res.status(200).json({
+        status: "success",
+        message: "Employee updated successfully"
+      });
+      
+  } catch (error) {
+    console.error("Error on updating customer:", error);
+    return res.status(500).json({
+      message: "Internal server error"
+    });
+  }
+}
+
 // Export the createEmployee controller 
 module.exports = {
   createEmployee,
-  getAllEmployees
+  getAllEmployees,
+  getEmployeeById,
+  editEmployee
 };

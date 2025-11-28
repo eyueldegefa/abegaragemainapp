@@ -53,8 +53,11 @@ function CustomerList() {
     })
   }, []);
 
-  const handleClick = (id) => {
-    navigate(`/admin/customer/${id}`); // navigate to the detail page
+  // const handleClick = (id) => {
+  //   navigate(`/admin/customer/${id}`); // navigate to the detail page
+  // }
+  const handleEditClick = (id) => {
+    navigate(`/admin/edit-customer/${id}`)
   }
   return (
     <>
@@ -88,7 +91,7 @@ function CustomerList() {
             <tbody>
               {customers.map((customer) => (
                 <tr key={customer.customer_id}
-                    onClick={() => handleClick(customer.customer_id)}
+                    // onClick={() => handleClick(customer.customer_id)}
                 >
                     <td>{customer.customer_id}</td>
                     <td >{customer.customer_first_name}</td>
@@ -98,7 +101,7 @@ function CustomerList() {
                     <td>{format(new Date(customer.customer_added_date), 'MM - dd - yyyy | kk:mm')}</td>
                     <td>{customer.active_customer_status ? "Yes" : "No"}</td>
                     <td>
-                        <div className="edit-delete-icons">
+                        <div className="edit-delete-icons" onClick={()=>handleEditClick(customer.customer_id)}>
                           edit | delete
                         </div>
                     </td>
