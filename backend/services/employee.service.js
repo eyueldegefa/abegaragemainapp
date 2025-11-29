@@ -105,7 +105,23 @@ async function editEmployee({
 
   return rows;
 }
+// A function to delete employee by ID
+async function deleteEmployeeById(employeeId) {
+    // 1. Delete child table first
+    const query = "DELETE FROM employee_info WHERE employee_id = ?";
+    const rows = await conn.query(query, [employeeId]);
+    // 2. Delete child table first
+    const query2 = "DELETE FROM employee_pass WHERE employee_id = ?";
+    const rows2 = await conn.query(query2, [employeeId]);
+    // 3. Delete child table first
+    const query3 = "DELETE FROM employee_role WHERE employee_id = ?";
+    const rows3 = await conn.query(query3, [employeeId]);
+    // 2. Delete parent table
+    const query4 = "DELETE FROM employee WHERE employee_id = ?";
+    const rows4 = await conn.query(query4, [employeeId]);
 
+    return rows, rows2, rows3, rows4;
+}
 // Export the functions for use in the controller
 module.exports = {
   checkIfEmployeeExists,
@@ -113,5 +129,6 @@ module.exports = {
   getEmployeeByEmail,
   getAllEmployees,
   getEmployeeById,
-  editEmployee
+  editEmployee, 
+  deleteEmployeeById
 };

@@ -110,11 +110,42 @@ async function editEmployee(req, res) {
     });
   }
 }
+// To delete a single Employee by ID
+async function deleteEmployeeById(req, res) {
+  try {
+    const result = await employeeService.deleteEmployeeById(req.params.id);
 
+    if (!result || result.affectedRows === 0) {
+      // 404 when nothing deleted
+      return res.status(404).json({
+        status: "Fail",
+        message: "Employee not found or could not be deleted",
+        affectedRows: result ? result.affectedRows : 0
+      });
+    }
+
+    // success (200) — include a predictable JSON shape
+    return res.status(200).json({
+      status: "Success",
+      message: "Employee deleted successfully!",
+      affectedRows: result.affectedRows
+    });
+
+  } catch (err) {
+    // Log server-side error for debugging
+    console.error("Error in delete EmployeeById controller:", err);
+
+    return res.status(500).json({
+      status: "Error",
+      message: err.message || "Internal server error"
+    });
+  }
+}
 // Export the createEmployee controller 
 module.exports = {
   createEmployee,
   getAllEmployees,
   getEmployeeById,
-  editEmployee
+  editEmployee,
+  deleteEmployeeById
 };

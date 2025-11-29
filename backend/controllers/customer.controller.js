@@ -149,6 +149,38 @@ async function editCustomer(req, res) {
     });
   }
 }
+// To delete a single customer by ID
+async function deleteCustomerById(req, res) {
+  try {
+    const result = await customerService.deleteCustomerById(req.params.id);
+
+    if (!result || result.affectedRows === 0) {
+      // 404 when nothing deleted
+      return res.status(404).json({
+        status: "Fail",
+        message: "Customer not found or could not be deleted",
+        affectedRows: result ? result.affectedRows : 0
+      });
+    }
+
+    // success (200) — include a predictable JSON shape
+    return res.status(200).json({
+      status: "Success",
+      message: "Customer deleted successfully!",
+      affectedRows: result.affectedRows
+    });
+
+  } catch (err) {
+    // Log server-side error for debugging
+    console.error("Error in deleteCustomerById controller:", err);
+
+    return res.status(500).json({
+      status: "Error",
+      message: err.message || "Internal server error"
+    });
+  }
+}
+
 
 // export the controller functions
 module.exports = {
@@ -156,5 +188,6 @@ module.exports = {
   getAllCustomers,
   getCustomerById,
   searchCustomers,
-  editCustomer
+  editCustomer,
+  deleteCustomerById
 };

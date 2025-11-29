@@ -80,13 +80,32 @@ async function editCustomer(id, formData, token) {
   const data = await response.json();
   return data;
 }
+// To delete customer by ID
+const deleteCustomerById = async (id, token) => {
+  const requestOptions = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "x-access-token": token
+    }
+  }
+  const response = await fetch(`${api_url}/api/customer/delete-customer/${id}`, requestOptions );
+
+  if (!response.status === 'Fail' || response.status === 'Error') {
+    const errorData = await response.json();
+    throw new Error(errorData.message || `Failed to delete customer: ${response.status}`);
+  }
+
+  return response.json(); // Success response
+};
 
 const customerService = {
     createCustomer,
     getAllCustomers,
     getCustomerById,
     searchCustomers,
-    editCustomer
+    editCustomer,
+    deleteCustomerById
 }
 
 export default customerService;

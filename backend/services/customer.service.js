@@ -109,6 +109,18 @@ async function editCustomer({
 
   return rows;
 }
+// A function to delete a single customer by ID
+async function deleteCustomerById(customerId) {
+  // 1. Delete child table first
+  const query = "DELETE FROM customer_info WHERE customer_id = ?";
+  const rows = await conn.query(query, [customerId]);
+
+  // 2. Delete parent table
+  const query2 = "DELETE FROM customer_identifier WHERE customer_id = ?";
+  const rows2 = await conn.query(query2, [customerId]);
+
+  return rows, rows2;
+}
 
 
 // export the functions for use in the controller
@@ -118,5 +130,6 @@ module.exports = {
   getAllCustomers,
   getCustomerById,
   searchCustomers,
-  editCustomer
+  editCustomer,
+  deleteCustomerById
 };

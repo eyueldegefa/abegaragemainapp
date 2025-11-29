@@ -10,11 +10,18 @@ import { format } from 'date-fns'; // To properly format the date on the table
 import './EmployeeList.css';
 // Import the getAllEmployees function  
 import employeeService from "../../../../services/employee.service";
+// import confirm modal component
+import ConfirmModal from '../../ConfirmModal/ConfirmModal';
 
 // Create the EmployeesList component 
 const EmployeesList = () => {
 
   const navigate = useNavigate();
+    // state for modal
+    const [modalVisible, setModalVisible] = useState(false);
+      // Create all the states we need to store the data
+    const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
+    const [selectedEmployeeName, setSelectedEmployeeName] = useState(null);
   // Create all the states we need to store the data
   // Create the employees state to store the employees data  
   const [employees, setEmployees] = useState([]);
@@ -58,9 +65,51 @@ const EmployeesList = () => {
     })
   }, []);
 
+  // Navigate to the Edit customer page
   const handleEditClick = (id) => {
     navigate(`/admin/edit-employee/${id}`)
   }
+
+  // Navigate to the detail page
+    const handleClick = (id) => {
+      navigate(`/admin/customer/${id}`); 
+    }
+
+  // To handle Delete Click
+    const handleDeleteClick = (employee) => {
+      setSelectedEmployeeId(employee.employee_id);
+      setSelectedEmployeeName(employee.employee_first_name)
+      setModalVisible(true); // show modal instead of window.confirm
+    };
+  
+    const confirmDelete = async () => {
+      setModalVisible(false);
+  
+      try {
+        const res = await employeeService.deleteEmployeeById(selectedEmployeeId, token);
+  
+        if (res.status === "Fail" || res.status === "Error") {
+          setApiError(true);
+          setApiErrorMessage(res.message || "Could not delete customer");
+          return;
+        }
+  
+        // remove customer from state
+        setEmployees(prev => prev.filter(e => e.employee_id !== selectedEmployeeId));
+        setApiError(false);
+        setApiErrorMessage("");
+  
+      } catch (err) {
+        console.error(err);
+        setApiError(true);
+        setApiErrorMessage("Something went wrong. Please try again later.");
+      }
+    };
+  
+    const cancelDelete = () => {
+      setModalVisible(false);
+    };
+  
 
   return (
     <>
@@ -79,6 +128,13 @@ const EmployeesList = () => {
               <div className="contact-title">
                 <h2>Employees</h2 >
               </div >
+              {modalVisible && (
+              <ConfirmModal
+                message={`Are you sure you want to delete Employee: ${selectedEmployeeName}?`}
+                onConfirm={confirmDelete}
+                onCancel={cancelDelete}
+              />
+              )}
               < Table striped bordered hover responsive className="employee-table" >
                 <thead>
                   <tr>
@@ -95,16 +151,26 @@ const EmployeesList = () => {
                 <tbody>
                   {employees.map((employee) => (
                     <tr key={employee.employee_id}>
-                      <td>{employee.active_employee ? "Yes" : "No"}</td>
-                      <td>{employee.employee_first_name}</td>
-                      <td>{employee.employee_last_name}</td>
-                      <td>{employee.employee_email}</td>
-                      <td>{employee.employee_phone}</td>
-                      <td>{format(new Date(employee.added_date), 'MM - dd - yyyy | kk:mm')}</td>
-                      <td>{employee.company_role_name}</td>
+                      <td onClick={()=> handleClick(employee.employee_id)}>
+                        {employee.active_employee ? "Yes" : "No"}</td>
+                      <td onClick={()=> handleClick(employee.employee_id)}>
+                        {employee.employee_first_name}</td>
+                      <td onClick={()=> handleClick(employee.employee_id)}>
+                        {employee.employee_last_name}</td>
+                      <td onClick={()=> handleClick(employee.employee_id)}>
+                        {employee.employee_email}</td>
+                      <td onClick={()=> handleClick(employee.employee_id)}>
+                        {employee.employee_phone}</td>
+                      <td onClick={()=> handleClick(employee.employee_id)}>
+                        {format(new Date(employee.added_date), 'MM - dd - yyyy | kk:mm')}</td>
+                      <td onClick={()=> handleClick(employee.employee_id)}>
+                        {employee.company_role_name}</td>
                       <td>
-                        <div className="edit-delete-icons"  onClick={()=>handleEditClick(employee.employee_id)}>
-                          edit | delete
+                        <div className="edit-delete-icons"  >
+                          <span onClick={()=>handleEditClick(employee.employee_id)}
+                            >edit </span>|
+                          <span onClick={()=>handleDeleteClick(employee)}
+                            >delete</span>
                         </div>
                       </td>
                     </tr>

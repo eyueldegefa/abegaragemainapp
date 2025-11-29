@@ -163,7 +163,7 @@ function EditEmployeeForm() {
                         {phoneError && <div className="error">{phoneError}</div>}
                       </div>
                       {/* Employee role */}
-                                            <div className="form-group col-md-12">
+                      <div className="form-group col-md-12">
                         <select
                           name="role"
                           value={company_role_id}

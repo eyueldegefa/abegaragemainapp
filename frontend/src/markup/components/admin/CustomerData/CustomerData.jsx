@@ -49,7 +49,6 @@ function CustomerData() {
         <p>Loading...</p>
       ) : (
         <>
-
           <h2>Customer: {customer.customer_first_name} {customer.customer_last_name}</h2>
           <p><span className=''>Email: </span>{customer.customer_email}</p>
           <p><span className=''>Phone</span> {customer.customer_phone_number}</p>
@@ -57,6 +56,7 @@ function CustomerData() {
           <div>Edit</div>
         </>
       )}
+      <h2 className='mt-3'>Vehicles of {customer.customer_first_name}</h2>
     </div>
   );
 }

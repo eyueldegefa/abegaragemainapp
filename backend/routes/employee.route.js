@@ -14,5 +14,7 @@ router.get("/api/employees", employeeController.getAllEmployees);
 router.get("/api/employee/:id", employeeController.getEmployeeById);
 //  define route to update Employee
 router.put('/api/employee/edit-employee/:id', employeeController.editEmployee);
+// define route to delete employee by ID
+router.delete("/api/employee/delete-employee/:id", employeeController.deleteEmployeeById);
 // Export the router
 module.exports = router;

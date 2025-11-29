@@ -14,5 +14,7 @@ router.get("/api/customer/:id", customerController.getCustomerById);
 router.get('/api/customers/search', customerController.searchCustomers);
 //  define route to update customer
 router.put('/api/customer/edit-customer/:id', customerController.editCustomer);
+// define route to delete customer by ID
+router.delete("/api/customer/delete-customer/:id", customerController.deleteCustomerById);
 // export the router
 module.exports = router;

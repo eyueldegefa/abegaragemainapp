@@ -10,10 +10,16 @@ import './CustomerList.css';
 import { useAuth } from '../../../../Contexts/AuthContext';
 // import customerService to get all customers
 import customerService from '../../../../services/customer.service';
+// import confirm modal component
+import ConfirmModal from '../../ConfirmModal/ConfirmModal';
 
 function CustomerList() {
   const navigate = useNavigate();
+  // state for modal
+  const [modalVisible, setModalVisible] = useState(false);
     // Create all the states we need to store the data
+  const [selectedCustomerId, setSelectedCustomerId] = useState(null);
+  const [selectedCustomerName, setSelectedCustomerName] = useState(null);
   // Create the customers state to store the customers data  
   const [customers, setCustomers] = useState([]);
     // A state to serve as a flag to show the error message
@@ -53,12 +59,52 @@ function CustomerList() {
     })
   }, []);
 
-  // const handleClick = (id) => {
-  //   navigate(`/admin/customer/${id}`); // navigate to the detail page
-  // }
+// Navigate to the detail page
+  const handleClick = (id) => {
+    navigate(`/admin/customer/${id}`); 
+  }
+// Navigate to the Edit customer page
   const handleEditClick = (id) => {
     navigate(`/admin/edit-customer/${id}`)
   }
+// To handle Delete Click
+  const handleDeleteClick = (customer) => {
+    setSelectedCustomerId(customer.customer_id);
+    setSelectedCustomerName(customer.customer_first_name)
+    setModalVisible(true); // show modal instead of window.confirm
+  };
+
+  const confirmDelete = async () => {
+    setModalVisible(false);
+
+    try {
+      const res = await customerService.deleteCustomerById(selectedCustomerId, token);
+
+      if (res.status === "Fail" || res.status === "Error") {
+        setApiError(true);
+        setApiErrorMessage(res.message || "Could not delete customer");
+        return;
+      }
+
+      // remove customer from state
+      setCustomers(prev => prev.filter(c => c.customer_id !== selectedCustomerId));
+      setApiError(false);
+      setApiErrorMessage("");
+
+    } catch (err) {
+      console.error(err);
+      setApiError(true);
+      setApiErrorMessage("Something went wrong. Please try again later.");
+    }
+  };
+
+  const cancelDelete = () => {
+    setModalVisible(false);
+  };
+
+
+
+
   return (
     <>
     {apiError ? (
@@ -75,7 +121,14 @@ function CustomerList() {
         <div className="contact-title">
           <h2>Customers List</h2>
         </div>
-        <Table striped bordered hover className="customer-table">
+        {modalVisible && (
+        <ConfirmModal
+          message={`Are you sure you want to delete customer: ${selectedCustomerName}?`}
+          onConfirm={confirmDelete}
+          onCancel={cancelDelete}
+        />
+        )}
+        <Table striped bordered responsive hover className="customer-table">
           <thead>
             <tr>
                 <th>Customer ID</th>
@@ -90,19 +143,19 @@ function CustomerList() {
             </thead>
             <tbody>
               {customers.map((customer) => (
-                <tr key={customer.customer_id}
-                    // onClick={() => handleClick(customer.customer_id)}
-                >
-                    <td>{customer.customer_id}</td>
-                    <td >{customer.customer_first_name}</td>
-                    <td>{customer.customer_last_name}</td>
-                    <td>{customer.customer_email}</td>
-                    <td>{customer.customer_phone_number}</td>
-                    <td>{format(new Date(customer.customer_added_date), 'MM - dd - yyyy | kk:mm')}</td>
-                    <td>{customer.active_customer_status ? "Yes" : "No"}</td>
+                <tr key={customer.customer_id}>
+                    <td onClick={() => handleClick(customer.customer_id)}>{customer.customer_id}</td>
+                    <td onClick={() => handleClick(customer.customer_id)}>{customer.customer_first_name}</td>
+                    <td onClick={() => handleClick(customer.customer_id)}>{customer.customer_last_name}</td>
+                    <td onClick={() => handleClick(customer.customer_id)}>{customer.customer_email}</td>
+                    <td onClick={() => handleClick(customer.customer_id)}>{customer.customer_phone_number}</td>
+                    <td onClick={() => handleClick(customer.customer_id)}>{format(new Date(customer.customer_added_date), 'MM - dd - yyyy | kk:mm')}</td>
+                    <td onClick={() => handleClick(customer.customer_id)}>{customer.active_customer_status ? "Yes" : "No"}</td>
                     <td>
-                        <div className="edit-delete-icons" onClick={()=>handleEditClick(customer.customer_id)}>
-                          edit | delete
+                        <div className="edit-delete-icons" >
+                          <span onClick={()=>handleEditClick(customer.customer_id)}>edit </span>|
+                          <span onClick={()=>handleDeleteClick(customer)}
+                            >delete</span>
                         </div>
                     </td>
                 </tr>
