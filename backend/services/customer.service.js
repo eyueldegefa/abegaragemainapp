@@ -46,7 +46,7 @@ async function createCustomer(customer) {
 
 // A function to get all customers
 async function getAllCustomers() {
-  const query = "SELECT * FROM customer_identifier INNER JOIN customer_info ON customer_identifier.customer_id = customer_info.customer_id";
+  const query = "SELECT * FROM customer_identifier INNER JOIN customer_info ON customer_info.customer_id = customer_identifier.customer_id INNER JOIN customer_vehicle_info ON customer_vehicle_info.customer_id = customer_identifier.customer_id";
   const rows = await conn.query(query);
   return rows;
 }

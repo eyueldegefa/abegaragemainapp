@@ -35,14 +35,13 @@ async function addNewVehicle(data) {
 }
 // a function to get all vehicles by customer id
 async function getVehiclesByCustomerId(customer_id) {
-    const query = "SELECT * FROM `customer_vehicle_info` WHERE `customer_id` = ?";
-    const [rows] = await conn.query(query, [customer_id]);
+    const query = "SELECT * FROM customer_vehicle_info AS v INNER JOIN customer_info AS c ON c.customer_id = v.customer_id WHERE v.customer_id = ?";
+    const rows = await conn.query(query, [customer_id]);
     
     if (rows.length === 0) {
       return null; // or return []
     }
-  
-    return rows;
+    return rows[0];
 }
 // export the functions
 module.exports = {
