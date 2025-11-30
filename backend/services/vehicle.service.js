@@ -41,10 +41,76 @@ async function getVehiclesByCustomerId(customer_id) {
     if (rows.length === 0) {
       return null; // or return []
     }
-    return rows[0];
+    return rows;
+}
+// a function to get all vehicles by vehicle id
+async function getVehicleByVehicleId(vehicle_id) {
+    const query = "SELECT * FROM customer_vehicle_info WHERE vehicle_id = ?";
+    const [rows] = await conn.query(query, [vehicle_id]);
+    
+    if (rows.length === 0) {
+      return null; // or return []
+    }
+    return rows;
+}
+// A function to update vehicle
+async function updateVehicleById(
+  vehicle_id,
+  vehicle_year,
+  vehicle_make,
+  vehicle_model,
+  vehicle_type,
+  vehicle_mileage,
+  vehicle_tag,
+  vehicle_serial,
+  vehicle_color
+) {
+
+  const query = `
+    UPDATE customer_vehicle_info
+    SET 
+      vehicle_year = ?, 
+      vehicle_make = ?,
+      vehicle_model = ?,
+      vehicle_type = ?,
+      vehicle_mileage = ?,
+      vehicle_tag = ?,
+      vehicle_serial = ?,
+      vehicle_color = ?
+    WHERE vehicle_id = ?
+  `;
+
+  const rows = await conn.query(query, [
+    vehicle_year,
+    vehicle_make,
+    vehicle_model,
+    vehicle_type,
+    vehicle_mileage,
+    vehicle_tag,
+    vehicle_serial,
+    vehicle_color,
+    vehicle_id
+  ]);
+
+  return rows;
+}
+// A function to delete a vehicle by ID
+async function deleteVehicleById(vehicle_id) {
+  const query = "DELETE FROM customer_vehicle_info WHERE vehicle_id = ?";
+  const rows = await conn.query(query, [vehicle_id]);
+
+  const query2 = "DELETE FROM orders WHERE vehicle_id = ?";
+  const rows2 = await conn.query(query2, [vehicle_id]);
+  return {
+    rows,
+    rows2
+  }
 }
 // export the functions
 module.exports = {
     addNewVehicle,
-    getVehiclesByCustomerId
+    getVehiclesByCustomerId,
+    getVehicleByVehicleId,
+    updateVehicleById,
+    deleteVehicleById
 }

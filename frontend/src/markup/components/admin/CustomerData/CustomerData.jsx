@@ -56,7 +56,7 @@ function CustomerData() {
           <div>Edit</div>
         </>
       )}
-      <h2 className='mt-3'>Vehicles of {customer.customer_first_name}</h2>
+      
     </div>
   );
 }

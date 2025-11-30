@@ -110,10 +110,10 @@ async function deleteEmployeeById(employeeId) {
     // 1. Delete child table first
     const query = "DELETE FROM employee_info WHERE employee_id = ?";
     const rows = await conn.query(query, [employeeId]);
-    // 2. Delete child table first
+    // 2. Delete child table
     const query2 = "DELETE FROM employee_pass WHERE employee_id = ?";
     const rows2 = await conn.query(query2, [employeeId]);
-    // 3. Delete child table first
+    // 3. Delete child table 
     const query3 = "DELETE FROM employee_role WHERE employee_id = ?";
     const rows3 = await conn.query(query3, [employeeId]);
     // 2. Delete parent table

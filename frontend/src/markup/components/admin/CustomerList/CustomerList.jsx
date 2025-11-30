@@ -153,7 +153,8 @@ function CustomerList() {
                     <td onClick={() => handleClick(customer.customer_id)}>{customer.active_customer_status ? "Yes" : "No"}</td>
                     <td>
                         <div className="edit-delete-icons" >
-                          <span onClick={()=>handleEditClick(customer.customer_id)}>edit </span>|
+                          <span onClick={()=>handleEditClick(customer.customer_id)}>
+                            edit </span>|
                           <span onClick={()=>handleDeleteClick(customer)}
                             >delete</span>
                         </div>
