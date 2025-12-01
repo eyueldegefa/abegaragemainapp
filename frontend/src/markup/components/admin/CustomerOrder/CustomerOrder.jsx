@@ -1,13 +1,11 @@
 // import react and hooks
 import React, { useState, useEffect } from 'react'
 // import useAuth
-import { useAuth } from '../../../../Contexts/AuthContext'
-// import services.service
-import Services from '../../../../services/service.service'
-
-function ServiceList() {
-    // import states
-    const [services, setServices] = useState([]);
+import { useAuth } from '../../../../Contexts/AuthContext';
+// import orderService
+import orderService from '../../../../services/order.service';
+function CustomerOrder() {
+    const [orders, setOrders] = useState([])
     const [apiError, setApiError] = useState(false);
     const [apiErrorMessage, setApiErrorMessage] = useState(null);
     // To get the logged in employee token
@@ -18,8 +16,8 @@ function ServiceList() {
     }
 
     useEffect(()=>{
-        const allServices = Services.getAllServices(token);
-        allServices.then((res)=>{
+        const allOrders = orderService.getAllOrders(token);
+        allOrders.then((res)=>{
             if(!res.ok){
                 console.log(res.status);
                 setApiError(true);
@@ -34,17 +32,18 @@ function ServiceList() {
                 return res.json()
             }).then((data) => {
                 if (data.data.length !== 0) {
-                  setServices(data.data)
-                  console.log(data.data);
+                  setOrders(data.data[0])
+                  console.log(data.data[0]);
                 }
             }).catch((err) => {
               console.log(err);
             })
 
-        }, []);
+    }, []);
+
 
   return (
-    <>
+     <>
     {apiError ? (
         <section className="contact-section">
             <div className="auto-container">
@@ -54,19 +53,28 @@ function ServiceList() {
             </div>
         </section>
     ) : (
-    <section className="contact-section row">
-      <div className="auto-container col-12">
-        <div className="contact-title">
-          <h2>Services</h2>
-        </div>
-        <div>
-            {services.map((service) => (
-                <section key={service.service_id} className='shadow-sm p-3'>
-                    <h2>{service.service_name}</h2>
-                    <p>{service.service_description}</p>
-                </section>
-            ))}
-        </div>
+    <section className="row">
+      <div className=" col-12">
+          <h2>Orders of {orders.customer_first_name}</h2>
+        <section>
+            <div className=''>
+                <h3>
+                    <small>{orders.vehicle_make} {orders.vehicle_model}</small>
+                </h3>
+                <h4>
+                    <small>Model: </small>
+                    <small className='text-secondary'> 
+                        {orders.vehicle_year}
+                    </small>
+                </h4>
+                <h4>
+                    <small>Tag: </small>
+                    <small className='text-secondary'> 
+                        {orders.vehicle_tag}
+                    </small>
+                </h4>
+            </div>
+        </section>
       </div>
     </section>
     )
@@ -75,4 +83,5 @@ function ServiceList() {
   )
 }
 
-export default ServiceList
+
+export default CustomerOrder;

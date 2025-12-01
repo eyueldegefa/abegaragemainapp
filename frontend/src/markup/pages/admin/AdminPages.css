@@ -1,0 +1,24 @@
+.bg-orange{
+    background-color: #EE0D09;
+    display: inline-block;
+    width: 16vh;           /* Circle width */
+    height: 16vh;          /* Circle height */
+    color: white;          /* Text color */
+    border-radius: 50%;    /* Makes it a circle */
+    text-align: center;    /* Center text horizontally */
+    line-height: 16vh;     /* Center text vertically */
+    font-size: 20px;       /* Text size */
+    font-weight: bold;
+}
+.vertical-line {
+  width: 2px;              /* Line thickness */
+  height: 20vh;           /* Line length */
+  background-color: #bababa; /* Line color */
+  margin: 0 auto;
+}
+.vertical-line2 {
+  width: 2px;              /* Line thickness */
+  height: 100%;           /* Line length */
+  background-color: #bababa; /* Line color */
+  margin: 0 44px;
+}

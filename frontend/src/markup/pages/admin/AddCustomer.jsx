@@ -5,7 +5,7 @@ import AdminMenu from '../../components/admin/adminMenu/AdminMenu'
 function AddCustomer() {
   return (
     <div className=''>
-      <div className='row'>
+      <div className='container row'>
         <div className='col-md-4'>
           {/* Admin Menu */}
           <AdminMenu />

@@ -50,7 +50,7 @@ function AddServiceForm() {
           setSuccess(true);
           // redirect to admin dashboard after 2 seconds
           setTimeout(() => {
-            navigate('/');
+            navigate('/admin/services');
           }, 2000);
         }
       }).catch(() => {
@@ -59,7 +59,7 @@ function AddServiceForm() {
       });
   }
   return (
-    <section className="container contact-section row shadow-lg my-5">
+    <section className="container contact-section row shadow my-5 mx-2">
       <div className="auto-container col-12">
          {success && <div className="success">Service added successfully</div>}
         <div className="contact-title">
@@ -71,7 +71,7 @@ function AddServiceForm() {
               <div className="contact-form">
                 <form className='login-form' onSubmit={handleSubmit}>
                   <div className="row clearfix">
-                    <div className="form-group col-md-12">
+                    <div className="form-group col-md-9">
                       {serverError && <div className="error" role="alert">{serverError}</div>}
                       <input 
                         type="text" 
@@ -81,7 +81,7 @@ function AddServiceForm() {
                         placeholder="Service Name" />
                     </div>
 
-                    <div className="form-group col-md-12 h-2">
+                    <div className="form-group col-md-9">
                       <input type="text" 
                         name="service_description" 
                         value={service_description} 
@@ -98,7 +98,6 @@ function AddServiceForm() {
             </div>
           </div>
         </div>
-
       </div>
     </section>
   )

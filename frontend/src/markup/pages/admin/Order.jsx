@@ -11,6 +11,9 @@ import CustomerData from "../../components/admin/CustomerData/CustomerData";
 import Unauthorized from "../unauthorized";
 import AddVehicleForm from "../../components/admin/AddVehicleForm/AddVehicleForm";
 import CustomerVehicle from "../../components/admin/CustomerVehicle/CustomerVehicle";
+import CustomerOrder from "../../components/admin/CustomerOrder/CustomerOrder";
+// import css
+import './AdminPages.css'
 function Order() {
   // Destructure the auth hook 
   const { isLogged, isAdmin } = useAuth();
@@ -25,9 +28,32 @@ function Order() {
                 <AdminMenu />
               </div>
               <div className="col-md-9 admin-right-side">
-                <CustomerData />
-                <CustomerVehicle />
-                <AddVehicleForm />
+                <div className="d-flex">
+                  <div className="mx-3">
+                    <div className="bg-orange mr-2">Info</div>
+                    <div className="vertical-line"></div>
+                  </div>
+                  <CustomerData />
+                </div>
+                <div className="d-flex">
+                  <div className="mx-3">
+                    <div className="bg-orange">Cars</div>
+                    <div className="vertical-line"></div>
+                  </div>
+                  <CustomerVehicle />
+                </div>
+                <div className=" d-flex">
+                  <div className="mx-3">
+                    <div className="vertical-line2"></div>
+                  </div>
+                  <div className="shadow w-75 h-75"><AddVehicleForm /></div>
+                </div>
+                <div className="d-flex">
+                  <div className="mx-3">
+                    <div className="bg-orange">Orders</div>
+                  </div>
+                  <div className="my-3"><CustomerOrder /></div>
+                </div>
               </div>
             </div>
           </div>

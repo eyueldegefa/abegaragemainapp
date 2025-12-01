@@ -1,7 +1,5 @@
 // Import the query function from the db.config.js file 
 const conn = require("../config/db.config");
-// import service.service.js
-const services = require('../services/service.service')
 // a function to add new service
 async function addNewOrder(order) {
     let addedOrder = {}

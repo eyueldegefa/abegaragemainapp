@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import useParams
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 // import components
 import CustomerData from "../CustomerData/CustomerData";
 import CustomerVehicle from "../CustomerVehicle/CustomerVehicle";
@@ -18,7 +18,7 @@ import { useAuth } from "../../../../Contexts/AuthContext";
 import "./AddNewOrder3.css";
 
 function AddNewOrder3() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // To get the logged in employee token
   const { employee } = useAuth();
   const token = employee ? employee.employee_token : null;
@@ -129,18 +129,6 @@ function AddNewOrder3() {
   }, [id, token]);
 
   // ---------------- SERVICE SELECTION ----------------
-//   const handleServiceSelection = (service) => {
-// let updatedServices = [];
-
-//   if (selected_services.includes(service)) {
-//     updatedServices = selected_services.filter(s => s !== service);
-//   } else {
-//     updatedServices = [...selected_services, service];
-//   }
-//     // Convert to text
-//   const servicesText = updatedServices.join(", ");
-//   setSelectedServices(servicesText);   
-//   };
 const handleServiceSelection = (serviceName) => {
   if (!services || services.length === 0) return;
 
@@ -212,7 +200,7 @@ const handleServiceSelection = (serviceName) => {
               // Success
               setApiError('');
               setSuccess(true);
-              // setTimeout(() => navigate('/'), 2000);
+              setTimeout(() => navigate('/admin/orders'), 2000);
             }
           })
           .catch(() => {

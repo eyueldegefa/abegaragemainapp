@@ -117,7 +117,7 @@ function AddEmployeeForm() {
           setSuccess(true);
           // redirect to admin dashboard after 2 seconds
           setTimeout(() => {
-            navigate('/');
+            navigate('/admin/employees');
           }, 2000);
         }
       }).catch(() => {

@@ -106,7 +106,7 @@ function AddCustomerForm() {
               // Success
               setServerError('');
               setSuccess(true);
-              setTimeout(() => navigate('/'), 2000);
+              setTimeout(() => navigate('/admin/customers'), 2000);
             }
           })
           .catch(() => {

@@ -109,7 +109,7 @@ function CustomerVehicle() {
       ) : !vehicle ? (
         <p>Loading...</p>
       ) : (
-        <Table striped bordered responsive hover className='customer-vehicles'>
+        <Table striped bordered responsive hover className='customer-vehicles shadow'>
           <thead>
             <tr>  
               <th>Year</th>

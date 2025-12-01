@@ -8,7 +8,7 @@ function addEmployee() {
   
   return (
     <div className=''>
-      <div className='row'>
+      <div className='container row'>
         <div className='col-md-4'>
           {/* Admin Menu */}
           <AdminMenu />
