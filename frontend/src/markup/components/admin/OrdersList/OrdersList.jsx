@@ -1,5 +1,6 @@
 // import react and hooks
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from "react-router";
 import { Table } from 'react-bootstrap';
 // Import the date-fns library 
 import { format } from 'date-fns';
@@ -9,6 +10,7 @@ import { useAuth } from '../../../../Contexts/AuthContext';
 import orderService from '../../../../services/order.service';
 
 function OrdersList() {
+    const navigate = useNavigate();
     const [orders, setOrders] = useState([])
     const [apiError, setApiError] = useState(false);
     const [apiErrorMessage, setApiErrorMessage] = useState(null);
@@ -44,6 +46,16 @@ function OrdersList() {
             })
 
     }, []);
+
+      // Navigate to the Edit customer page
+  const handleEditClick = (id) => {
+    navigate(`/admin/edit-order/${id}`);
+  }
+  // View order details
+  const handleViewClick = (order) => {
+    console.log(order);
+    navigate(`/admin/view-order/${order.order_id}`, {state: {order}});
+  }
 
   return (
      <>
@@ -81,9 +93,16 @@ function OrdersList() {
                         <td>{order.customer_first_name} {order.customer_last_name}<br/>{order.customer_email}<br/>{order.customer_phone_number}</td>
                         <td>{order.vehicle_make}<br/>{order.vehicle_year} <br/>{order.vehicle_tag}</td>
                         <td>{format(new Date(order.order_date), 'MM - dd - yyyy')}</td>
-                        <td></td>
+                        <td>{employee.employee_first_name}{employee.employee_last_name}</td>
                         <td>Pending</td>
-                        <td>Edit/view</td>
+                        <td>
+                          <div className="edit-delete-icons"  >
+                            <span onClick={()=>handleEditClick(order.order_id)}
+                              >Edit</span>|
+                            <span onClick={()=>handleViewClick(order)}
+                              >View</span>
+                          </div>
+                        </td>
                     </tr>
                     ))}
                 </tbody>

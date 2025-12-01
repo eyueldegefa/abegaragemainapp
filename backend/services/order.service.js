@@ -80,8 +80,59 @@ async function getAllOrders() {
     const rows = await conn.query(query);
     return rows;
 }
+// get order by ID
+async function getOrderById(order_id) {
+    const query = `SELECT * FROM orders 
+    INNER JOIN order_info
+       ON order_info.order_id = orders.order_id
+    INNER JOIN order_services
+       ON order_services.order_id = orders.order_id
+    INNER JOIN order_status
+       ON order_status.order_id = orders.order_id 
+    WHERE orders.order_id = ?`;
+    const rows = await conn.query(query, [order_id]);
+        if (rows.length === 0) return null;
+        return rows[0]; 
+}
+// 
+async function updateOrderById({
+      order_total_price,
+      completion_date,
+      additional_request,
+      order_status,
+      order_id
+}) {
+  const query = `
+    UPDATE orders 
+    INNER JOIN order_info
+       ON order_info.order_id = orders.order_id
+    INNER JOIN order_services
+       ON order_services.order_id = orders.order_id
+    INNER JOIN order_status
+       ON order_status.order_id = orders.order_id   
+    SET 
+      order_total_price = ?,
+      completion_date = ?,
+      additional_request = ?,
+      order_status = ?
+    WHERE orders.order_id = ?
+  `;
+
+  const result = await conn.query(query, [
+    order_total_price,
+    completion_date,
+    additional_request,
+    order_status,
+    order_id
+  ]);
+
+  return result;
+}
+
 
 module.exports = {
     addNewOrder,
-    getAllOrders
+    getAllOrders,
+    getOrderById,
+    updateOrderById
 }

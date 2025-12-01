@@ -7,8 +7,9 @@ import LoginForm from '../../components/LoginForm/LoginForm';
 import AdminMenu from "../../components/admin/adminMenu/AdminMenu";
 // Import the Unauthorized component
 import Unauthorized from "../unauthorized";
-import OrdersList from "../../components/admin/OrdersList/OrdersList";
-function Orders() {
+import ViewOrder from "../../components/admin/ViewOrder/ViewOrder";
+
+function ViewOrderPage() {
   // Destructure the auth hook 
   const { isLogged, isAdmin } = useAuth();
 
@@ -22,7 +23,7 @@ function Orders() {
                 <AdminMenu />
               </div>
               <div className="col-md-9 admin-right-side">
-                <OrdersList />
+                <ViewOrder />
               </div>
             </div>
           </div>
@@ -45,4 +46,4 @@ function Orders() {
 
 }
 
-export default Orders; 
+export default ViewOrderPage; 

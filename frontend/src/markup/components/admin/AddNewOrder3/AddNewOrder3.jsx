@@ -89,9 +89,9 @@ function AddNewOrder3() {
           setApiError(true);
           setApiErrorMessage("Vehicle not found");
         } else {
-          console.log(data.data.vehicle_id);
+          console.log(data.data[0].vehicle_id);
           
-          setVehicles(data.data.vehicle_id); // Assuming single vehicle chosen
+          setVehicles(data.data[0].vehicle_id); // Assuming single vehicle chosen
         }
       } catch (err) {
         console.error(err);

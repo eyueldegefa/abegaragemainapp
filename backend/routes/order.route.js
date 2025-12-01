@@ -10,5 +10,9 @@ router.get('/api/order/customer/search', orderController.getCustomerBySearch);
 router.post('/api/order', orderController.createOrder);
 // get all orders
 router.get('/api/orders', orderController.getAllOrders);
+// get order by ID
+router.get('/api/order/:id', orderController.getOrderById);
+//  define route to update Order by ID
+router.put('/api/order/update-order/:id', orderController.updateOrderById);
 // export router
 module.exports = router;
