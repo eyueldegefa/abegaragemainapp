@@ -118,10 +118,8 @@ function EditServiceForm() {
                         <span>UPDATE</span>
                       </button>
                     </div>
-
                   </div>
                 </form>
-
               </div>
             </div>
           </div>
