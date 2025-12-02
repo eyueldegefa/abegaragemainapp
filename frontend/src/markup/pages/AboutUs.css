@@ -1,0 +1,19 @@
+.home-bg{
+    background-image:url('../../assets/images/banner/banner1.jpg')
+}
+.page-banners{
+    background-image:url('../../assets/images/banner/banner5.jpg')
+}
+.bolder{
+    font-weight: bold;
+    font-size: 35px;
+}
+.sec-bg{
+    background-image: url("../../assets/images/banner/banner4.jpg");
+}
+.service-bg{
+    background-image:url('../../assets/images/banner/banner6.jpg');
+}
+.contact-bg{
+    background-image:url('../../assets/images/banner/banner5.jpg')
+}

@@ -33,6 +33,9 @@ import EditVehicleForm from './markup/components/admin/EditVehicleForm/EditVehic
 import ViewOrderPage from './markup/pages/admin/ViewOrderPage'
 import EditOrder from './markup/pages/admin/EditOrder'
 import EditService from './markup/pages/admin/EditService'
+import AboutUs from './markup/pages/AboutUs'
+import Service from './markup/pages/Service'
+import ContactUs from './markup/pages/ContactUs'
 
 
 function App() {
@@ -44,6 +47,9 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/unauthorized' element={<Unauthorized />} />
+          <Route path='/about' element={<AboutUs />} />
+          <Route path='/services' element={<Service />} />
+          <Route path='/contact-us' element={<ContactUs />} />
           <Route path='/admin/orders' element={<OrdersList />} />
           <Route path='/admin/add-order1/:id' element={<AddNewOrder1/>} />
           <Route path='/admin/add-order2/:id' element={<AddNewOrder2 />} />

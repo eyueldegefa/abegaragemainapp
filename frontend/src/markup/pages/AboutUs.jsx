@@ -1,26 +1,47 @@
 import React from 'react'
+import { Link } from 'react-router'
+import About1 from '../../assets/images/banner/about1.jpg'
 import About2 from '../../assets/images/misc/vban1.jpg'
 import About3 from '../../assets/images/misc/vban2.jpg'
 import About4 from '../../assets/images/banner/banner3.jpg'
-import Image5 from '../../assets/images/banner/banner2.jpg'
+// import css
+import './AboutUs.css'
 
-function Home() {
+
+function AboutUs() {
   return (
     <div>
-          {/* <!-- Banner Section --> */}
-        <section className="video-section home-bg">
-          {/* style="background-image: url(./assets/images/custom/banner/banner1.jpg);" */}
-        <div data-parallax='{"y": 50}'></div>
+           {/* <!-- Page Title --> */}
+    <section className="page-title page-banners">
         <div className="auto-container">
-            <h5>Working since 1992</h5>
-            <h2>We are leader <br/> in Car Mechanical Work</h2>
-            <div className="video-box">
-                <div className="video-btn"><a href="#" className="overlay-link lightbox-image video-fancybox ripple"><i className="flaticon-play"></i></a></div>
-                <div className="text">Watch intro video <br/> about us</div>
+            <h2>About us</h2>
+            <ul className="page-breadcrumb">
+                <li><Link to='/'>home</Link></li>
+                <li>About us</li>
+            </ul>
+        </div>
+        <h1 data-parallax='{"x": 200}'>About us</h1>
+    </section>
+
+    {/* <!-- About Section Three --> */}
+    <section className="about-section-three">
+        <div className="auto-container">
+            <div className="row">
+                <div className="col-lg-7">
+                    <div className="content">
+                        <h1 className='bolder'>We are highly skilled mechanics <br/> for your car repair</h1>
+                        <div className="text">
+                            <p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>
+                            <p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information heading towards a streamlined cloud solution. User generated content in real-time will have multiple.</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-lg-5">
+                    <div className="image"><img src={About1} alt="Repairing Car"/></div>
+                </div>
             </div>
         </div>
     </section>
-    {/* <!-- End of Banner --> */}
 
       {/* <!-- About Us --> */}
     <section className="about-section">
@@ -48,85 +69,7 @@ function Home() {
         </div>
     </section>
 
-    {/* <!-- Services Section --> */}
-    <section className="services-section">
-        <div className="auto-container">
-            <div className="sec-title style-two">
-                <h2>Our Featured Services</h2>
-                <div className="text">Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. </div>
-            </div>
-            <div className="row">
-                <div className="col-lg-4 service-block-one">
-                    <div className="inner-box hvr-float-shadow">
-                        <h5>Service and Repairs</h5>
-                        <h2>Performance Upgrade</h2>
-                        <a href="#" className="read-more">read more  +</a>
-                        <div className="icon"><span className="flaticon-power"></span></div>
-                    </div>
-                </div>
-                <div className="col-lg-4 service-block-one">
-                    <div className="inner-box hvr-float-shadow">
-                        <h5>Service and Repairs</h5>
-                        <h2>Transmission Services</h2>
-                        <a href="#" className="read-more">read more  +</a>
-                        <div className="icon"><span className="flaticon-gearbox"></span></div>
-                    </div>
-                </div>
-                <div className="col-lg-4 service-block-one">
-                    <div className="inner-box hvr-float-shadow">
-                        <h5>Service and Repairs</h5>
-                        <h2>Break Repair & Service</h2>
-                        <a href="#" className="read-more">read more  +</a>
-                        <div className="icon"><span className="flaticon-brake-disc"></span></div>
-                    </div>
-                </div>
-                <div className="col-lg-4 service-block-one">
-                    <div className="inner-box hvr-float-shadow">
-                        <h5>Service and Repairs</h5>
-                        <h2>Engine Service & Repair</h2>
-                        <a href="#" className="read-more">read more  +</a>
-                        <div className="icon"><span className="flaticon-car-engine"></span></div>
-                    </div>
-                </div>
-                <div className="col-lg-4 service-block-one">
-                    <div className="inner-box hvr-float-shadow">
-                        <h5>Service and Repairs</h5>
-                        <h2>Tyre & Wheels</h2>
-                        <a href="#" className="read-more">read more  +</a>
-                        <div className="icon"><span className="flaticon-tire"></span></div>
-                    </div>
-                </div>
-                <div className="col-lg-4 service-block-one">
-                    <div className="inner-box hvr-float-shadow">
-                        <h5>Service and Repairs</h5>
-                        <h2>Denting & Painting</h2>
-                        <a href="#" className="read-more">read more  +</a>
-                        <div className="icon"><span className="flaticon-spray-gun"></span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-        {/* <!-- Features Section --> */}
-    <section className="features-section">
-        <div className="auto-container">
-            <div className="row">
-                <div className="col-lg-6">
-                    <div className="inner-container">
-                        <h2>Quality Service And <br/> Customer Satisfaction !!</h2>
-                        <div className="text">We utilize the most recent symptomatic gear to ensure your vehicle is fixed or adjusted appropriately and in an opportune manner. We are an individual from Professional Auto Service, a first className execution arrange, where free assistance offices share shared objectives of being world-className car administration focuses.</div>
-                    </div>
-                </div>
-                <div className="col-lg-6">
-                    <div className=""><img src={Image5} alt=""/></div>
-                </div>
-            </div>
-        </div>
-    </section>
-    {/* <!-- End Features Section --> */}
-
-    {/* <!-- Why Choose Us --> */}
+        {/* <!-- Why Choose Us --> */}
     <section className="why-choose-us">
         <div className="auto-container">
             <div className="row">
@@ -158,7 +101,7 @@ function Home() {
                     </div>
                     <div className="row">
                         <div className="col-md-5">
-                            <div className="image"><img src={About4} alt=""/></div>
+                            <div className="image"><img src={About4} alt="Car image"/></div>
                         </div>
                         <div className="col-md-7">
                             <ul className="list">
@@ -173,7 +116,7 @@ function Home() {
                                 <li>Steering and Suspension Work</li>
                                 <li>Emission Repair Facility</li>
                                 <li>Wheel Alignment</li>
-                                <li>Computer Diagaonstic Testing</li>
+                                <li>Computer Diagnostic Testing</li>
                             </ul>
                         </div>
                     </div>
@@ -184,9 +127,9 @@ function Home() {
 
     {/* <!-- Video Section --> */}
     <section className="video-section">
-      {/* style="background-image: url(assets/images/custom/banner/banner4.jpg);" */}
-        <div data-parallax='{"y": 50}' className="sec-bg" ></div>
-        <div className="auto-container">
+        {/* style=";" */}
+        <div className="sec-bg" ></div>
+        <div className="auto-container bolder">
             <h5>Working since 1992</h5>
             <h2>We are leader <br/> in Car Mechanical Work</h2>
             <div className="video-box">
@@ -216,4 +159,4 @@ function Home() {
   )
 }
 
-export default Home
+export default AboutUs
