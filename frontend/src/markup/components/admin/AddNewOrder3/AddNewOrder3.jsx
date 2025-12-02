@@ -237,30 +237,7 @@ const handleServiceSelection = (serviceName) => {
       <form onSubmit={handleSubmit}>
         <div className="my-3 shadow p-2">
           {/* ================= SERVICES ================= */}
-         {
-        //  [
-        //     {
-        //       name: "Oil Change",
-        //       description:
-        //         "Change your engine oil and oil filter to keep your engine running smoothly.",
-        //     },
-        //     {
-        //       name: "Brake Inspection",
-        //       description:
-        //         "Check your brake pads, discs, and fluid to ensure safe braking performance.",
-        //     },
-        //     {
-        //       name: "Tire Rotation",
-        //       description:
-        //         "Rotate your tires to ensure even wear and prolong tire life.",
-        //     },
-        //     {
-        //       name: "Engine Diagnostic",
-        //       description:
-        //         "Perform a complete engine diagnostic to detect any potential issues early.",
-        //     }
-        //   ]
-          services.map((service) => (
+         {services.map((service) => (
             <div key={service.service_id} className="shadow-sm p-2 my-2 service-options">
               <div>
                 <h4>{service.service_name}</h4>

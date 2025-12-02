@@ -32,6 +32,7 @@ import EditEmployee from './markup/pages/admin/EditEmployee'
 import EditVehicleForm from './markup/components/admin/EditVehicleForm/EditVehicleForm'
 import ViewOrderPage from './markup/pages/admin/ViewOrderPage'
 import EditOrder from './markup/pages/admin/EditOrder'
+import EditService from './markup/pages/admin/EditService'
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
           <Route path='/admin/edit-vehicle/:id' element={<EditVehicleForm />} />
           <Route path='/admin/view-order/:id' element={<ViewOrderPage />} />
           <Route path='/admin/edit-order/:id' element={<EditOrder />} />
+          <Route path='/admin/edit-service/:id' element={<EditService />} />
           <Route path='/admin/customer/:id' element=
                   {<PrivateAuthRoute roles={[2,3]} >
                     <Order />

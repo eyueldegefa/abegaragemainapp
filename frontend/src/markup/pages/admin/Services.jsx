@@ -8,9 +8,10 @@ import Unauthorized from '../unauthorized'
 // import admin menu
 import AdminMenu from '../../components/admin/adminMenu/AdminMenu'
 // import service list
-import ServiceList from '../../components/admin/ServiceList/ServiceList'
+import ServicesPage from '../../components/admin/ServicesPage/ServicesPage'
 // import add new service form
 import AddServiceForm from '../../components/admin/AddServiceForm/AddServiceForm'
+
 
 
 function Services() {
@@ -25,8 +26,8 @@ function Services() {
                           <div className="col-md-3 admin-left-side">
                             <AdminMenu />
                           </div>
-                          <div className="col-md-9 admin-right-side">
-                            <ServiceList />
+                          <div className="col-md-9 admin-right-side container">
+                            <ServicesPage />
                             <AddServiceForm />
                           </div>
                         </div>
