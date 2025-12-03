@@ -1,0 +1,8 @@
+header {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000 !important; 
+  background-color: white !important; /* make sure it's visible */
+}

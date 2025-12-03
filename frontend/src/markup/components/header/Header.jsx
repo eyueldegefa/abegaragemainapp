@@ -7,6 +7,8 @@ import loginService from '../../../services/login.service';
 import { useAuth } from '../../../Contexts/AuthContext'
 // import Link from react-router
 import { Link } from 'react-router';
+// import css
+import './Header.css'
 
 function Header() {
     
@@ -39,7 +41,7 @@ function Header() {
         </div>
 
         {/* <!-- Header Upper --> */}
-        <div className="header-upper">
+        <section className="header-upper">
             <div className="auto-container">
                 <div className="inner-container">
                     {/* <!--Logo--> */}
@@ -50,7 +52,7 @@ function Header() {
                         {/* <!--Nav Box--> */}
                         <div className="nav-outer">
                             {/* <!--Mobile Navigation Toggler--> */}
-                            <div className="mobile-nav-toggler"><img src="assets/images/icons/icon-bar.png" alt=""/></div>
+                            {/* <div className="mobile-nav-toggler"><img src="assets/images/icons/icon-bar.png" alt=""/></div> */}
 
                             {/* <!-- Main Menu --> */}
                             <nav className="main-menu navbar-expand-md navbar-light">
@@ -72,27 +74,39 @@ function Header() {
                     </div>                        
                 </div>
             </div>
-        </div>
+            <div className='blank'></div>
+        </section>
         {/* <!--End Header Upper--> */}
 
-        {/* <!-- Sticky Header  --> */}
-        <div className="sticky-header">
-            {/* <!-- Header Upper --> */}
+        {/* -- Sticky Header  --
+        <section className="sticky-header">
+            -- Header Upper --
             <div className="header-upper">
                 <div className="auto-container">
                     <div className="inner-container">
-                        {/* <!--Logo--> */}
+                        --Logo--
                         <div className="logo-box">
-                            <div className="logo"><a href="index.html"><img src="assets/images/logo.png" alt=""/></a></div>
+                            <div className="logo"><a href="/"><img src="assets/images/logo.png" alt=""/></a></div>
                         </div>
                         <div className="right-column">
-                            {/* <!--Nav Box--> */}
+                            --Nav Box--
                             <div className="nav-outer">
-                                {/* <!--Mobile Navigation Toggler--> */}
+                                --Mobile Navigation Toggler--
                                 <div className="mobile-nav-toggler"><img src="assets/images/icons/icon-bar.png" alt=""/></div>
 
-                                {/* <!-- Main Menu --> */}
+                                -- Main Menu --
                                 <nav className="main-menu navbar-expand-md navbar-light">
+                                <div className="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                                    <ul className="navigation">
+                                        <li><a href="/">Home</a>
+                                        </li>
+                                        <li><a href="/about">About Us</a>
+                                        </li>
+                                        <li><a href="/services">Services</a>
+                                        </li>
+                                        <li><a href="/contact-us">Contact Us</a></li>
+                                    </ul>
+                                </div>
                                 </nav>
                             </div>
                             <div className="search-btn"></div>
@@ -101,20 +115,20 @@ function Header() {
                     </div>
                 </div>
             </div>
-            {/* <!--End Header Upper--> */}
-        </div>
-        {/* <!-- End Sticky Menu --> */}
+            --End Header Upper--
+        </section>
+        -- End Sticky Menu -- */}
 
         {/* <!-- Mobile Menu  --> */}
-        <div className="mobile-menu">
+        {/* <div className="mobile-menu">
             <div className="menu-backdrop"></div>
             <div className="close-btn"><span className="icon flaticon-remove"></span></div>
             
             <nav className="menu-box">
                 <div className="nav-logo"><a href="index.html"><img src="assets/images/logo3.png" alt="" title=""/></a></div>
                 <div className="menu-outer"></div>
-            {/* <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--> */}
-				{/* <!--Social Links--> */}
+    --Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--
+				--Social Links--
 				<div className="social-links">
 					<ul className="clearfix">
 						<li><a href="#"><span className="fab fa-twitter"></span></a></li>
@@ -125,13 +139,13 @@ function Header() {
 					</ul>
                 </div>
             </nav>
-        </div>
+        </div> */}
 {/* <!-- End Mobile Menu --> */}
 
-        <div className="nav-overlay">
+        {/* <div className="nav-overlay">
             <div className="cursor"></div>
             <div className="cursor-follower"></div>
-        </div>
+        </div> */}
     </header>
     {/* <!-- End Main Header --> */}
     </>

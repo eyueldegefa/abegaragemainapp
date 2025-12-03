@@ -1,7 +1,17 @@
 import React from 'react'
-import './App.css'
 // import { Route, Routes } from 'react-router'
 import { Route, Routes } from 'react-router-dom'
+// import css from template_assets
+import './assets/template_assets/css/bootstrap.css'
+import './assets/template_assets/css/style.css'
+import './assets/template_assets/css/responsive.css'
+import './assets/template_assets/css/color.css'
+import './markup/components/header/Header.css'
+import './App.css'
+
+// import header and footer
+import Header from './markup/components/header/Header'
+import Footer from './markup/components/footer/Footer'
 // import pages
 import Home from './markup/pages/Home'
 import Login from './markup/pages/Login'
@@ -15,14 +25,6 @@ import AddCustomer from './markup/pages/admin/AddCustomer'
 import Services from './markup/pages/admin/Services'
 import Order from './markup/pages/admin/Order'
 import AddNewOrder from './markup/pages/admin/AddNewOrder1'
-// import css from template_assets
-import './assets/template_assets/css/bootstrap.css'
-import './assets/template_assets/css/style.css'
-import './assets/template_assets/css/responsive.css'
-import './assets/template_assets/css/color.css'
-// import header and footer
-import Header from './markup/components/header/Header'
-import Footer from './markup/components/footer/Footer'
 import AddNewOrder2 from './markup/pages/admin/AddNewOrder2'
 import AddNewOrder1 from './markup/pages/admin/AddNewOrder1'
 import AddNewOrder3 from './markup/pages/admin/AddNewOrder3'
@@ -36,6 +38,7 @@ import EditService from './markup/pages/admin/EditService'
 import AboutUs from './markup/pages/AboutUs'
 import Service from './markup/pages/Service'
 import ContactUs from './markup/pages/ContactUs'
+import AdminDashboard from './markup/pages/admin/AdminDashboard'
 
 
 function App() {
@@ -50,6 +53,7 @@ function App() {
           <Route path='/about' element={<AboutUs />} />
           <Route path='/services' element={<Service />} />
           <Route path='/contact-us' element={<ContactUs />} />
+          <Route path='/admin/dashboard' element={<AdminDashboard />} />
           <Route path='/admin/orders' element={<OrdersList />} />
           <Route path='/admin/add-order1/:id' element={<AddNewOrder1/>} />
           <Route path='/admin/add-order2/:id' element={<AddNewOrder2 />} />

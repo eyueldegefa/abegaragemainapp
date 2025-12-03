@@ -6,7 +6,7 @@ import Image5 from '../../assets/images/banner/banner2.jpg'
 
 function Home() {
   return (
-    <div>
+    <div className='mt-5'>
           {/* <!-- Banner Section --> */}
         <section className="video-section home-bg">
           {/* style="background-image: url(./assets/images/custom/banner/banner1.jpg);" */}
@@ -51,7 +51,7 @@ function Home() {
     {/* <!-- Services Section --> */}
     <section className="services-section">
         <div className="auto-container">
-            <div className="sec-title style-two">
+            <div className="sec-title">
                 <h2>Our Featured Services</h2>
                 <div className="text">Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. </div>
             </div>

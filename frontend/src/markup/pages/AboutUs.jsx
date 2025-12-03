@@ -10,9 +10,9 @@ import './AboutUs.css'
 
 function AboutUs() {
   return (
-    <div>
+    <div className='mt-5'>
            {/* <!-- Page Title --> */}
-    <section className="page-title page-banners">
+    <section className="page-title about-bg">
         <div className="auto-container">
             <h2>About us</h2>
             <ul className="page-breadcrumb">
