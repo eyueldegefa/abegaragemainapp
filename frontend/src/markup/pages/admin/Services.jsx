@@ -22,8 +22,8 @@ function Services() {
                 <> 
                     <div>
                       <div className="container-fluid admin-pages">
-                        <div className="row">
-                          <div className="col-md-3 admin-left-side">
+                        <div className="row mt-5 pt-5">
+                          <div className="col-md-3 admin-left-side mt-5">
                             <AdminMenu />
                           </div>
                           <div className="col-md-9 admin-right-side container">

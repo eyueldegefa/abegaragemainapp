@@ -7,15 +7,11 @@ function AdminDashboard() {
     {/* <!-- Services Section --> */}
     <section class="services-section style-three">
         <div class="auto-container">
-            <div class="sec-title style-two">
-                <h4 className='pb-4'>Services that we offer</h4 >
-                <div class="text">Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. </div>
-            </div>
             <div class="row">
                 <div class="col-lg-4 service-block-one">
                     <div class="inner-box hvr-float-shadow">
                         <h5>Service and Repairs</h5>
-                        <h4 className='pb-4'>Performance Upgrade</h4 >
+                        <h2 className=''>Performance Upgrade</h2 >
                         <a href="service-details.html" class="read-more">read more  +</a>
                         <div class="icon"><span class="flaticon-power"></span></div>
                     </div>
@@ -23,7 +19,7 @@ function AdminDashboard() {
                 <div class="col-lg-4 service-block-one">
                     <div class="inner-box hvr-float-shadow">
                         <h5>Service and Repairs</h5>
-                        <h4 className='pb-4'>Transmission Services</h4 >
+                        <h2>Transmission Services</h2 >
                         <a href="service-details.html" class="read-more">read more  +</a>
                         <div class="icon"><span class="flaticon-gearbox"></span></div>
                     </div>
@@ -31,7 +27,7 @@ function AdminDashboard() {
                 <div class="col-lg-4 service-block-one">
                     <div class="inner-box hvr-float-shadow">
                         <h5>Service and Repairs</h5>
-                        <h4 className='pb-4'>Break Repair & Service</h4 >
+                        <h2>Break Repair & Service</h2 >
                         <a href="service-details.html" class="read-more">read more  +</a>
                         <div class="icon"><span class="flaticon-brake-disc"></span></div>
                     </div>
@@ -39,7 +35,7 @@ function AdminDashboard() {
                 <div class="col-lg-4 service-block-one">
                     <div class="inner-box hvr-float-shadow">
                         <h5>Service and Repairs</h5>
-                        <h4 className='pb-4'>Engine Service & Repair</h4 >
+                        <h2>Engine Service & Repair</h2 >
                         <a href="service-details.html" class="read-more">read more  +</a>
                         <div class="icon"><span class="flaticon-car-engine"></span></div>
                     </div>
@@ -47,15 +43,7 @@ function AdminDashboard() {
                 <div class="col-lg-4 service-block-one">
                     <div class="inner-box hvr-float-shadow">
                         <h5>Service and Repairs</h5>
-                        <h4 className='pb-4'>Tyre & Wheels</h4 >
-                        <a href="service-details.html" class="read-more">read more  +</a>
-                        <div class="icon"><span class="flaticon-tire"></span></div>
-                    </div>
-                </div>
-                <div class="col-lg-4 service-block-one">
-                    <div class="inner-box hvr-float-shadow">
-                        <h5>Service and Repairs</h5>
-                        <h4 className='pb-4'>Denting & Painting</h4 >
+                        <h2>Denting & Painting</h2 >
                         <a href="service-details.html" class="read-more">read more  +</a>
                         <div class="icon"><span class="flaticon-spray-gun"></span></div>
                     </div>
@@ -63,7 +51,7 @@ function AdminDashboard() {
                 <div class="col-lg-4 service-block-one">
                     <div class="inner-box hvr-float-shadow">
                         <h5>Service and Repairs</h5>
-                        <h4 className='pb-4'>Air Conditioning Evac</h4 >
+                        <h2>Air Conditioning Evac</h2 >
                         <a href="service-details.html" class="read-more">read more  +</a>
                         <div class="icon"><span class="flaticon-air-conditioning"></span></div>
                     </div>
@@ -71,7 +59,15 @@ function AdminDashboard() {
                 <div class="col-lg-4 service-block-one">
                     <div class="inner-box hvr-float-shadow">
                         <h5>Service and Repairs</h5>
-                        <h4 className='pb-4'>Car Washing</h4 >
+                        <h2>Tyre & Wheels</h2 >
+                        <a href="service-details.html" class="read-more">read more  +</a>
+                        <div class="icon"><span class="flaticon-tire"></span></div>
+                    </div>
+                </div>
+                <div class="col-lg-4 service-block-one">
+                    <div class="inner-box hvr-float-shadow">
+                        <h5>Service and Repairs</h5>
+                        <h2>Car Washing</h2 >
                         <a href="service-details.html" class="read-more">read more  +</a>
                         <div class="icon"><span class="flaticon-car-service"></span></div>
                     </div>
@@ -79,7 +75,7 @@ function AdminDashboard() {
                 <div class="col-lg-4 service-block-one">
                     <div class="inner-box hvr-float-shadow">
                         <h5>Service and Repairs</h5>
-                        <h4 className='pb-4'>General Service</h4 >
+                        <h2>General Service</h2 >
                         <a href="service-details.html" class="read-more">read more  +</a>
                         <div class="icon"><span class="flaticon-car-service"></span></div>
                     </div>

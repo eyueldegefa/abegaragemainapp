@@ -62,7 +62,7 @@ function Footer() {
                         <div class="footer-column col-lg-4">
                             <div class="widget widget_about">
                                 <div class="logo">
-                                    <a href="index.html"><img src={Logo} alt="" /></a>
+                                    <a href="/"><img src={Logo} alt="" /></a>
                                 </div>
                                 <div class="text">Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide additional clickthroughs.</div>
                             </div>

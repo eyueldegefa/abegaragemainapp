@@ -12,6 +12,11 @@ header {
   left: 90px;
   width: 80%;
   background-color: white;
-  z-index: 1001; /* Ensure it's above other content */
-  /* overflow-y: auto; Allow scrolling if content exceeds viewport height */
+  z-index: 700; /* Ensure it's above other content */
+}
+.close-btn{
+  padding-left: 90%;
+}
+.social-links ul{
+  gap: 25px;
 }

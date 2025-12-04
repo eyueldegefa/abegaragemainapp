@@ -47,7 +47,7 @@ function Header() {
                 <div className="inner-container">
                     {/* <!--Logo--> */}
                     <div className="logo-box">
-                        <div className="logo"><a href="index.html"><img src={Logo}/></a></div>
+                        <div className="logo"><a href="/"><img src={Logo}/></a></div>
                     </div>
                     <div className="right-column">
                         {/* <!--Nav Box--> */}
@@ -86,7 +86,7 @@ function Header() {
         {/* <!--End Header Upper--> */}
 
         {/* <!-- Mobile Menu  --> */}
-        <div className="">
+        <div className="d-lg-none">
             { status ? (
                 <section className="mobile-view">
             <div className="menu-backdrop"></div>
@@ -104,10 +104,24 @@ function Header() {
                     </a>
                 </div>
                 <div className="menu-outer"></div>
+                        {/* <!-- Main Menu --> */}
+                    <nav className="main-menu navbar-expand-md navbar-light">
+                        <div className="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                            <ul className="navigation mobile-links">
+                                <li className='text-white'><a href="/">Home</a>
+                                </li>
+                                <li><a href="/about">About Us</a>
+                                </li>
+                                <li><a href="/services">Services</a>
+                                </li>
+                                <li><a href="/contact-us">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </nav>
     {/* --Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-- */}
 				{/* --Social Links-- */}
 				<div className="social-links">
-					<ul className="clearfix">
+					<ul className="clearfix d-flex justify-content-center">
 						<li><a href="#"><span className="fab fa-twitter"></span></a></li>
 						<li><a href="#"><span className="fab fa-facebook-square"></span></a></li>
 						<li><a href="#"><span className="fab fa-pinterest-p"></span></a></li>

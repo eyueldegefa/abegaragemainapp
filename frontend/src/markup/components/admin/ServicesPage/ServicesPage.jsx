@@ -108,7 +108,7 @@ function ServicesPage() {
                 onCancel={cancelDelete}
               />
             )}    
-        <div className="my-3 shadow p-2">
+        <div className="mt-3 shadow p-2">
         {/* ================= SERVICES ================= */}
          {services.map((service) => (
             <div key={service.service_id} className="shadow-sm p-2 my-2 service-options  d-flex justify-content-between align-items-center">

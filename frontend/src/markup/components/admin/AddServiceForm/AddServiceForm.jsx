@@ -59,7 +59,7 @@ function AddServiceForm() {
       });
   }
   return (
-    <section className="container contact-section row shadow my-5 mx-2">
+    <section className="container contact-section row shadow mb-5 mx-1">
       <div className="auto-container col-12">
          {success && <div className="success">Service added successfully</div>}
         <div className="contact-title">

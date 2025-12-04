@@ -9,7 +9,7 @@ const employeeController = require('../controllers/employee.controller');
 // Create a route to handle the add employee request on post
 router.post("/api/employee",[authMiddleware.verifyToken, authMiddleware.isAdmin] , employeeController.createEmployee);
 // create a route to get all employees
-router.get("/api/employees", employeeController.getAllEmployees);
+router.get("/api/employees",[authMiddleware.verifyToken, authMiddleware.isManager] ,employeeController.getAllEmployees);
 // define route to get Employee by ID
 router.get("/api/employee/:id", employeeController.getEmployeeById);
 //  define route to update Employee

@@ -60,14 +60,9 @@ function LoginForm() {
             // console.log(response.data);
             localStorage.setItem("employee", JSON.stringify(response.data));
           }
-          // Redirect the user to the dashboard
-          // navigate('/admin');
-          // console.log(location);
+          // Redirect the user to the dashboard or reload the page
           if (location.pathname === '/login') {
-            // navigate('/admin');
-            // window.location.replace('/admin');
-            // To home for now 
-            window.location = '/'
+            window.location = '/admin';
           } else {
             window.location.reload();
           }

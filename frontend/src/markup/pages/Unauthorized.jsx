@@ -2,7 +2,9 @@ import React from 'react'
 
 function Unauthorized() {
   return (
-    <div>You don't have an access you requested!</div>
+    <div>
+      <h2>You don't have an access you requested!</h2>
+    </div>
   )
 }
 

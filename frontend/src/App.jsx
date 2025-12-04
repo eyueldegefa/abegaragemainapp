@@ -17,18 +17,19 @@ import Home from './markup/pages/Home'
 import Login from './markup/pages/Login'
 import AddEmployee from './markup/pages/admin/addEmployee'
 import Unauthorized from './markup/pages/unauthorized'
-import Orders from './markup/pages/Orders'
+// import Orders from './markup/pages/Orders'
 import PrivateAuthRoute from './markup/components/auth/PrivateAuthRoute'
 import Customers from './markup/pages/admin/Customers'
 import Employees from './markup/pages/admin/Employees'
 import AddCustomer from './markup/pages/admin/AddCustomer'
 import Services from './markup/pages/admin/Services'
+import Orders from './markup/pages/admin/Orders'
 import Order from './markup/pages/admin/Order'
 import AddNewOrder from './markup/pages/admin/AddNewOrder1'
 import AddNewOrder2 from './markup/pages/admin/AddNewOrder2'
 import AddNewOrder1 from './markup/pages/admin/AddNewOrder1'
 import AddNewOrder3 from './markup/pages/admin/AddNewOrder3'
-import OrdersList from './markup/pages/admin/Orders'
+// import OrdersList from './markup/pages/admin/Orders'
 import EditCustomer from './markup/pages/admin/EditCustomer'
 import EditEmployee from './markup/pages/admin/EditEmployee'
 import EditVehicleForm from './markup/components/admin/EditVehicleForm/EditVehicleForm'
@@ -53,17 +54,47 @@ function App() {
           <Route path='/about' element={<AboutUs />} />
           <Route path='/services' element={<Service />} />
           <Route path='/contact-us' element={<ContactUs />} />
-          <Route path='/admin/dashboard' element={<AdminDashboard />} />
-          <Route path='/admin/orders' element={<OrdersList />} />
-          <Route path='/admin/add-order1/:id' element={<AddNewOrder1/>} />
-          <Route path='/admin/add-order2/:id' element={<AddNewOrder2 />} />
-          <Route path='/admin/add-order3/:id' element={<AddNewOrder3 />} />
-          <Route path='/admin/edit-customer/:id' element={<EditCustomer />} />
-          <Route path='/admin/edit-employee/:id' element={<EditEmployee />} />
-          <Route path='/admin/edit-vehicle/:id' element={<EditVehicleForm />} />
-          <Route path='/admin/view-order/:id' element={<ViewOrderPage />} />
-          <Route path='/admin/edit-order/:id' element={<EditOrder />} />
-          <Route path='/admin/edit-service/:id' element={<EditService />} />
+          <Route path='/admin' element={<AdminDashboard />} />
+          {/* <Route path='/admin/orders' element={
+                    <PrivateAuthRoute roles={[2,3]}>
+                       <OrdersList />
+                    </PrivateAuthRoute>  } /> */}
+          <Route path='/admin/add-order1/:id' element={
+                    <PrivateAuthRoute roles={[2,3]}>
+                      <AddNewOrder1/>
+                    </PrivateAuthRoute>} />
+          <Route path='/admin/add-order2/:id' element={
+                    <PrivateAuthRoute roles={[2,3]}>
+                      <AddNewOrder2/>
+                    </PrivateAuthRoute>} />
+          <Route path='/admin/add-order3/:id' element={
+                    <PrivateAuthRoute roles={[2,3]}>
+                      <AddNewOrder3 />
+                    </PrivateAuthRoute>} />
+          <Route path='/admin/edit-customer/:id' element={
+                    <PrivateAuthRoute roles={[3]}>
+                      <EditCustomer />
+                    </PrivateAuthRoute>} />
+          <Route path='/admin/edit-employee/:id' element={
+                    <PrivateAuthRoute roles={[3]}>
+                      <EditEmployee />
+                    </PrivateAuthRoute>} />
+          <Route path='/admin/edit-vehicle/:id' element={
+                    <PrivateAuthRoute roles={[3]}>
+                      <EditVehicleForm />
+                    </PrivateAuthRoute>} />
+          <Route path='/admin/view-order/:id' element={
+                    <PrivateAuthRoute roles={[2,3]}>
+                      <ViewOrderPage />
+                    </PrivateAuthRoute>} />
+          <Route path='/admin/edit-order/:id' element={
+                    <PrivateAuthRoute roles={[3]}>
+                      <EditOrder />
+                    </PrivateAuthRoute>} />
+          <Route path='/admin/edit-service/:id' element={
+                    <PrivateAuthRoute roles={[3]}>
+                      <EditService />
+                    </PrivateAuthRoute>} />
           <Route path='/admin/customer/:id' element=
                   {<PrivateAuthRoute roles={[2,3]} >
                     <Order />
@@ -90,11 +121,11 @@ function App() {
                     </PrivateAuthRoute>}/>
                     {/* To Show Employees */}
             <Route path='/admin/employees' element=
-                  {<PrivateAuthRoute roles={[1,2, 3]}>
+                  {<PrivateAuthRoute roles={[2,3]}>
                       <Employees/>
                     </PrivateAuthRoute>}/>
             <Route path='/admin/services' element=
-                  {<PrivateAuthRoute roles={[2,3]}>
+                  {<PrivateAuthRoute roles={[3]}>
                       <Services/>
                     </PrivateAuthRoute>}/>
 

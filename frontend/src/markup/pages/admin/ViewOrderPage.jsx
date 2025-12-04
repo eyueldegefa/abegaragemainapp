@@ -11,15 +11,15 @@ import ViewOrder from "../../components/admin/ViewOrder/ViewOrder";
 
 function ViewOrderPage() {
   // Destructure the auth hook 
-  const { isLogged, isAdmin } = useAuth();
+  const { isLogged, isAdmin, isManager } = useAuth();
 
   if (isLogged) {
-    if (isAdmin) {
+    if (isAdmin || isManager) {
       return (
         <div>
           <div className="container-fluid admin-pages">
-            <div className="row">
-              <div className="col-md-3 admin-left-side">
+            <div className="row mt-5 pt-5">
+              <div className="col-md-3 admin-left-side mt-5">
                 <AdminMenu />
               </div>
               <div className="col-md-9 admin-right-side">

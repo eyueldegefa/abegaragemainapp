@@ -10,14 +10,14 @@ import Unauthorized from "../unauthorized";
 import AdminDashboardComponent from "../../components/admin/AdminDashboard/AdminDashboard";
 function AdminDashboard() {
   // Destructure the auth hook 
-  const { isLogged, isAdmin } = useAuth();
+  const { isLogged, isAdmin, isManager, isEmployee } = useAuth();
 
   if (isLogged) {
-    if (isAdmin) {
+    if (isAdmin || isManager || isEmployee) {
       return (
         <div>
-          <div className="container-fluid admin-pages">
-            <div className="row">
+          <div className="container-fluid admin-pages mt-5 pt-5">
+            <div className="row mt-5">
               <div className="col-md-3 admin-left-side">
                 <AdminMenu />
               </div>
