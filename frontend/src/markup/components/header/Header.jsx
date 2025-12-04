@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import logo
 import Logo from '../../../assets/images/logo.png'
 // import loginService
@@ -13,6 +13,7 @@ import './Header.css'
 function Header() {
     
     const {isLogged, setIsLogged, employee} = useAuth();
+    const [status, setStatus] = useState(false);
 
     const logOut = () => {
         loginService.logOut();
@@ -71,64 +72,40 @@ function Header() {
                         </div>
                         <div className="search-btn"></div>
                         {isLogged ? (<div className="link-btn"><Link to="/" className="theme-btn btn-style-one" onClick={logOut}>Log out </Link></div>) : (<div className="link-btn"><Link to="/login" className="theme-btn btn-style-one">Sign in </Link></div>)}
+                        <div className="menu-backdrop"></div>
+                        <div className='d-xl-none'
+                            onClick={()=>setStatus(!status)}>
+                            list
+                        </div>
                     </div>                        
                 </div>
             </div>
             <div className='blank'></div>
+
         </section>
         {/* <!--End Header Upper--> */}
 
-        {/* -- Sticky Header  --
-        <section className="sticky-header">
-            -- Header Upper --
-            <div className="header-upper">
-                <div className="auto-container">
-                    <div className="inner-container">
-                        --Logo--
-                        <div className="logo-box">
-                            <div className="logo"><a href="/"><img src="assets/images/logo.png" alt=""/></a></div>
-                        </div>
-                        <div className="right-column">
-                            --Nav Box--
-                            <div className="nav-outer">
-                                --Mobile Navigation Toggler--
-                                <div className="mobile-nav-toggler"><img src="assets/images/icons/icon-bar.png" alt=""/></div>
-
-                                -- Main Menu --
-                                <nav className="main-menu navbar-expand-md navbar-light">
-                                <div className="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
-                                    <ul className="navigation">
-                                        <li><a href="/">Home</a>
-                                        </li>
-                                        <li><a href="/about">About Us</a>
-                                        </li>
-                                        <li><a href="/services">Services</a>
-                                        </li>
-                                        <li><a href="/contact-us">Contact Us</a></li>
-                                    </ul>
-                                </div>
-                                </nav>
-                            </div>
-                            <div className="search-btn"></div>
-                               {isLogged ? (<div className="link-btn"><Link to="/" className="theme-btn btn-style-one" onClick={logOut}>Log out </Link></div>) : (<div className="link-btn"><Link to="/login" className="theme-btn btn-style-one">Sign in </Link></div>)}
-                        </div>                        
-                    </div>
-                </div>
-            </div>
-            --End Header Upper--
-        </section>
-        -- End Sticky Menu -- */}
-
         {/* <!-- Mobile Menu  --> */}
-        {/* <div className="mobile-menu">
+        <div className="">
+            { status ? (
+                <section className="mobile-view">
             <div className="menu-backdrop"></div>
-            <div className="close-btn"><span className="icon flaticon-remove"></span></div>
+            <div className="close-btn">
+                <span className="icon flaticon-remove"
+                      onClick={()=>setStatus(!status)}
+                >
+                </span>
+            </div>
             
             <nav className="menu-box">
-                <div className="nav-logo"><a href="index.html"><img src="assets/images/logo3.png" alt="" title=""/></a></div>
+                <div className="nav-logo">
+                    <a href="/">
+                        <img src={Logo} alt="" title=""/>
+                    </a>
+                </div>
                 <div className="menu-outer"></div>
-    --Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--
-				--Social Links--
+    {/* --Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-- */}
+				{/* --Social Links-- */}
 				<div className="social-links">
 					<ul className="clearfix">
 						<li><a href="#"><span className="fab fa-twitter"></span></a></li>
@@ -139,15 +116,18 @@ function Header() {
 					</ul>
                 </div>
             </nav>
-        </div> */}
+                </section>
+            ) : (null)
+            }
+        </div>
 {/* <!-- End Mobile Menu --> */}
 
-        {/* <div className="nav-overlay">
+        <div className="nav-overlay">
             <div className="cursor"></div>
             <div className="cursor-follower"></div>
-        </div> */}
+        </div>
     </header>
-    {/* <!-- End Main Header --> */}
+    {/* /* <!-- End Main Header --> */}
     </>
   )
 }
