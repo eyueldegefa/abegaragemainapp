@@ -4,6 +4,7 @@ require('dotenv').config();
 const jwt = require("jsonwebtoken");
 // Import the employee service 
 const employeeService = require("../services/employee.service");
+const e = require('express');
 
 // A function to verify the token received from the frontend 
 const verifyToken = async (req, res, next) => {
@@ -59,6 +60,21 @@ const isManager = async (req, res, next) => {
     });
   }
 }
+// a function to check if the user is an admin or manager
+const isAdminOrManager = async (req, res, next) => {
+  // let token = req.headers["x-access-token"];
+    console.log(req.employee_email);
+  const employee_email = req.employee_email;
+  const employee = await employeeService.getEmployeeByEmail(employee_email);
+  if (employee[0] && (employee[0].company_role_id === 3 || employee[0].company_role_id === 2)) {
+    next();
+  } else {
+  return res.status(403).send({ 
+    status: "fail",
+    message: "Access denied. Admins or Managers only." 
+  });
+  }
+}
 // a function to check if the user is an employee
 const isEmployee = async (req, res, next) => {
   // let token = req.headers["x-access-token"];
@@ -94,6 +110,7 @@ const authMiddleware = {
   verifyToken,
   isAdmin,
   isManager,
+  isAdminOrManager,
   isEmployee,
   isCustomer
 }
