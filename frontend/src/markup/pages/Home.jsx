@@ -1,11 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import About2 from '../../assets/images/misc/vban1.jpg'
 import About3 from '../../assets/images/misc/vban2.jpg'
 import About4 from '../../assets/images/banner/banner3.jpg'
 import Image5 from '../../assets/images/banner/banner2.jpg'
 import { Link } from 'react-router'
+import Loader from '../components/Loader/Loader'
 
 function Home() {
+    const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate page loading delay (1 second)
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <Loader />;
+
   return (
     <div className='mt-5'>
           {/* <!-- Banner Section --> */}

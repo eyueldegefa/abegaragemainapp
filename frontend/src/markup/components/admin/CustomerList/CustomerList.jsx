@@ -15,6 +15,7 @@ import ConfirmModal from '../../ConfirmModal/ConfirmModal';
 import EditSquareIcon from '@mui/icons-material/EditSquare';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Unauthorized from '../../../pages/unauthorized';
+import Loader from '../../Loader/Loader';
 
 function CustomerList() {
   const navigate = useNavigate();
@@ -29,6 +30,8 @@ function CustomerList() {
     const [apiError, setApiError] = useState(false);
     // A state to store the error message
     const [apiErrorMessage, setApiErrorMessage] = useState(null);
+    // a state to set loading
+    const [loading, setLoading] = useState(false);
     // To get the logged in employee token
     const { employee } = useAuth();
     let token = null; // To store the token
@@ -37,6 +40,7 @@ function CustomerList() {
     }
     
     useEffect(() => {
+      setLoading(true);
     // Call the getAllCustomers function
     const allCustomers = customerService.getAllCustomers(token);
     allCustomers.then((res) => {
@@ -55,10 +59,12 @@ function CustomerList() {
     }).then((data) => {
       if (data.data.length !== 0) {
         setCustomers(data.data)
-        console.log(data.data);
       }
     }).catch((err) => {
       console.log(err);
+    })
+    .finally(() => {
+      setLoading(false);
     })
   }, []);
 
@@ -110,6 +116,7 @@ function CustomerList() {
 
   return (
     <>
+    {loading && <Loader />}
     {apiError ? (
         <section className="">
             {apiErrorMessage === "Unauthorized" && (

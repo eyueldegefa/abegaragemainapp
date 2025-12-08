@@ -83,14 +83,11 @@ function AddNewOrder3() {
     const fetchVehicleData = async () => {
       try {
         const data = await vehicleService.getVehiclesByCustomerId(id, token);
-        console.log(data);
         
         if (!data || data.length === 0) {
           setApiError(true);
           setApiErrorMessage("Vehicle not found");
         } else {
-          console.log(data.data[0].vehicle_id);
-          
           setVehicles(data.data[0].vehicle_id); // Assuming single vehicle chosen
         }
       } catch (err) {
@@ -117,7 +114,6 @@ function AddNewOrder3() {
             }).then((data) => {
                 if (data.data.length !== 0) {
                   setServices(data.data)
-                  console.log(data.data);
                 }
             }).catch((err) => {
               console.log(err);

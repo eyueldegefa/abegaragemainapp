@@ -9,6 +9,7 @@ import ConfirmModal from '../../ConfirmModal/ConfirmModal';
 import servicesService from '../../../../services/service.service';
 import EditSquareIcon from '@mui/icons-material/EditSquare';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Loader from '../../Loader/Loader';
 
 function ServicesPage() {
   const navigate = useNavigate();
@@ -16,21 +17,16 @@ function ServicesPage() {
     // state for modal
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedServiceId, setSelectedServiceId] = useState(null);
-  // To get the logged in employee token
-  const { employee } = useAuth();
-  const token = employee ? employee.employee_token : null;
+    // To get the logged in employee token
+    const { employee } = useAuth();
+    const token = employee ? employee.employee_token : null;
 
-  // get customer id from params
-//   const { id } = useParams();
-
-      const [services, setServices] = useState([]);
-        // state for api error
-        const [apiError, setApiError] = useState(false);
-        const [apiErrorMessage, setApiErrorMessage] = useState("");
-        // state for success
-        // const [success, setSuccess] = useState(false);
-
-        // =================
+    const [services, setServices] = useState([]);
+    const [loading, setLoading] = useState(false);
+    // state for api error
+    const [apiError, setApiError] = useState(false);
+    const [apiErrorMessage, setApiErrorMessage] = useState("");
+    // =================
     const allServices = Services.getAllServices(token);
         allServices.then((res)=>{
             if(!res.ok){
@@ -47,12 +43,14 @@ function ServicesPage() {
                 return res.json()
             }).then((data) => {
                 if (data.data.length !== 0) {
-                  setServices(data.data)
-                  console.log(data.data);
+                  setServices(data.data);
                 }
             }).catch((err) => {
               console.log(err);
-            })
+            }).finally(() => {
+              setLoading(false);
+            });
+    // =================
 
         // Navigate to the Edit service page
   const handleEditClick = (id) => {
@@ -76,7 +74,6 @@ function ServicesPage() {
           setApiErrorMessage(res.message || "Could not delete customer");
           return;
         }
-  
         // remove customer from state
         setServices(prev => prev.filter(s => s.service_id !== selectedServiceId));
         setApiError(false);
@@ -95,7 +92,8 @@ function ServicesPage() {
   
 
   return (
-    <div className="auto-container contact-section">   
+    <div className="auto-container contact-section">
+      {loading && <Loader/>}   
               {/* display api error */}
       {apiError && <div className="error-message">{apiErrorMessage}</div>}
         <div className="container contact-title">

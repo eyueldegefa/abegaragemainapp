@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import vehicleService from '../../../../services/vehicle.service'
 import { useAuth } from '../../../../Contexts/AuthContext';
+import Loader from '../../Loader/Loader';
 
 function EditVehicleForm() {
 //   const navigate = useNavigate();
@@ -33,7 +34,6 @@ function EditVehicleForm() {
     async function loadVehicle() {
       try {
         const res = await vehicleService.getVehicleByVehicleId(id, token);
-        console.log(res.data);
         
         if (!res || !res.data) {
           setServerError("Vehicle not found");
@@ -107,7 +107,7 @@ function EditVehicleForm() {
   }
 
   if (loading) {
-    return <div className="loading">Loading Vehicle information...</div>;
+    return <Loader/>;
   }
 
   return (

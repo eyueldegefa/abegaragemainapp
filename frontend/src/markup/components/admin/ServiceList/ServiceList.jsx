@@ -5,9 +5,11 @@ import { useAuth } from '../../../../Contexts/AuthContext'
 // import services.service
 import Services from '../../../../services/service.service'
 import Unauthorized from '../../../pages/unauthorized';
+import Loader from '../../Loader/Loader';
 
 function ServiceList() {
     // import states
+    const [loading, setLoading] = useState(false);
     const [services, setServices] = useState([]);
     const [apiError, setApiError] = useState(false);
     const [apiErrorMessage, setApiErrorMessage] = useState(null);
@@ -22,7 +24,6 @@ function ServiceList() {
         const allServices = Services.getAllServices(token);
         allServices.then((res)=>{
             if(!res.ok){
-                console.log(res.status);
                 setApiError(true);
                 if (res.status === 401) {
                   setApiErrorMessage("Please login again");
@@ -36,16 +37,18 @@ function ServiceList() {
             }).then((data) => {
                 if (data.data.length !== 0) {
                   setServices(data.data)
-                  console.log(data.data);
                 }
             }).catch((err) => {
               console.log(err);
-            })
+            }).finally(() => {
+              setLoading(false);
+            });
 
         }, []);
 
   return (
     <>
+    {loading && <Loader/>}
     {apiError ? (
         <section className="">
             {apiErrorMessage === "Unauthorized" && (

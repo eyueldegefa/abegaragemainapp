@@ -11,10 +11,12 @@ import orderService from '../../../../services/order.service';
 import EditSquareIcon from '@mui/icons-material/EditSquare';
 import PanToolAltIcon from '@mui/icons-material/PanToolAlt';
 import Unauthorized from '../../../pages/unauthorized';
+import Loader from '../../Loader/Loader';
 
 function OrdersList() {
     const navigate = useNavigate();
-    const [orders, setOrders] = useState([])
+    const [orders, setOrders] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [apiError, setApiError] = useState(false);
     const [apiErrorMessage, setApiErrorMessage] = useState(null);
     // To get the logged in employee token
@@ -28,7 +30,6 @@ function OrdersList() {
         const allOrders = orderService.getAllOrders(token);
         allOrders.then((res)=>{
             if(!res.ok){
-                console.log(res.status);
                 setApiError(true);
                 if (res.status === 401) {
                   setApiErrorMessage("Please login again");
@@ -42,11 +43,12 @@ function OrdersList() {
             }).then((data) => {
                 if (data.data.length !== 0) {
                   setOrders(data.data)
-                  console.log(data.data);
                 }
             }).catch((err) => {
               console.log(err);
-            })
+            }).finally(() => {
+              setLoading(false);
+            });
 
     }, []);
 
@@ -61,6 +63,7 @@ function OrdersList() {
 
   return (
      <>
+    {loading && <Loader/>}
     {apiError ? (
         <section className="">
             {apiErrorMessage === "Unauthorized" && (

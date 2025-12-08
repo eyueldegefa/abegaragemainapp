@@ -4,8 +4,10 @@ import React, { useState, useEffect } from 'react'
 import { useAuth } from '../../../../Contexts/AuthContext';
 // import orderService
 import orderService from '../../../../services/order.service';
+import Loader from '../../Loader/Loader';
 function CustomerOrder() {
-    const [orders, setOrders] = useState([])
+    const [orders, setOrders] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [apiError, setApiError] = useState(false);
     const [apiErrorMessage, setApiErrorMessage] = useState(null);
     // To get the logged in employee token
@@ -33,17 +35,19 @@ function CustomerOrder() {
             }).then((data) => {
                 if (data.data.length !== 0) {
                   setOrders(data.data[0])
-                  console.log(data.data[0]);
                 }
             }).catch((err) => {
               console.log(err);
-            })
+            }).finally(() => {
+              setLoading(false);
+            });
 
     }, []);
 
 
   return (
      <>
+     {loading && <Loader/>}
     {apiError ? (
         <section className="contact-section">
             <div className="auto-container">

@@ -11,11 +11,13 @@ import vehicleService from '../../../../services/vehicle.service';
 import ConfirmModal from '../../ConfirmModal/ConfirmModal';
 import EditSquareIcon from '@mui/icons-material/EditSquare';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Loader from '../../Loader/Loader';
 
 function CustomerVehicle() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [modalVisible, setModalVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
   // Create all the states we need to store the data
   const [selectedVehicleId, setSelectedVehicleId] = useState(null);
   const [vehicle, setVehicle] = useState(null);
@@ -32,7 +34,6 @@ function CustomerVehicle() {
     const fetchCustomerVehicle = async () => {
       try {
         const data = await vehicleService.getVehiclesByCustomerId(id, token);
-        console.log(data.data);
 
         if (!data || !data.data || data.data.length === 0) {
           setApiError(true);
@@ -45,13 +46,13 @@ function CustomerVehicle() {
         setApiError(true);
         setApiErrorMessage("Failed to fetch Vehicle. Please try again later.");
       }
+      setLoading(false);
     };
     
     fetchCustomerVehicle();
   }, [id, token]);
 
   const handleClick = (vehicleId) => {
-    console.log(`Customer ID: ${vehicleId}`);
     // You can add navigation or other logic here
     navigate(`/admin/add-order3/${id}`, { state: { vehicleId } });
   }
@@ -94,6 +95,10 @@ function CustomerVehicle() {
   const cancelDelete = () => {
     setModalVisible(false);
   };
+
+  if (loading) {
+    return <Loader/>;
+  }
 
   return (
     <section className='d-block'>

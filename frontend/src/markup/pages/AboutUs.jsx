@@ -1,14 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router'
 import About1 from '../../assets/images/banner/about1.jpg'
 import About2 from '../../assets/images/misc/vban1.jpg'
 import About3 from '../../assets/images/misc/vban2.jpg'
 import About4 from '../../assets/images/banner/banner3.jpg'
+// import loader
+import Loader from '../components/Loader/Loader'
 // import css
 import './ForAll.css'
 
-
 function AboutUs() {
+    const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate page loading delay (1 second)
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <Loader />;
   return (
     <div className='mt-5'>
            {/* <!-- Page Title --> */}

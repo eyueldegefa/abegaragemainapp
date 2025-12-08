@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 // import useNavigate to redirect after successful form submission
-import { useNavigate } from 'react-router';
+// import { useNavigate } from 'react-router';
 import './AddCustomerForm.css';
 import customerService from '../../../../services/customer.service';
 // import useAuth to get logged in employee token
 import { useAuth } from '../../../../Contexts/AuthContext';
-import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
-import SuccessModal from '../../ConfirmModal/SuccessModal';
+// import Loader component
+import ButtonLoader from '../../Loader/ButtonLoader';
 
 function AddCustomerForm() {
   // useNavigate hook
-  const navigate = useNavigate();
-    // state for modal
-    const [modalVisible, setModalVisible] = useState(false);
+  // const navigate = useNavigate();
   // Form state variables
   const [customer_email, setCustomerEmail] = useState('');
   const [customer_first_name, setCustomerFirstName] = useState('');
@@ -21,6 +19,7 @@ function AddCustomerForm() {
   const [active_customer_status] = useState('1');
 
   // Error and status states
+  const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState('');
   const [firstNameError, setFirstNameError] = useState('');
   const [lastNameError, setLastNameError] = useState('');
@@ -93,7 +92,8 @@ function AddCustomerForm() {
     };
   
     const newCustomer = customerService.createCustomer(formData, loggedInEmployeeToken);
-        newCustomer.then((response) => {
+      setLoading(true);
+    newCustomer.then((response) => {
         return response.json()
         .then((data) => ({ 
           status: response.status, 
@@ -109,29 +109,23 @@ function AddCustomerForm() {
               // Success
               setServerError('');
               setSuccess(true);
-              setModalVisible(true);
+              setLoading(true);
               // Redirect to customers list after 2 seconds
-              setTimeout(() => navigate('/admin/customers'), 2000);
+              // setTimeout(() => navigate('/admin/customers'), 2000);
             }
           })
           .catch(() => {
             setServerError('An error occurred. Please try again later.');
             setSuccess(false);
           });
+
+          
   }
 
   return (
     <section className="contact-section">
       <div className="auto-container">
-        {success &&  modalVisible  (
-        <ConfirmModal
-          message={`Customer added successfully`}
-          closeModal={() => setModalVisible(false)}
-          icon={<CheckCircleRoundedIcon style={{ fontSize: 50, color: 'green' }} />}
-        />
-        )}
-        {/* <div className="success">Customer added successfully</div> */}
-
+        {success &&  <div className="success">Customer added successfully</div> }
         <div className="contact-title">
           <h2>Add a new customer</h2>
           <div className="row clearfix">
@@ -193,7 +187,7 @@ function AddCustomerForm() {
 
                       <div className="form-group col-md-12">
                         <button className="theme-btn btn-style-one" type="submit">
-                          <span>ADD CUSTOMER</span>
+                          <span>{loading ? (<ButtonLoader />) : 'ADD CUSTOMER'}</span>
                         </button>
                       </div>
                     </div>

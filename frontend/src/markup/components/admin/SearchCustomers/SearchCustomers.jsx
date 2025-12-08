@@ -27,12 +27,9 @@ useEffect(() => {
 
   Customer.searchCustomers(input, token)
     .then((data) => {
-      console.log("Fetched Data:", data.data);
-
       if (data) {
         setResults(data.data);
         setError('');
-        // setTimeout(navigate(`/admin/add-order1/${query}`), 2000);
       } else {
         setError('No data found.');
         setResults([]);

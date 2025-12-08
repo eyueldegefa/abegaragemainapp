@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import customerService from '../../../../services/customer.service';
 import { useAuth } from '../../../../Contexts/AuthContext';
+import Loader from '../../Loader/Loader';
 
 function EditCustomerForm() {
   const navigate = useNavigate();
@@ -99,7 +100,7 @@ function EditCustomerForm() {
   }
 
   if (loading) {
-    return <div className="loading">Loading customer information...</div>;
+    return <Loader/>;
   }
 
   return (

@@ -14,6 +14,7 @@ import employeeService from "../../../../services/employee.service";
 import ConfirmModal from '../../ConfirmModal/ConfirmModal';
 import EditSquareIcon from '@mui/icons-material/EditSquare';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Loader from "../../Loader/Loader";
 
 // Create the EmployeesList component 
 const EmployeesList = () => {
@@ -25,6 +26,7 @@ const EmployeesList = () => {
     const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
     const [selectedEmployeeName, setSelectedEmployeeName] = useState(null);
   // Create all the states we need to store the data
+  const [loading, setLoading] = useState(false);
   // Create the employees state to store the employees data  
   const [employees, setEmployees] = useState([]);
   // A state to serve as a flag to show the error message 
@@ -55,16 +57,15 @@ const EmployeesList = () => {
       }
       return res.json()
     }).then((data) => {
-      console.log(data);
-      
       if (data.data.length !== 0) {
         setEmployees(data.data)
       }
-
     }).catch((err) => {
-
       console.log(err);
-    })
+    }).finally(() => {
+      setLoading(false);
+    });
+
   }, []);
 
   // Navigate to the Edit customer page
@@ -115,6 +116,7 @@ const EmployeesList = () => {
 
   return (
     <>
+    {loading && <Loader/>}
       {apiError ? (
         <section className="">
             {apiErrorMessage === "Unauthorized" && (

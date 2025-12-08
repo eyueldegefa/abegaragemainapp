@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import employeeService from '../../../../services/employee.service'
 import { useAuth } from '../../../../Contexts/AuthContext';
+import Loader from '../../Loader/Loader';
 
 function EditEmployeeForm() {
   const navigate = useNavigate();
@@ -31,7 +32,6 @@ function EditEmployeeForm() {
     async function loadEmployee() {
       try {
         const res = await employeeService.getEmployeeById(id, token);
-        console.log(res.data);
         
         if (!res || !res.data) {
           setServerError("Employee not found");
@@ -47,10 +47,8 @@ function EditEmployeeForm() {
         console.error(err);
         setServerError("Failed to fetch Employee data");
       }
-
       setLoading(false);
     }
-
     loadEmployee();
   }, [id, token]);
 
@@ -104,7 +102,7 @@ function EditEmployeeForm() {
   }
 
   if (loading) {
-    return <div className="loading">Loading employee information...</div>;
+    return <Loader/>;
   }
 
   return (

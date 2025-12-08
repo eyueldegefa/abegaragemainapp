@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import orderService from '../../../../services/order.service'
 import { useAuth } from '../../../../Contexts/AuthContext';
+import Loader from '../../Loader/Loader';
 
 function UpdateOrder() {
 //   const navigate = useNavigate();
@@ -29,8 +30,6 @@ function UpdateOrder() {
     async function loadOrder() {
       try {
         const res = await orderService.getOrderById(id, token);
-        console.log(res.data);
-        
         if (!res || !res.data) {
           setServerError("Vehicle not found");
         } else {
@@ -43,10 +42,8 @@ function UpdateOrder() {
         console.error(err);
         setServerError("Failed to fetch Employee data");
       }
-
       setLoading(false);
     }
-
     loadOrder();
   }, [id, token]);
 
@@ -91,7 +88,7 @@ function UpdateOrder() {
   }
 
   if (loading) {
-    return <div className="loading">Loading Order information...</div>;
+    return <Loader/>;
   }
 
   return (

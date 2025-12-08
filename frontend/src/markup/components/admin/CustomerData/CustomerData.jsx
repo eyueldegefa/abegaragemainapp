@@ -5,10 +5,11 @@ import { useParams } from "react-router-dom";
 import { useAuth } from '../../../../Contexts/AuthContext';
 // import services.service
 import Customer from '../../../../services/customer.service'
+import Loader from '../../Loader/Loader';
 
 function CustomerData() {
   const { id } = useParams();
-  
+  const [loading, setLoading] = useState(false);
   const [customer, setCustomer] = useState(null);
   const [apiError, setApiError] = useState(false);
   const [apiErrorMessage, setApiErrorMessage] = useState("");
@@ -23,7 +24,6 @@ function CustomerData() {
     const fetchCustomer = async () => {
       try {
         const data = await Customer.getCustomerById(id, token);
-        console.log(data);
         
         if (!data) {
           setApiError(true);
@@ -36,6 +36,7 @@ function CustomerData() {
         setApiError(true);
         setApiErrorMessage("Failed to fetch customer. Please try again later.");
       }
+      setLoading(false)
     };
     
     fetchCustomer();
@@ -43,6 +44,7 @@ function CustomerData() {
 
   return (
     <div>
+      {loading && <Loader/>}
       {apiError ? (
         <div>{apiErrorMessage}</div>
       ) : !customer ? (

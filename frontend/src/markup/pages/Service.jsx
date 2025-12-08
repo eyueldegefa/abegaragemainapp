@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router'
+import Loader from '../components/Loader/Loader';
 // import css
 import './ForAll.css'
-import { Link } from 'react-router'
 
 function Service() {
+    const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate page loading delay (1 second)
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <Loader />;
+
   return (
     <div className='mt-5'>
             {/* <!-- Page Title --> */}

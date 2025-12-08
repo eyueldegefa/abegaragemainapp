@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../../Contexts/AuthContext';
 import servicesService from '../../../../services/service.service';
+import Loader from '../../Loader/Loader';
 
 function EditServiceForm() {
   const { id } = useParams();
@@ -34,7 +35,6 @@ function EditServiceForm() {
         console.error(err);
         setServerError("Failed to fetch service data");
       }
-
       setLoading(false);
     }
 
@@ -76,10 +76,8 @@ function EditServiceForm() {
   return (
     <section className="container contact-section row shadow my-5 mx-2">
       <div className="auto-container col-12">
-        
+        {loading && <Loader/>}
         {success && <div className="success">Service updated successfully</div>}
-        {loading && <div>Loading...</div>}
-
         <div className="contact-title">
           <h2>Update Service</h2>
         </div>

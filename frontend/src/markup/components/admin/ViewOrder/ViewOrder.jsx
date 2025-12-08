@@ -9,11 +9,15 @@ import { useAuth } from '../../../../Contexts/AuthContext';
 // import orderService
 import orderService from '../../../../services/order.service';
 import Unauthorized from '../../../pages/unauthorized';
+import Loader from '../../Loader/Loader';
+
+
 function ViewOrder() {
     const navigate = useNavigate();
     const [orders, setOrders] = useState([])
     const [apiError, setApiError] = useState(false);
     const [apiErrorMessage, setApiErrorMessage] = useState(null);
+    const [loading, setLoading] = useState(false);
     // To get the logged in employee token
     const { employee } = useAuth();
     let token = null; // To store the token
@@ -25,7 +29,6 @@ function ViewOrder() {
         const allOrders = orderService.getAllOrders(token);
         allOrders.then((res)=>{
             if(!res.ok){
-                console.log(res.status);
                 setApiError(true);
                 if (res.status === 401) {
                   setApiErrorMessage("Please login again");
@@ -39,11 +42,13 @@ function ViewOrder() {
             }).then((data) => {
                 if (data.data.length !== 0) {
                   setOrders(data.data[0])
-                  console.log(data.data[0]);
                 }
             }).catch((err) => {
               console.log(err);
             })
+            .finally(() => {
+              setLoading(false);
+            });
 
     }, []);
 
@@ -58,6 +63,7 @@ function ViewOrder() {
 
   return (
      <>
+    {loading && <Loader/>}
     {apiError ? (
         <section className="">
             {apiErrorMessage === "Unauthorized" && (
