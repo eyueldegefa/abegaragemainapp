@@ -1,6 +1,7 @@
 import React from 'react'
 // import css
-import './AboutUs.css'
+import './ForAll.css'
+import { Link } from 'react-router'
 
 function ContactUs() {
   return (
@@ -10,7 +11,7 @@ function ContactUs() {
         <div className="auto-container">
             <h2>Contact us</h2>
             <ul className="page-breadcrumb">
-                <li><a href="index.html">home</a></li>
+                <li><Link to="/">home</Link></li>
                 <li>Contact</li>
             </ul>
         </div>
@@ -41,7 +42,7 @@ function ContactUs() {
                         <ul>
                             <li><i className="flaticon-pin"></i><span>Address:</span> 54B, Tailstoi Town 5238 MT, La city, IA 5224</li>
                             <li><i className="flaticon-email"></i><span>email:</span> contact@buildtruck.com</li>
-                            <li><i className="flaticon-phone"></i><span>phone:</span> 1800 456 7890  /  1254 897 3654</li>
+                            <li><i className="flaticon-phone"></i><span>phone:</span> 0912345678 | 0987654321</li>
                         </ul>
                     </div>
                 </div>

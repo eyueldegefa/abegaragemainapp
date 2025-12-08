@@ -11,7 +11,7 @@ router.get('/api/order/customer/search',[authMiddleware.verifyToken, authMiddlew
 // add route to add new order
 router.post('/api/order',[authMiddleware.verifyToken, authMiddleware.isAdminOrManager], orderController.createOrder);
 // get all orders
-router.get('/api/orders',[authMiddleware.verifyToken, authMiddleware.isAdminOrManager], orderController.getAllOrders);
+router.get('/api/orders',[authMiddleware.verifyToken], orderController.getAllOrders);
 // get order by ID
 router.get('/api/order/:id',[authMiddleware.verifyToken, authMiddleware.isAdminOrManager], orderController.getOrderById);
 //  define route to update Order by ID

@@ -19,7 +19,7 @@ function EditOrder() {
           <AdminMenu />
         </div>
         <div className='col-md-8'>
-          {/* Add Customer Form */}
+          {/* Update Order Form */}
           <UpdateOrder />
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React from 'react'
 // import logo
 import Logo from '../../../assets/images/logo3.png'
+import { Link } from 'react-router'
 
 function Footer() {
   return (
@@ -76,10 +77,10 @@ function Footer() {
                                         <h4 class="widget_title">Usefull Links</h4>
                                         <div class="widget-content">
                                             <ul class="list">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="about.html">About Us</a></li>
-                                                <li><a href="#">Services</a></li>
-                                                <li><a href="contact.html">Contact Us</a></li>
+                                                <li><Link to="/">Home</Link></li>
+                                                <li><Link to="/about">About Us</Link></li>
+                                                <li><Link to="/services">Services</Link></li>
+                                                <li><Link to="/contact-us">Contact Us</Link></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -89,11 +90,11 @@ function Footer() {
                                         <h4 class="widget_title">Our Services</h4>
                                         <div class="widget-content">
                                             <ul class="list">
-                                                <li><a href="#">Performance Upgrade</a></li>
-                                                <li><a href="#">Transmission Service</a></li>
-                                                <li><a href="#">Break Repair & Service</a></li>
-                                                <li><a href="#">Engine Service & Repair</a></li>
-                                                <li><a href="#">Trye & Wheels</a></li>
+                                                <li><Link to="/services">Performance Upgrade</Link></li>
+                                                <li><Link to="/services">Transmission Service</Link></li>
+                                                <li><Link to="/services">Break Repair & Service</Link></li>
+                                                <li><Link to="/services">Engine Service & Repair</Link></li>
+                                                <li><Link to="/services">Trye & Wheels</Link></li>
                                             </ul>
                                         </div>
                                     </div>

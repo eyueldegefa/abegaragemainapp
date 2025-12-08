@@ -7,6 +7,8 @@ import Services from "../../../../services/service.service";
 // import confirm modal component
 import ConfirmModal from '../../ConfirmModal/ConfirmModal';
 import servicesService from '../../../../services/service.service';
+import EditSquareIcon from '@mui/icons-material/EditSquare';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function ServicesPage() {
   const navigate = useNavigate();
@@ -117,8 +119,10 @@ function ServicesPage() {
                 <p>{service.service_description}</p>
               </div>
               <div  className="edit-delete-icons" >
-                    <button onClick={()=>handleEditClick(service.service_id)}>Edit</button>|
-                    <button onClick={()=>handleDeleteClick(service.service_id)}>Delete</button>
+                    <button onClick={()=>handleEditClick(service.service_id)}
+                            className='edit-button mr-3'
+                    ><EditSquareIcon/></button> 
+                    <button onClick={()=>handleDeleteClick(service.service_id)}><DeleteIcon/></button>
               </div>
             </div>
           ))}

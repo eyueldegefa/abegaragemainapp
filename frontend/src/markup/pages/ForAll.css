@@ -29,3 +29,9 @@
     width: 100%;
     height: 400px;
 }
+.unAuthorized-image img{
+    width: 100%;
+    height: 90vh;
+    margin-top: 115px;
+    background-color: #FFA918;
+}

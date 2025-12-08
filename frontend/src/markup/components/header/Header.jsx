@@ -7,6 +7,10 @@ import loginService from '../../../services/login.service';
 import { useAuth } from '../../../Contexts/AuthContext'
 // import Link from react-router
 import { Link } from 'react-router';
+import { NavLink } from "react-router-dom";
+import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 // import css
 import './Header.css'
 
@@ -42,40 +46,34 @@ function Header() {
         </div>
 
         {/* <!-- Header Upper --> */}
-        <section className="header-upper">
+        <section className="header-upper shadow-sm">
             <div className="auto-container">
                 <div className="inner-container">
                     {/* <!--Logo--> */}
                     <div className="logo-box">
-                        <div className="logo"><a href="/"><img src={Logo}/></a></div>
+                        <div className="logo"><NavLink href="/"><img src={Logo}/></NavLink></div>
                     </div>
                     <div className="right-column">
                         {/* <!--Nav Box--> */}
                         <div className="nav-outer">
-                            {/* <!--Mobile Navigation Toggler--> */}
-                            {/* <div className="mobile-nav-toggler"><img src="assets/images/icons/icon-bar.png" alt=""/></div> */}
-
                             {/* <!-- Main Menu --> */}
                             <nav className="main-menu navbar-expand-md navbar-light">
                                 <div className="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                                     <ul className="navigation">
-                                        <li><a href="/">Home</a>
-                                        </li>
-                                        <li><a href="/about">About Us</a>
-                                        </li>
-                                        <li><a href="/services">Services</a>
-                                        </li>
-                                        <li><a href="/contact-us">Contact Us</a></li>
+                                      <li><NavLink to="/" end>Home</NavLink></li>
+                                      <li><NavLink to="/about">About Us</NavLink></li>
+                                      <li><NavLink to="/services">Services</NavLink></li>
+                                      <li><NavLink to="/contact-us">Contact Us</NavLink></li>
                                     </ul>
                                 </div>
                             </nav>
                         </div>
                         <div className="search-btn"></div>
-                        {isLogged ? (<div className="link-btn"><Link to="/" className="theme-btn btn-style-one" onClick={logOut}>Log out </Link></div>) : (<div className="link-btn"><Link to="/login" className="theme-btn btn-style-one">Sign in </Link></div>)}
+                        {isLogged ? (<div className="link-btn"><Link to="/" className="theme-btn btn-style-one log-out" onClick={logOut}><LogoutRoundedIcon/> Log out </Link></div>) : (<div className="link-btn"><Link to="/login" className="theme-btn btn-style-one"><LoginRoundedIcon/> Sign in </Link></div>)}
                         <div className="menu-backdrop"></div>
                         <div className='d-xl-none'
                             onClick={()=>setStatus(!status)}>
-                            list
+                            <MenuRoundedIcon />
                         </div>
                     </div>                        
                 </div>
@@ -99,22 +97,22 @@ function Header() {
             
             <nav className="menu-box">
                 <div className="nav-logo">
-                    <a href="/">
+                    <NavLink href="/">
                         <img src={Logo} alt="" title=""/>
-                    </a>
+                    </NavLink>
                 </div>
                 <div className="menu-outer"></div>
                         {/* <!-- Main Menu --> */}
                     <nav className="main-menu navbar-expand-md navbar-light">
                         <div className="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul className="navigation mobile-links">
-                                <li className='text-white'><a href="/">Home</a>
+                                <li className='text-white'><NavLink to="/">Home</NavLink>
                                 </li>
-                                <li><a href="/about">About Us</a>
+                                <li><NavLink to="/about">About Us</NavLink>
                                 </li>
-                                <li><a href="/services">Services</a>
+                                <li><NavLink to="/services">Services</NavLink>
                                 </li>
-                                <li><a href="/contact-us">Contact Us</a></li>
+                                <li><NavLink to="/contact-us">Contact Us</NavLink></li>
                             </ul>
                         </div>
                     </nav>

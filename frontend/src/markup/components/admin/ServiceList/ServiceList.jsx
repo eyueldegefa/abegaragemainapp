@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { useAuth } from '../../../../Contexts/AuthContext'
 // import services.service
 import Services from '../../../../services/service.service'
+import Unauthorized from '../../../pages/unauthorized';
 
 function ServiceList() {
     // import states
@@ -26,7 +27,7 @@ function ServiceList() {
                 if (res.status === 401) {
                   setApiErrorMessage("Please login again");
                 } else if (res.status === 403) {
-                  setApiErrorMessage("You are not authorized to view this page");
+                  setApiErrorMessage("Unauthorized");
                 } else {
                   setApiErrorMessage("Please try ffs again later");
                 }
@@ -46,12 +47,11 @@ function ServiceList() {
   return (
     <>
     {apiError ? (
-        <section className="contact-section">
-            <div className="auto-container">
-                <div className="contact-title"> 
-                    <h2 className="error">{apiErrorMessage}</h2>
-                </div>
-            </div>
+        <section className="">
+            {apiErrorMessage === "Unauthorized" && (
+              <>
+              <Unauthorized/>
+              </>)}
         </section>
     ) : (
     <section className="contact-section row">

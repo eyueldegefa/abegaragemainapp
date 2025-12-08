@@ -12,6 +12,9 @@ import { useAuth } from '../../../../Contexts/AuthContext';
 import customerService from '../../../../services/customer.service';
 // import confirm modal component
 import ConfirmModal from '../../ConfirmModal/ConfirmModal';
+import EditSquareIcon from '@mui/icons-material/EditSquare';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Unauthorized from '../../../pages/unauthorized';
 
 function CustomerList() {
   const navigate = useNavigate();
@@ -43,7 +46,7 @@ function CustomerList() {
         if (res.status === 401) {
           setApiErrorMessage("Please login again");
         } else if (res.status === 403) {
-          setApiErrorMessage("You are not authorized to view this page");
+          setApiErrorMessage("Unauthorized");
         } else {
           setApiErrorMessage("Please try again later");
         }
@@ -108,13 +111,12 @@ function CustomerList() {
   return (
     <>
     {apiError ? (
-      <section className="contact-section">
-        <div className="auto-container">
-            <div className="contact-title"> 
-                <h2 className="error">{apiErrorMessage}</h2>
-            </div>
-        </div>
-     </section>
+        <section className="">
+            {apiErrorMessage === "Unauthorized" && (
+              <>
+              <Unauthorized/>
+              </>)}
+        </section>
     ) : (
     <section className="contact-section">
       <div className="auto-container">
@@ -152,11 +154,12 @@ function CustomerList() {
                     <td onClick={() => handleClick(customer.customer_id)}>{format(new Date(customer.customer_added_date), 'MM - dd - yyyy | kk:mm')}</td>
                     <td onClick={() => handleClick(customer.customer_id)}>{customer.active_customer_status ? "Yes" : "No"}</td>
                     <td>
-                        <div className="edit-delete-icons" >
-                          <span onClick={()=>handleEditClick(customer.customer_id)}>
-                            edit </span>|
-                          <span onClick={()=>handleDeleteClick(customer)}
-                            >delete</span>
+                        <div className="edit-delete-icons " >
+                          <button onClick={()=>handleEditClick(customer.customer_id)}
+                                  className="edit-button mr-3" >
+                           <EditSquareIcon/> </button>
+                          <button onClick={()=>handleDeleteClick(customer)}
+                            ><DeleteIcon/></button>
                         </div>
                     </td>
                 </tr>

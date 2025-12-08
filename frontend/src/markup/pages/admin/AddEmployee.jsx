@@ -1,11 +1,19 @@
 import React from 'react'
+// Import the auth hook 
+import { useAuth } from "../../../Contexts/AuthContext";
+import LoginForm from '../../components/LoginForm/LoginForm'
+import Unauthorized from "../unauthorized";
 // import admin menu
 import AdminMenu from '../../components/admin/adminMenu/AdminMenu'
 // import add employee form
-import AddEmployeeForm from '../../components/admin/addEmployeeForm/AddEmployeeForm'
+import AddEmployeeForm from '../../components/admin/AddEmployeeForm/AddEmployeeForm'
 
-function addEmployee() {
-  
+function AddEmployee() {
+      // Destructure the auth hook 
+      const { isLogged, isAdmin, isManager } = useAuth();
+    
+      if (isLogged) {
+        if (isAdmin || isManager) {
   return (
     <div className=''>
       <div className='container row mt-5 pt-5'>
@@ -20,6 +28,21 @@ function addEmployee() {
       </div>
     </div>
   )
+  } else {
+        return (
+          <>
+            <Unauthorized />
+          </>
+        );
+      }
+    } else {
+      return (
+        <div>
+          <LoginForm />
+        </div>
+      );
+    }
+
 }
 
-export default addEmployee
+export default AddEmployee

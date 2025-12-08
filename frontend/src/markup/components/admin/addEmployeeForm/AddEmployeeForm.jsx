@@ -223,7 +223,7 @@ function AddEmployeeForm() {
                     </div>
                   </form>
                 </div>
-                {/* End Contact Form */}
+                {/* End Add Employee Form */}
               </div>
             </div>
           </div>

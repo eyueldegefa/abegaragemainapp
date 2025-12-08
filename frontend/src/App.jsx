@@ -6,12 +6,15 @@ import './assets/template_assets/css/bootstrap.css'
 import './assets/template_assets/css/style.css'
 import './assets/template_assets/css/responsive.css'
 import './assets/template_assets/css/color.css'
-import './markup/components/header/Header.css'
+import './markup/components/Header/Header.css'
+import './markup/components/Footer/Footer.css'
 import './App.css'
 
 // import header and footer
-import Header from './markup/components/header/Header'
-import Footer from './markup/components/footer/Footer'
+import Header from './markup/components/Header/Header'
+import Footer from './markup/components/Footer/Footer'
+// import ScrollToTop
+import ScrollToTop from './util/ScrollToTop'
 // import pages
 import Login from './markup/pages/Login'
 import Home from './markup/pages/Home'
@@ -20,7 +23,7 @@ import Service from './markup/pages/Service'
 import ContactUs from './markup/pages/ContactUs'
 import Unauthorized from './markup/pages/unauthorized'
 // Pages for Admin and employee
-import PrivateAuthRoute from './markup/components/auth/PrivateAuthRoute'
+import PrivateAuthRoute from './markup/components/Auth/PrivateAuthRoute'
 import AddEmployee from './markup/pages/admin/addEmployee'
 import Customers from './markup/pages/admin/Customers'
 import Employees from './markup/pages/admin/Employees'
@@ -39,14 +42,15 @@ import ViewOrderPage from './markup/pages/admin/ViewOrderPage'
 import EditOrder from './markup/pages/admin/EditOrder'
 import EditService from './markup/pages/admin/EditService'
 import AdminDashboard from './markup/pages/admin/AdminDashboard'
-
+import PageNotFound from './markup/pages/PageNotFound'
 
 function App() {
 
   return (
     <>
       <Header />
-        <Routes>
+      <ScrollToTop />
+        <Routes> 
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/unauthorized' element={<Unauthorized />} />
@@ -149,6 +153,9 @@ function App() {
                     <PrivateAuthRoute roles={[2,3]}>
                       <EditVehicleForm />
                     </PrivateAuthRoute>} />
+    {/* ------------------------------------------------------------------------------ */}
+        {/* If other route display PageNotFound */}
+        <Route path="*" element={<PageNotFound />} />
         </Routes>
       <Footer />
     </>

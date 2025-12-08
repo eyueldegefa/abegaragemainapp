@@ -5,11 +5,14 @@ import './AddCustomerForm.css';
 import customerService from '../../../../services/customer.service';
 // import useAuth to get logged in employee token
 import { useAuth } from '../../../../Contexts/AuthContext';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+import SuccessModal from '../../ConfirmModal/SuccessModal';
 
 function AddCustomerForm() {
   // useNavigate hook
   const navigate = useNavigate();
-
+    // state for modal
+    const [modalVisible, setModalVisible] = useState(false);
   // Form state variables
   const [customer_email, setCustomerEmail] = useState('');
   const [customer_first_name, setCustomerFirstName] = useState('');
@@ -106,6 +109,8 @@ function AddCustomerForm() {
               // Success
               setServerError('');
               setSuccess(true);
+              setModalVisible(true);
+              // Redirect to customers list after 2 seconds
               setTimeout(() => navigate('/admin/customers'), 2000);
             }
           })
@@ -118,7 +123,14 @@ function AddCustomerForm() {
   return (
     <section className="contact-section">
       <div className="auto-container">
-        {success && <div className="success">Customer added successfully</div>}
+        {success &&  modalVisible  (
+        <ConfirmModal
+          message={`Customer added successfully`}
+          closeModal={() => setModalVisible(false)}
+          icon={<CheckCircleRoundedIcon style={{ fontSize: 50, color: 'green' }} />}
+        />
+        )}
+        {/* <div className="success">Customer added successfully</div> */}
 
         <div className="contact-title">
           <h2>Add a new customer</h2>

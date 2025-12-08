@@ -8,6 +8,9 @@ import { format } from 'date-fns';
 import { useAuth } from '../../../../Contexts/AuthContext';
 // import orderService
 import orderService from '../../../../services/order.service';
+import EditSquareIcon from '@mui/icons-material/EditSquare';
+import PanToolAltIcon from '@mui/icons-material/PanToolAlt';
+import Unauthorized from '../../../pages/unauthorized';
 
 function OrdersList() {
     const navigate = useNavigate();
@@ -30,9 +33,9 @@ function OrdersList() {
                 if (res.status === 401) {
                   setApiErrorMessage("Please login again");
                 } else if (res.status === 403) {
-                  setApiErrorMessage("You are not authorized to view this page");
+                  setApiErrorMessage("Unauthorized");
                 } else {
-                  setApiErrorMessage("Please try ffs again later");
+                  setApiErrorMessage("Please try again later");
                 }
                 }
                 return res.json()
@@ -53,19 +56,17 @@ function OrdersList() {
   }
   // View order details
   const handleViewClick = (order) => {
-    console.log(order);
     navigate(`/admin/view-order/${order.order_id}`, {state: {order}});
   }
 
   return (
      <>
     {apiError ? (
-        <section className="contact-section">
-            <div className="auto-container">
-                <div className="contact-title"> 
-                    <h2 className="error">{apiErrorMessage}</h2>
-                </div>
-            </div>
+        <section className="">
+            {apiErrorMessage === "Unauthorized" && (
+              <>
+              <Unauthorized/>
+              </>)}
         </section>
     ) : (
     <section className="contact-section row">
@@ -83,7 +84,7 @@ function OrdersList() {
                     <th>Order Date</th>
                     <th>Received by</th>
                     <th>Order status</th>
-                    <th>Edit/Delete</th>
+                    <th>Edit | View</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -97,10 +98,11 @@ function OrdersList() {
                         <td>Pending</td>
                         <td>
                           <div className="edit-delete-icons"  >
-                            <span onClick={()=>handleEditClick(order.order_id)}
-                              >Edit</span>|
-                            <span onClick={()=>handleViewClick(order)}
-                              >View</span>
+                            <button onClick={()=>handleEditClick(order.order_id)}
+                                    className='edit-button mr-3'
+                              ><EditSquareIcon/></button>
+                            <button onClick={()=>handleViewClick(order)}
+                              ><PanToolAltIcon/></button>
                           </div>
                         </td>
                     </tr>

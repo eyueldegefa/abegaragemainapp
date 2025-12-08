@@ -16,9 +16,10 @@ export const AuthProvider = ({ children }) => {
   const [isLogged, setIsLogged] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isManager, setIsManager] = useState(false);
+  const [isEmployee, setIsEmployee] = useState(false);
   const [employee, setEmployee] = useState(null);
 
-  const value = { isLogged, isAdmin, setIsAdmin, isManager, setIsManager, setIsLogged, employee };
+  const value = { isLogged, isAdmin, setIsAdmin, isManager, setIsManager, isEmployee, setIsEmployee, setIsLogged, employee };
 
   useEffect(() => {
     // Retrieve the logged in user from local storage
@@ -33,6 +34,8 @@ export const AuthProvider = ({ children }) => {
           setIsAdmin(true);
         } else if(response.employee_role === 2) {
           setIsManager(true);
+        } else if(response.employee_role === 1){
+          setIsEmployee(true);
         }
         setEmployee(response);
       }

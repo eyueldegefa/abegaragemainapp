@@ -8,9 +8,14 @@
     font-weight: 200;
     font-size: 20px;
     background-color: #272727;
+    justify-content: space-between;
 }
 .admin-menu-list li {
-    padding: 8px 10px;
+    padding: 9px 10px;
     border-bottom: 1px solid gray;
     cursor: pointer;
 }
+.admin-menu-list li:hover {
+    background-color: #EE0D09;
+}
+

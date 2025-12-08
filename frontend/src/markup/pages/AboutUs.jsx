@@ -5,7 +5,7 @@ import About2 from '../../assets/images/misc/vban1.jpg'
 import About3 from '../../assets/images/misc/vban2.jpg'
 import About4 from '../../assets/images/banner/banner3.jpg'
 // import css
-import './AboutUs.css'
+import './ForAll.css'
 
 
 function AboutUs() {
@@ -133,7 +133,7 @@ function AboutUs() {
             <h5>Working since 1992</h5>
             <h2>We are leader <br/> in Car Mechanical Work</h2>
             <div className="video-box">
-                <div className="video-btn"><a href="#" className="overlay-link lightbox-image video-fancybox ripple"><i className="flaticon-play"></i></a></div>
+                <div className="video-btn"><Link to="/" className="overlay-link lightbox-image video-fancybox ripple"><i className="flaticon-play"></i></Link></div>
                 <div className="text">Watch intro video <br/> about us</div>
             </div>
         </div>

@@ -207,7 +207,17 @@ const handleServiceSelection = (serviceName) => {
             setApiErrorMessage('An error occurred. Please try again later.');
             setSuccess(false);
           });
-  } 
+  }
+
+// Navigate to Add New Order Step 2 
+  const handleCloseVehicle = (id) => {
+    navigate(`/admin/add-order2/${id}`); 
+  }
+
+  //  Navigate to Add New Order Step 1
+  const handleCloseCustomer = () => {
+    navigate(`/admin/add-order`); 
+  }
 
 
   return (
@@ -219,12 +229,16 @@ const handleServiceSelection = (serviceName) => {
 
       <div className="shadow p-3 service-options my-2">
         <CustomerData />
-        <button className="close-button">X</button>
+        <button className="close-button"
+                onClick={()=>handleCloseCustomer()}
+        >X</button>
       </div>
 
       <div className="shadow p-2 service-options my-2">
         <CustomerVehicle />
-        <button className="close-button">X</button>
+        <button className="close-button"
+                onClick={()=>handleCloseVehicle(id)}
+        >X</button>
       </div>
       {/* --------- */}
        <div>

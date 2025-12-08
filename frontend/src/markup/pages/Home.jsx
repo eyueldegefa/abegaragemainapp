@@ -3,6 +3,7 @@ import About2 from '../../assets/images/misc/vban1.jpg'
 import About3 from '../../assets/images/misc/vban2.jpg'
 import About4 from '../../assets/images/banner/banner3.jpg'
 import Image5 from '../../assets/images/banner/banner2.jpg'
+import { Link } from 'react-router'
 
 function Home() {
   return (
@@ -15,7 +16,7 @@ function Home() {
             <h5>Working since 1992</h5>
             <h2>We are leader <br/> in Car Mechanical Work</h2>
             <div className="video-box">
-                <div className="video-btn"><a href="#" className="overlay-link lightbox-image video-fancybox ripple"><i className="flaticon-play"></i></a></div>
+                <div className="video-btn"><a href="/about" className="overlay-link lightbox-image video-fancybox ripple"><i className="flaticon-play"></i></a></div>
                 <div className="text">Watch intro video <br/> about us</div>
             </div>
         </div>
@@ -41,7 +42,7 @@ function Home() {
                             <p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p> 
                             <p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing.</p>
                         </div>
-                        <div className="link-btn mt-40"><a href="about.html" className="theme-btn btn-style-one style-two"><span>About Us <i className="flaticon-right"></i></span></a></div>
+                        <div className="link-btn mt-40"><Link to="/about" className="theme-btn btn-style-one style-two"><span>About Us <i className="flaticon-right"></i></span></Link></div>
                     </div>
                 </div>
             </div>
@@ -60,7 +61,7 @@ function Home() {
                     <div className="inner-box hvr-float-shadow">
                         <h5>Service and Repairs</h5>
                         <h2>Performance Upgrade</h2>
-                        <a href="#" className="read-more">read more  +</a>
+                        <Link to="/services" className="read-more">read more  +</Link>
                         <div className="icon"><span className="flaticon-power"></span></div>
                     </div>
                 </div>
@@ -68,7 +69,7 @@ function Home() {
                     <div className="inner-box hvr-float-shadow">
                         <h5>Service and Repairs</h5>
                         <h2>Transmission Services</h2>
-                        <a href="#" className="read-more">read more  +</a>
+                        <Link to="/services" className="read-more">read more  +</Link>
                         <div className="icon"><span className="flaticon-gearbox"></span></div>
                     </div>
                 </div>
@@ -76,7 +77,7 @@ function Home() {
                     <div className="inner-box hvr-float-shadow">
                         <h5>Service and Repairs</h5>
                         <h2>Break Repair & Service</h2>
-                        <a href="#" className="read-more">read more  +</a>
+                        <Link to="/services" className="read-more">read more  +</Link>
                         <div className="icon"><span className="flaticon-brake-disc"></span></div>
                     </div>
                 </div>
@@ -84,7 +85,7 @@ function Home() {
                     <div className="inner-box hvr-float-shadow">
                         <h5>Service and Repairs</h5>
                         <h2>Engine Service & Repair</h2>
-                        <a href="#" className="read-more">read more  +</a>
+                        <Link to="/services" className="read-more">read more  +</Link>
                         <div className="icon"><span className="flaticon-car-engine"></span></div>
                     </div>
                 </div>
@@ -92,7 +93,7 @@ function Home() {
                     <div className="inner-box hvr-float-shadow">
                         <h5>Service and Repairs</h5>
                         <h2>Tyre & Wheels</h2>
-                        <a href="#" className="read-more">read more  +</a>
+                        <Link to="/services" className="read-more">read more  +</Link>
                         <div className="icon"><span className="flaticon-tire"></span></div>
                     </div>
                 </div>
@@ -100,7 +101,7 @@ function Home() {
                     <div className="inner-box hvr-float-shadow">
                         <h5>Service and Repairs</h5>
                         <h2>Denting & Painting</h2>
-                        <a href="#" className="read-more">read more  +</a>
+                        <Link to="/services" className="read-more">read more  +</Link>
                         <div className="icon"><span className="flaticon-spray-gun"></span></div>
                     </div>
                 </div>
@@ -207,7 +208,7 @@ function Home() {
                 </div>
                 <div className="right-column">
                     <div className="phone">0912345678</div>
-                    <div className="btn"><a href="#" className="theme-btn btn-style-one"><span>Contact us</span><i className="flaticon-right"></i></a></div>
+                    <div className="btn"><Link to="/contact-us" className="theme-btn btn-style-one"><span>Contact us</span><i className="flaticon-right"></i></Link></div>
                 </div>
             </div>
         </div>

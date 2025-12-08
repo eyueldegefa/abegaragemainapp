@@ -9,6 +9,8 @@ import './CustomerVehicles.css'
 import vehicleService from '../../../../services/vehicle.service';
 // import confirm modal component
 import ConfirmModal from '../../ConfirmModal/ConfirmModal';
+import EditSquareIcon from '@mui/icons-material/EditSquare';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function CustomerVehicle() {
   const { id } = useParams();
@@ -120,7 +122,7 @@ function CustomerVehicle() {
               <th>Tag</th>
               <th>Serial</th>
               <th>Color</th>
-              <th>Edit/Delete</th>
+              <th>Edit | Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -145,9 +147,10 @@ function CustomerVehicle() {
               <td>
                 <div className="edit-delete-icons"  >
                   <span onClick={()=>handleEditClick(vehicleD.vehicle_id)}
-                    >edit </span> | 
+                        className='edit-button mr-3'
+                    ><EditSquareIcon/> </span> 
                   <span onClick={()=>handleDeleteClick(vehicleD)}
-                    >delete</span>
+                    ><DeleteIcon/></span>
                 </div>
               </td>
             </tr>

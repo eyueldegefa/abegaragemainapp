@@ -1,8 +1,18 @@
 import React from 'react'
+// Import the auth hook 
+import { useAuth } from "../../../Contexts/AuthContext";
+import LoginForm from '../../components/LoginForm/LoginForm'
+import Unauthorized from "../unauthorized";
+// import AddCustomerForm component
 import AddCustomerForm from '../../components/admin/AddCustomerForm/AddCustomerForm'
 import AdminMenu from '../../components/admin/adminMenu/AdminMenu'
 
 function AddCustomer() {
+    // Destructure the auth hook 
+    const { isLogged, isAdmin, isManager } = useAuth();
+  
+    if (isLogged) {
+      if (isAdmin || isManager) {
   return (
     <div className=''>
       <div className='container row mt-5 pt-5'>
@@ -17,6 +27,21 @@ function AddCustomer() {
       </div>
     </div>
   )
+} else {
+        return (
+          <>
+            <Unauthorized />
+          </>
+        );
+      }
+    } else {
+      return (
+        <div>
+          <LoginForm />
+        </div>
+      );
+    }
+
 }
 
 export default AddCustomer;

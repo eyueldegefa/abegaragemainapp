@@ -12,6 +12,8 @@ import './EmployeeList.css';
 import employeeService from "../../../../services/employee.service";
 // import confirm modal component
 import ConfirmModal from '../../ConfirmModal/ConfirmModal';
+import EditSquareIcon from '@mui/icons-material/EditSquare';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 // Create the EmployeesList component 
 const EmployeesList = () => {
@@ -46,7 +48,7 @@ const EmployeesList = () => {
         if (res.status === 401) {
           setApiErrorMessage("Please login again");
         } else if (res.status === 403) {
-          setApiErrorMessage("You are not authorized to view this page");
+          setApiErrorMessage("Unauthorized");
         } else {
           setApiErrorMessage("Please try again later");
         }
@@ -114,12 +116,11 @@ const EmployeesList = () => {
   return (
     <>
       {apiError ? (
-        <section className="contact-section">
-          <div className="auto-container">
-            <div className="contact-title">
-              <h2 className="error">{apiErrorMessage}</h2>
-            </div >
-          </div>
+        <section className="">
+            {apiErrorMessage === "Unauthorized" && (
+              <>
+              <Unauthorized/>
+              </>)}
         </section>
       ) : (
         <>
@@ -145,7 +146,7 @@ const EmployeesList = () => {
                     <th>Phone</th>
                     <th>Added Date</th>
                     <th>Role</th>
-                    <th>Edit/Delete</th>
+                    <th>Edit | Delete</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -167,10 +168,11 @@ const EmployeesList = () => {
                         {employee.company_role_name}</td>
                       <td>
                         <div className="edit-delete-icons"  >
-                          <span onClick={()=>handleEditClick(employee.employee_id)}
-                            >edit </span>|
-                          <span onClick={()=>handleDeleteClick(employee)}
-                            >delete</span>
+                          <button onClick={()=>handleEditClick(employee.employee_id)}
+                                  className="edit-button mr-3"
+                            ><EditSquareIcon/> </button>
+                          <button onClick={()=>handleDeleteClick(employee)}
+                            ><DeleteIcon/></button>
                         </div>
                       </td>
                     </tr>

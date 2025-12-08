@@ -21,10 +21,10 @@ function AddNewOrder1() {
         <div>
           <div className="container-fluid admin-pages mt-5 pt-5">
             <div className="row mt-5">
-              <div className="col-md-4 admin-left-side">
+              <div className="col-md-3 admin-left-side">
                 <AdminMenu />
               </div>
-              <div className="col-md-8 admin-right-side">
+              <div className="col-md-9 admin-right-side">
                 <SearchCustomers />
               </div>
             </div>

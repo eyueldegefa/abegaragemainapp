@@ -4,7 +4,20 @@ header {
   left: 0;
   width: 100%;
   z-index: 1000 !important; 
-  background-color: white !important; /* make sure it's visible */
+  background-color: white !important; 
+}
+.navigation li a:hover {
+  border-bottom: 2px solid #ff5100 !important;
+}
+.navigation li a.active {
+  border-bottom: 2px solid #ff5100 !important;
+}
+.navigation li a {
+  color: black !important;
+}
+.log-out {
+  background-color: #041b77 !important;
+  color: white !important;
 }
 .mobile-view {
   position: fixed;
