@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function AdminDashboard() {
   return (
@@ -8,6 +9,33 @@ function AdminDashboard() {
     <section class="services-section style-three">
         <div class="auto-container">
             <div class="row">
+                {/* List Orders */}
+                <div class="col-lg-4 service-block-one">
+                    <div class="inner-box hvr-float-shadow">
+                        <h5>Open For All</h5>
+                        <h2>All Orders</h2 >
+                        <Link to="/admin/orders" class="read-more">List of orders  +</Link>
+                        <div class="icon"><span class="flaticon-air-conditioning"></span></div>
+                    </div>
+                </div>
+                {/* Add new order */}
+                <div class="col-lg-4 service-block-one">
+                    <div class="inner-box hvr-float-shadow">
+                        <h5>Open For Leads</h5>
+                        <h2 className=''>New Order</h2 >
+                        <Link to="/admin/add-order" class="read-more">Add new order  +</Link>
+                        <div class="icon"><span class="flaticon-air-conditioning"></span></div>
+                    </div>
+                </div>
+                {/* Employee List */}
+                <div class="col-lg-4 service-block-one">
+                    <div class="inner-box hvr-float-shadow">
+                        <h5>Open For Admins</h5>
+                        <h2 className=''>Employees</h2 >
+                        <Link to="/admin/employees" class="read-more">List of Employees  +</Link>
+                        <div class="icon"><span class="flaticon-air-conditioning"></span></div>
+                    </div>
+                </div>
                 <div class="col-lg-4 service-block-one">
                     <div class="inner-box hvr-float-shadow">
                         <h5>Service and Repairs</h5>
