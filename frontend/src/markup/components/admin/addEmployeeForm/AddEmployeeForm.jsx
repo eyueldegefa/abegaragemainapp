@@ -5,6 +5,8 @@ import './AddEmployeeForm.css';
 import employeeService from '../../../../services/employee.service';
 // import useAuth to get logged in employee token
 import { useAuth } from '../../../../Contexts/AuthContext';
+// import Button Loader component
+import { PulseLoader } from 'react-spinners';
 
 function AddEmployeeForm() {
   // useNavigate hook
@@ -20,6 +22,7 @@ function AddEmployeeForm() {
   const [employee_password, setEmployeePassword] = useState('');
 
   // Error and status states
+  const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState('');
   const [firstNameError, setFirstNameError] = useState('');
   const [lastNameError, setLastNameError] = useState('');
@@ -107,6 +110,7 @@ function AddEmployeeForm() {
     };
 
     const newEmployee = employeeService.createEmployee(formData, loggedInEmployeeToken);
+      setLoading(true);
     newEmployee.then((response) => response.json())
       .then((data) => {
         if (data.error)  {
@@ -115,6 +119,7 @@ function AddEmployeeForm() {
         } else {
           setServerError('');
           setSuccess(true);
+          setLoading(false);
           // redirect to admin dashboard after 2 seconds
           setTimeout(() => {
             navigate('/admin/employees');
@@ -217,7 +222,9 @@ function AddEmployeeForm() {
 
                       <div className="form-group col-md-12">
                         <button className="theme-btn btn-style-one" type="submit">
-                          <span>ADD EMPLOYEE</span>
+                          <span>
+                            {loading ? (<PulseLoader />) : 'ADD EMPLOYEE'}
+                          </span>
                         </button>
                       </div>
                     </div>

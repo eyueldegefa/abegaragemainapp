@@ -50,9 +50,7 @@ async function getAllEmployees(req, res, next) {
 // Route to get a single customer by ID
 async function getEmployeeById(req, res) {
   try {
-      // console.log("➡️ Customer ID received:", req.params.id);
     const employee = await employeeService.getEmployeeById(req.params.id);
-    // console.log("✅ Customer from DB:", customer);
 
     if (!employee) {
       return res.status(404).json({ 

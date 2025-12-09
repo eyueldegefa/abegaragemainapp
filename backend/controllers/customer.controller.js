@@ -60,9 +60,7 @@ async function getAllCustomers(req, res) {
 // Route to get a single customer by ID
 async function getCustomerById(req, res) {
   try {
-      // console.log("➡️ Customer ID received:", req.params.id);
     const customer = await customerService.getCustomerById(req.params.id);
-    // console.log("✅ Customer from DB:", customer);
 
     if (!customer) {
       return res.status(404).json({ 
@@ -84,8 +82,6 @@ async function searchCustomers(req, res) {
   try {
     const { query } = req.query;
 
-    console.log("🔍 Received search query:", query);
-
     if (!query || query.trim().length < 2) {
       return res.status(400).json({
         status: "Fail",
@@ -94,8 +90,6 @@ async function searchCustomers(req, res) {
     }
 
     const customers = await customerService.searchCustomers(query);
-    console.log("📦 Customers returned:", customers);
-
     // 🚀 customers is always an array
     return res.status(200).json({
       status: "Success",
@@ -173,7 +167,6 @@ async function deleteCustomerById(req, res) {
   } catch (err) {
     // Log server-side error for debugging
     console.error("Error in deleteCustomerById controller:", err);
-
     return res.status(500).json({
       status: "Error",
       message: err.message || "Internal server error"

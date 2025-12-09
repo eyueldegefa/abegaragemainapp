@@ -16,6 +16,8 @@ import Services from "../../../../services/service.service";
 import { useAuth } from "../../../../Contexts/AuthContext";
 // import css
 import "./AddNewOrder3.css";
+import Loader from "../../Loader/Loader";
+import { PulseLoader } from "react-spinners";
 
 function AddNewOrder3() {
   const navigate = useNavigate();
@@ -36,8 +38,11 @@ function AddNewOrder3() {
   // state for api error
   const [apiError, setApiError] = useState(false);
   const [apiErrorMessage, setApiErrorMessage] = useState("");
-  // state for success
+  // state for success and loading
   const [success, setSuccess] = useState(false);
+  // state for loading
+  const [pageLoading, setPageLoading] = useState(false);
+  const [buttonLoading, setButtonLoading] = useState(false);
 
   // state for selected services
   const [selected_services, setSelectedServices] = useState([]);
@@ -56,12 +61,14 @@ function AddNewOrder3() {
     // Fetch Customer Data
     const fetchCustomer = async () => {
       try {
+        setPageLoading(true);
         const data = await customerService.getCustomerById(id, token);
         if (!data?.data) {
           setApiError(true);
           setApiErrorMessage("Customer not found");
         } else {
           setCustomer(data.data.customer_id);
+          setPageLoading(false);
         }
       } catch (err) {
         console.error(err);
@@ -82,6 +89,7 @@ function AddNewOrder3() {
     // Fetch Vehicle Data
     const fetchVehicleData = async () => {
       try {
+        setPageLoading(true);
         const data = await vehicleService.getVehiclesByCustomerId(id, token);
         
         if (!data || data.length === 0) {
@@ -89,6 +97,7 @@ function AddNewOrder3() {
           setApiErrorMessage("Vehicle not found");
         } else {
           setVehicles(data.data[0].vehicle_id); // Assuming single vehicle chosen
+          setPageLoading(false);
         }
       } catch (err) {
         console.error(err);
@@ -98,6 +107,7 @@ function AddNewOrder3() {
     };
     // =================
     const allServices = Services.getAllServices(token);
+          setPageLoading(true);
         allServices.then((res)=>{
             if(!res.ok){
                 console.log(res.status);
@@ -117,6 +127,8 @@ function AddNewOrder3() {
                 }
             }).catch((err) => {
               console.log(err);
+            }).finally(()=> {
+              setPageLoading(false);
             })
 
     fetchCustomer();
@@ -150,14 +162,11 @@ const handleServiceSelection = (serviceName) => {
     updatedNames = [...selected_services, serviceName];
     updatedIds = [...service_id, id];
   }
-
   setSelectedServices(updatedNames);
   setServiceId(updatedIds);
 };
-
-
-
-
+// End of Service Selection
+// ---------------------------------------------------------
 // Handle form submission
   async function handleSubmit(e) {
     e.preventDefault();
@@ -177,9 +186,9 @@ const handleServiceSelection = (serviceName) => {
     additional_requests_completed: additional_requests_completed,
     order_status: order_status
   };
-
-  console.log("FORM DATA:", formData);
+//  A function to create an order
     const newOrder = orderService.createOrder(formData, token);
+      setButtonLoading(true);
         newOrder.then((response) => {
         return response.json()
         .then((data) => ({ 
@@ -196,6 +205,8 @@ const handleServiceSelection = (serviceName) => {
               // Success
               setApiError('');
               setSuccess(true);
+              setButtonLoading(false);
+              // redirect to orders page after 2 seconds
               setTimeout(() => navigate('/admin/orders'), 2000);
             }
           })
@@ -219,6 +230,7 @@ const handleServiceSelection = (serviceName) => {
   return (
     <section className="container-fluid auto-container contact-section px-4 add-new-order-3">
       <div className="contact-title">
+        {pageLoading && <Loader />}
         {success && <div className="success">Ordered successfully</div>}
         <h2>Create a new order</h2>
       </div>
@@ -287,7 +299,9 @@ const handleServiceSelection = (serviceName) => {
           <button 
             type="submit" 
             className="theme-btn btn-style-one">
-            SUBMIT ORDER
+              <span>
+                {buttonLoading ? (<PulseLoader />) : 'SUBMIT ORDER'}
+              </span>
           </button>
         </div>
       </form>

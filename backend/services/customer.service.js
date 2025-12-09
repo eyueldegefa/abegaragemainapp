@@ -12,41 +12,41 @@ async function checkIfCustomerExists(email) {
   }
   return false;
 }
-// A function to create a new employee 
+// A function to create a new customer 
 async function createCustomer(customer) {
   let createdCustomer = {};
   try {
-    // Insert the basic employee data in to the employee table  
-    // Generate a salt and hash the password 
+    // Insert the basic customer data in to the customer_identifier table  
+    // Generate a salt and hash
     const salt = await bcrypt.genSalt(10);
         // Hash the password 
     const customer_hash = await bcrypt.hash(customer.customer_email, salt);
-    // Insert the email in to the employee table  
+    // Insert the email in to the customer_identifier table  
     const query = "INSERT INTO customer_identifier (customer_email, customer_phone_number, customer_hash) VALUES (?, ?, ?)";
     const rows = await conn.query(query, [customer.customer_email, customer.customer_phone_number, customer_hash]);
     console.log(rows);
     if (rows.affectedRows !== 1) {
       return false;
     }
-    // Get the employee id from the insert 
+    // Get the customer id from the insert 
     const customer_id = rows.insertId;
-    // Insert the remaining data in to the employee_info, employee_pass, and employee_role tables  
+    // Insert the remaining data in to the customer_info table
     const query2 = "INSERT INTO customer_info (customer_id, customer_first_name, customer_last_name, active_customer_status) VALUES (?, ?, ?, ?)";
     const rows2 = await conn.query(query2, [customer_id, customer.customer_first_name, customer.customer_last_name, customer.active_customer_status]);
-    // construct to the employee object to return 
+    // construct to the customer object to return 
     createdCustomer = {
       customer_id: customer_id,
     }
   } catch (err) {
     console.log(err);
   }
-  // Return the employee object 
+  // Return the Customer object 
   return createdCustomer;
 }
 
 // A function to get all customers
 async function getAllCustomers() {
-  const query = "SELECT * FROM customer_identifier INNER JOIN customer_info ON customer_info.customer_id = customer_identifier.customer_id INNER JOIN customer_vehicle_info ON customer_vehicle_info.customer_id = customer_identifier.customer_id";
+  const query = "SELECT * FROM customer_identifier INNER JOIN customer_info ON customer_info.customer_id = customer_identifier.customer_id ";
   const rows = await conn.query(query);
   return rows;
 }

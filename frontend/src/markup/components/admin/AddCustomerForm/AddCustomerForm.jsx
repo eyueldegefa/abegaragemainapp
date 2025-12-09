@@ -5,8 +5,8 @@ import './AddCustomerForm.css';
 import customerService from '../../../../services/customer.service';
 // import useAuth to get logged in employee token
 import { useAuth } from '../../../../Contexts/AuthContext';
-// import Loader component
-import ButtonLoader from '../../Loader/ButtonLoader';
+// import Button Loader component
+import { PulseLoader } from 'react-spinners';
 
 function AddCustomerForm() {
   // useNavigate hook
@@ -187,7 +187,9 @@ function AddCustomerForm() {
 
                       <div className="form-group col-md-12">
                         <button className="theme-btn btn-style-one" type="submit">
-                          <span>{loading ? (<ButtonLoader />) : 'ADD CUSTOMER'}</span>
+                          <span>
+                            {loading ? (<PulseLoader />) : 'ADD CUSTOMER'}
+                          </span>
                         </button>
                       </div>
                     </div>

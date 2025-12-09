@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 import { useNavigate } from 'react-router';
 import { useAuth } from '../../../../Contexts/AuthContext';
 import servicesService from '../../../../services/service.service';
+import { PulseLoader } from 'react-spinners';
 
 function AddServiceForm() {
       // useNavigate hook
@@ -10,6 +11,9 @@ function AddServiceForm() {
     // import states
     const [service_name, setServiceName]= useState();
     const [service_description, setServiceDesc]= useState();
+
+      // state for loading button
+      const [buttonLoading, setButtonLoading] = useState(false);
 
     // errors state
     const [serverError, setServerError] = useState();
@@ -40,6 +44,7 @@ function AddServiceForm() {
     }
 
     const newService = servicesService.addService(formData, loggedInEmployeeToken);
+    setButtonLoading(true);
     newService.then((response) => response.json())
       .then((data) => {
         if (data.error)  {
@@ -48,6 +53,7 @@ function AddServiceForm() {
         } else {
           setServerError('');
           setSuccess(true);
+          setButtonLoading(false);
           // redirect to admin dashboard after 2 seconds
           setTimeout(() => {
             navigate('/admin/services');
@@ -90,7 +96,11 @@ function AddServiceForm() {
                     </div>
 
                     <div className="form-group col-md-12">
-                      <button className="theme-btn btn-style-one" type="submit" data-loading-text="Please wait..."><span>ADD SERVICE</span></button>
+                      <button className="theme-btn btn-style-one" type="submit" data-loading-text="Please wait...">
+                        <span>
+                          {buttonLoading ? (<PulseLoader />) : 'ADD SERVICE'}
+                        </span>
+                      </button>
                     </div>
                   </div>
                 </form>

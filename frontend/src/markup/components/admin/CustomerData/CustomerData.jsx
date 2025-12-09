@@ -48,7 +48,7 @@ function CustomerData() {
       {apiError ? (
         <div>{apiErrorMessage}</div>
       ) : !customer ? (
-        <p>Loading...</p>
+        <Loader />
       ) : (
         <>
           <h2>Customer: {customer.customer_first_name} {customer.customer_last_name}</h2>

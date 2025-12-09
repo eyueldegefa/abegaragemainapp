@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { useAuth } from '../../../../Contexts/AuthContext';
 // import vehicleService to add new vehicle
 import vehicleService from '../../../../services/vehicle.service';
+import { PulseLoader } from 'react-spinners';
 
 // create a function to add vehicle form
 function AddVehicleForm() {
@@ -23,6 +24,9 @@ function AddVehicleForm() {
     const [vehicle_tag, setVehicleTag] = useState('');
     const [vehicle_serial, setVehicleSerial] = useState('');
     const [vehicle_color, setVehicleColor] = useState('');
+
+        // state for loading button
+    const [buttonLoading, setButtonLoading] = useState(false);
 
     // create a state to store error and success
     const [formErrors, setFormErrors] = useState('');
@@ -68,6 +72,7 @@ function AddVehicleForm() {
         try {
             const newVehicle = vehicleService.addNewVehicle(formData, token);
             const response = await newVehicle;
+            setButtonLoading(true);
             if (!response.ok) {
                 setApiError(true);
                 setApiErrorMessage(response.message || 'Failed to add vehicle');
@@ -76,6 +81,9 @@ function AddVehicleForm() {
                 setApiError(false);
                 setApiErrorMessage(null);
                 setSuccess(true);
+                // set loading to false
+                setButtonLoading(false);
+                // redirect to customer details page after 2 seconds
                 setTimeout(() => navigate(`/admin/customer/${id}`), 2000);
             }
         } catch (error) {
@@ -199,7 +207,9 @@ function AddVehicleForm() {
 
                       <div className="form-group col-md-12">
                         <button className="theme-btn btn-style-one" type="submit">
-                          <span>ADD VEHICLE</span>
+                          <span>
+                            {buttonLoading ? (<PulseLoader />) : 'ADD VEHICLE'}
+                          </span>
                         </button>
                       </div>
                     </div>

@@ -32,7 +32,7 @@ function Footer() {
                                 <div class="icon">
                                     <span class="flaticon-email"></span>
                                 </div>
-                                <div class="text">Email us : <br/> <a href="mailto:contact.contact@autorex.com">contact@autorex.com</a></div>
+                                <div class="text">Email us : <br/> <a href="mailto:contact.contact@autorex.com">contact@abegarage.com</a></div>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@ function Footer() {
                                 <div class="icon">
                                     <span class="flaticon-phone"></span>
                                 </div>
-                                <div class="text">Call us on : <br/><strong>+ 1800 456 7890</strong></div>
+                                <div class="text">Call us on : <br/><strong>0912345678</strong></div>
                             </div>
                         </div>
                     </div>
